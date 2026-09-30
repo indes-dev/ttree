@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "indes-ttree"
+version = "0.1.0"
+description = "Directory tree with byte and token counts"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+dependencies = ["gigatoken>=0.10,<1"]
+
+[project.urls]
+Homepage = "https://github.com/indes-dev/ttree"
+Repository = "https://github.com/indes-dev/ttree"
+Issues = "https://github.com/indes-dev/ttree/issues"
+
+[project.scripts]
+ttree = "ttree.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ttree"]
