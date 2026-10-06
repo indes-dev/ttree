@@ -58,3 +58,19 @@ Claude inference was not invoked. Preflight, independent validation, findings,
 adjudication, any fixes and release remain pending. Next actor: independent Claude
 reviewer after the applicable execution bootstrap and recorded dispatch.
 This is a verified communication handoff, not a completed cross-review.
+
+## 2026-10-06 — Phase 4 adjudication
+
+Author: project Orc, Codex. Independent Claude review returned at findings head
+`bac3684ea3fa36b44e5db8b124c97d14f65374ab`. The branch was fast-forwarded from the
+previous coordination head; the reviewed production implementation remains `9d420db`.
+GitHub review and OPEN/DRAFT PR state were verified against the actual repository.
+
+All F-01 through F-18 are accepted for remediation, with remedy choices recorded in
+TASK-002-orc-adjudication.md. Three High findings block release. None is fixed by this
+documentation stage. H-A through H-D retain explicit unverified coverage.
+The public issue body records class-level v0.1.0 hardening/disclosure direction.
+Observed OPEN receipt: https://github.com/indes-dev/ttree/issues/2. The retrieved
+issue body matches TASK-002-public-hardening-issue.md.
+The next stage freezes TASK-003, then delegates implementation and independent
+SHA-specific revalidation. No source change or release action is authorized here.
