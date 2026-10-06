@@ -74,3 +74,25 @@ Observed OPEN receipt: https://github.com/indes-dev/ttree/issues/2. The retrieve
 issue body matches TASK-002-public-hardening-issue.md.
 The next stage freezes TASK-003, then delegates implementation and independent
 SHA-specific revalidation. No source change or release action is authorized here.
+
+## 2026-10-06T19:40:15Z — Adjudication receipt and fix brief
+
+Adjudication commit: `8a6f563fa01d9b2ced60832b9784cabd30280d8c`.
+Normal push verified before/after against remote PR head; OPEN/DRAFT remains true.
+Observed gh communication: https://github.com/indes-dev/ttree/pull/1#issuecomment-6024041944
+(created 2026-10-06T19:38:10Z). Retrieved body matches TASK-002-gh-adjudication.md.
+
+Issued TASK-003-remediation-brief.md, frozen in this stage's commit. It directs a
+bounded real-reader/worker prototype before production integration, explicit default
+limit ceilings, focused correction commits and independent Claude revalidation.
+The schema 1 JSON/strict contract is fixed here. Its completeness marker reports
+missing extraction; token values for partial text are estimates of obtained content,
+not a mathematical lower-bound guarantee for BPE. This qualifies the earlier
+adjudication's shorthand about lower bounds.
+
+The human was informed before issuing the brief of the material optional-DOC
+restriction and dependency distinction. DOCX/PDF retain their Python-only basic path;
+DOC requires verified optional isolation or an explicit incomplete result. No new
+host package, setting or source code was installed/changed at this stage.
+Next actor: local implementation Agent, then a separate independent Claude session.
+No executor/reviewer dispatch or corrective execution is implied by brief issuance.
