@@ -1,11 +1,11 @@
-import hashlib
-from io import BytesIO
+from contextlib import redirect_stdout
+from io import StringIO
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest import TestCase
 from unittest.mock import patch
 
-from ttree.cli import compact, ensure_tokenizer_file, inspect, render
+from ttree.cli import compact, ensure_tokenizer_file, inspect, load_tokenizer, main, render, tokenizer_path
 
 
 class FakeTokenizer:
@@ -51,21 +51,38 @@ class TreeTests(TestCase):
         self.assertEqual(compact(24922980, ("tok", "ktok", "Mtok"), False), "24,9 Mtok")
         self.assertEqual(compact(1234567, ("B", "kB", "MB"), True), "1.234.567 B")
 
-    def test_vocabulary_download_is_verified_and_cached(self):
-        payload = b"verified-vocabulary"
-        digest = hashlib.sha256(payload).hexdigest()
-        with TemporaryDirectory() as temp:
-            path = Path(temp) / "ttree" / "o200k_base.tiktoken"
-            with patch("ttree.cli.TOKENIZER_SHA256", digest), patch("ttree.cli.urlopen", return_value=BytesIO(payload)) as download:
-                ensure_tokenizer_file(path)
-                ensure_tokenizer_file(path)
-                self.assertEqual(path.read_bytes(), payload)
-                download.assert_called_once()
+    def test_bundled_vocabulary_and_first_count_without_network(self):
+        with patch("socket.socket", side_effect=AssertionError("network forbidden")):
+            ensure_tokenizer_file(tokenizer_path())
+            tokenizer = load_tokenizer()
+            self.assertEqual(len(tokenizer.encode(b"Hello, world!")), 4)
+            self.assertEqual(len(tokenizer.encode(b"<|endoftext|>")), 7)
 
     def test_vocabulary_rejects_bad_hash(self):
         with TemporaryDirectory() as temp:
             path = Path(temp) / "ttree" / "o200k_base.tiktoken"
-            with patch("ttree.cli.urlopen", return_value=BytesIO(b"bad")):
-                with self.assertRaisesRegex(RuntimeError, "SHA-256"):
-                    ensure_tokenizer_file(path)
-            self.assertFalse(path.exists())
+            path.parent.mkdir()
+            path.write_bytes(b"bad")
+            with self.assertRaisesRegex(RuntimeError, "SHA-256"):
+                ensure_tokenizer_file(path)
+            self.assertEqual(path.read_bytes(), b"bad")
+            with self.assertRaisesRegex(RuntimeError, "missing"):
+                ensure_tokenizer_file(path.with_name("missing"))
+
+    def test_cli_default_human_exact_and_multiple_roots(self):
+        with TemporaryDirectory() as temp:
+            first = Path(temp) / "first.md"
+            second = Path(temp) / "second.md"
+            first.write_text("x" * 1234)
+            second.write_text("y" * 5)
+            with patch("ttree.cli.load_tokenizer", return_value=FakeTokenizer()):
+                for options, expected in [([], "1,2 ktok"), (["--exact"], "1.239 tok"),
+                                          (["-h", "--exact"], "1.239 B | 1.239 tok")]:
+                    output = StringIO()
+                    with redirect_stdout(output):
+                        self.assertEqual(main(options + [str(first), str(second)]), 0)
+                    result = output.getvalue()
+                    self.assertIn("Total:", result)
+                    self.assertIn(expected, result)
+                    if "-h" not in options:
+                        self.assertNotRegex(result, r"\d (?:B|kB|MB)\b")
