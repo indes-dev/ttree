@@ -34,3 +34,27 @@ The current handoff publishes the candidate as a draft PR and posts a sanitized
 review request using `gh`. GitHub postconditions will be recorded in a later commit
 after the actual PR and comment are observed. Do not treat this entry as dispatch
 or review completion.
+
+## 2026-10-06T15:29:58Z — GitHub handoff verified
+
+Author: project Orc, using Codex.
+
+The implementation and brief commits were pushed without rewriting history.
+GitHub reports draft PR [#1](https://github.com/indes-dev/ttree/pull/1), targeting
+`main`, with head `ac3c322b602dd47084814ff8b94b756936575c10` at this checkpoint.
+The observed public main SHA remains `0f1d6bbd9dbb02ebc91dd0180ec4f81c09bbb361`.
+
+The review request was posted through `gh pr comment --body-file` and retrieved
+through the GitHub API. Its observed timestamp is `2026-10-06T15:29:36Z`.
+Receipt: [handoff comment](https://github.com/indes-dev/ttree/pull/1#issuecomment-6019648964).
+Its exact public text is preserved in `TASK-002-gh-handoff.md`.
+
+The project Orc reconciled the project record to the implemented candidate and
+pending independent review, accepted the measured dependency rationale, and issued
+the bounded review capability and frozen brief. Private governance remains outside
+this repository. The public technical direction and phase contract are committed here.
+
+Claude inference was not invoked. Preflight, independent validation, findings,
+adjudication, any fixes and release remain pending. Next actor: independent Claude
+reviewer after the applicable execution bootstrap and recorded dispatch.
+This is a verified communication handoff, not a completed cross-review.
