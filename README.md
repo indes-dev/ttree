@@ -38,36 +38,42 @@ Installation fetches the Python packages. Subsequent runs need no network or API
 key. There are two direct Python dependencies: `tiktoken` and `pypdf`; installers
 resolve their dependencies automatically. DOCX needs no additional library.
 No LibreOffice, Pandoc, Poppler or OCR tool is required for DOCX or PDF.
-Legacy DOC support alone needs an optional local LibreOffice installation.
+Legacy DOC is deliberately inactive in this remediation candidate. It reports
+`unsupported`, null tokens and incomplete results while its bounded adapter is
+pending. For trusted documents, manually convert to DOCX outside ttree. Installing
+LibreOffice does not enable a native fallback.
 The project is validated on Linux; macOS and Windows have not been validated.
 Binary wheel availability depends on Python version and platform.
 See [THIRD_PARTY.md](THIRD_PARTY.md) for the bundled vocabulary notice.
 
 ## Counted content
 
-- UTF-8 text files are counted directly. Hidden entries require `-a`. Symbolic
+- UTF-8 text and BOM-marked UTF-16/UTF-32 files are counted locally. Hidden entries require `-a`. Symbolic
   links are shown but never followed.
 - **DOCX:** extract paragraphs, headings, lists and table cell text from the ZIP's
-  WordprocessingML. Count headers, footers and notes once per XML part. Paragraphs
+  WordprocessingML. This integration substage still has pending heading/list/table
+  representation corrections. Count headers, footers and notes once per XML part. Paragraphs
   use line breaks, common heading styles use `#`, lists use `-`, and table cells
   use tabs. Formatting is a small text representation, not a complete rendering
   of Word. Images, deleted revisions, field instructions and embedded objects
-  do not contribute text. XML extraction has a 32 MiB uncompressed limit.
+  do not contribute text. XML extraction has actual 4 MiB per-part / 8 MiB aggregate expansion limits.
 - **PDF:** use `pypdf` to extract the existing text layer. No OCR runs. Image-only
   files show `[no text]`. Existing text layers, including previously OCRed layers,
   are readable; layout, font encoding and extraction order can affect estimates.
-  Encrypted PDFs show `[encrypted PDF]` without a token estimate.
-- **DOC:** use LibreOffice headlessly with a temporary private profile and copy.
-  Macros and automatic external link updates are disabled. The reader has a
-  60-second timeout per file. Without LibreOffice, show a reader-unavailable
-  label and continue counting other files.
+  Only an empty user password is tried. Other encrypted PDFs show `[encrypted]`
+  with unknown tokens. Recovery warnings make a result incomplete.
+- **DOC:** deliberately inactive pending native boundary validation; see above.
 
 Image, audio, video and other binary files contribute bytes but no tokens. Byte
 sizes always refer to the original files. Malformed or unreadable documents show
 an error label; private parser messages and extracted text are not printed.
 A `≥` token count marks incomplete extraction or an unreadable descendant. If no
 text could be counted, an incomplete total is labelled explicitly. Errors exclude
-unreadable content from totals. They do not turn it into a claimed zero estimate.
+unreadable content from totals. They do not turn it into a claimed zero estimate. The `≥` symbol identifies
+incomplete extraction; it is not a mathematical lower bound for whole-document
+BPE tokenization. Unknown/non-UTF-8 content and unsupported text-bearing formats
+remain incomplete. Known media/archive/font/executable suffixes and descendant
+symlinks are intentional complete exclusions; explicit symlink roots are incomplete.
 
 ## Offline install
 
@@ -112,3 +118,36 @@ unshare -Urn .venv/bin/python scripts/validate_offline.py dist/offline
 ```
 
 The project is licensed under MIT; see [LICENSE](LICENSE). There is no AUR package yet.
+
+## Bounded candidate and agent results
+
+The current draft requires Linux user/PID namespaces and pidfds for base-worker
+containment. Unavailable limits fail closed (`limits_unavailable`). There are no
+new host command dependencies for DOCX/PDF/plain text. A descriptor-relative,
+no-follow traversal and private file snapshots prevent redirecting reads through
+symlinks. All scans, aggregation, sorting and rendering use iterative traversal.
+macOS/Windows remain unverified. Native DOC acceptance is still open; this draft
+is not a released fulfillment of complete document support.
+
+Defaults: 64 MiB input; DOCX 4 MiB/part, 8 MiB aggregate expanded XML, depth 128,
+100,000 elements and 4,096 ZIP members; 2,000 PDF pages; 1,000,000 extracted Unicode
+characters; per-worker 15 s wall / 10 s CPU / 512 MiB address space; 12 MiB response;
+120 s aggregate scan work, 100,000 entries, 16 MiB combined stored path bytes.
+Parser allocations remain inside the process envelope even before content limits
+can be checked. Output blocking is outside the scan deadline. Each `--limit-...`
+option accepts a positive integer up to its displayed default; `--help` lists the
+exact names. No option disables a boundary.
+
+`ttree --json --strict docs missing` emits exactly one newline-terminated JSON
+object: schema_version 1, effective_limits, roots and total. Each root preserves
+its supplied path and has tokens/bytes/complete/status plus a flat entries list,
+including relative path `.`. POSIX paths also have base64 raw-byte fields. Human
+output escapes terminal controls and surrogate/format characters; JSON preserves
+native paths through ordinary JSON escaping. Missing roots are retained. Display
+flags (`-h`, `--exact`, `-L`, `--sort`) do not filter scanned JSON entries.
+
+Unknown file counts are null. Empty/no-text counts are zero. Directory/total counts
+sum known values and propagate incomplete descendants. `--json` does not imply
+strict: exit 0 normally; 3 for incomplete results with `--strict`; 1 for missing
+roots or an unrecoverable startup/run failure; 2 for usage/configuration errors.
+Per-file failures allow later files and roots to continue.

@@ -1,185 +1,151 @@
-"""Extract document text locally without OCR or document execution."""
+"""Bounded document extraction, called only inside a disposable worker.
+
+Legacy DOC is deliberately unsupported pending native boundary adjudication.
+There is no native subprocess, converter, fallback or external relationship fetch.
+"""
 
 from __future__ import annotations
 
 import logging
-import os
-import re
-import shutil
-import signal
-import subprocess
-import tempfile
-from dataclasses import dataclass
-from pathlib import Path
-from xml.etree import ElementTree as ET
+from xml.parsers import expat
 from zipfile import ZipFile
 
-DOCUMENT_SUFFIXES = {".doc", ".docx", ".pdf"}
-WORD_NS = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
-STRICT_WORD_NS = "{http://purl.oclc.org/ooxml/wordprocessingml/main}"
-MAX_DOCX_XML_BYTES = 32 * 1024 * 1024
-DOC_TIMEOUT_SECONDS = 60
+from ttree.limits import CAPS
 
 
-@dataclass
-class Extraction:
-    text: str = ""
-    issue: str | None = None
+class Stop(Exception):
+    def __init__(self, status):
+        self.status = status
 
 
-def _word_text(node: ET.Element) -> str:
-    # Deleted revisions, field instructions and image metadata are not text.
-    if node.tag == WORD_NS + "del":
-        return ""
-    if node.tag == WORD_NS + "t":
-        return node.text or ""
-    if node.tag == WORD_NS + "tab":
-        return "\t"
-    if node.tag in (WORD_NS + "br", WORD_NS + "cr"):
-        return "\n"
-    result = "".join(_word_text(child) for child in node)
-    if node.tag == WORD_NS + "p":
-        properties = node.find(WORD_NS + "pPr")
-        if properties is not None and result.strip():
-            style = properties.find(WORD_NS + "pStyle")
-            heading = re.fullmatch(r"Heading([1-6])", style.get(WORD_NS + "val", ""), re.I) if style is not None else None
-            if heading:
-                result = "#" * int(heading[1]) + " " + result
-            elif properties.find(WORD_NS + "numPr") is not None:
-                result = "- " + result
-        return result + "\n"
-    if node.tag == WORD_NS + "tc":
-        return result.rstrip("\n") + "\t"
-    if node.tag == WORD_NS + "tr":
-        return result.rstrip("\t") + "\n"
-    return result
-
-
-def extract_docx(path: Path) -> Extraction:
-    parts: list[str] = []
-    try:
-        with ZipFile(path) as archive:
-            # Include each header/footer once, plus notes. Never follow external
-            # relationships or interpret macros, fields, images or altChunk.
-            names = ["word/document.xml"] + sorted(
-                name for name in archive.namelist()
-                if re.fullmatch(r"word/(?:header\d+|footer\d+|footnotes|endnotes)\.xml", name)
+def docx(source, metrics):
+    chunks = []
+    characters = elements = actual = 0
+    with ZipFile(source) as archive:
+        names = archive.namelist()
+        if len(names) > CAPS["zip_members"]:
+            raise Stop("too_large")
+        if len(names) != len(set(names)):
+            raise Stop("failed")
+        selected = ["word/document.xml"] + sorted(
+            n
+            for n in names
+            if n.startswith("word/")
+            and (
+                n.startswith(("word/header", "word/footer"))
+                or n in ("word/footnotes.xml", "word/endnotes.xml")
             )
-            total = 0
-            for name in names:
-                total += archive.getinfo(name).file_size
-                if total > MAX_DOCX_XML_BYTES:
-                    return Extraction("\n".join(parts), "DOCX text exceeds extraction limit")
-                raw = archive.read(name)
-                if b"<!DOCTYPE" in raw.upper() or b"<!ENTITY" in raw.upper():
-                    return Extraction("\n".join(parts), "unsupported DOCX XML declarations")
-                root = ET.fromstring(raw)
-                for node in root.iter():
-                    node.tag = node.tag.replace(STRICT_WORD_NS, WORD_NS)
-                    node.attrib = {key.replace(STRICT_WORD_NS, WORD_NS): value for key, value in node.attrib.items()}
-                if name == "word/document.xml" and (root.tag != WORD_NS + "document" or root.find(WORD_NS + "body") is None):
-                    return Extraction(issue="invalid DOCX document XML")
-                if name in ("word/footnotes.xml", "word/endnotes.xml"):
-                    # Separator notes use nonpositive IDs and are not body text.
-                    text = "".join(_word_text(note) for note in root if int(note.get(WORD_NS + "id", "0")) > 0)
-                else:
-                    text = _word_text(root)
-                if text.strip():
-                    parts.append(text.strip())
-    except Exception:
-        # Parser exceptions can contain document text. Expose only fixed labels.
-        return Extraction("\n".join(parts), "cannot extract DOCX text")
-    return Extraction("\n".join(parts))
+            and n.endswith(".xml")
+        )
+        for name in selected:
+            parser = expat.ParserCreate(namespace_separator="}")
+            depth = 0
+            text_depth = 0
+            part_bytes = 0
+
+            def start(tag, attrs):
+                nonlocal depth, elements, text_depth
+                depth += 1
+                elements += 1
+                metrics.update(
+                    xml_elements=elements,
+                    xml_depth_peak=max(metrics.get("xml_depth_peak", 0), depth),
+                )
+                if depth > CAPS["xml_depth"] or elements > CAPS["xml_elements"]:
+                    raise Stop("too_large")
+                if tag.endswith("}t"):
+                    text_depth = depth
+
+            def end(tag):
+                nonlocal depth, text_depth
+                if depth == text_depth:
+                    text_depth = 0
+                if tag.endswith("}p"):
+                    append("\n")
+                depth -= 1
+
+            def append(data):
+                nonlocal characters
+                characters += len(data)
+                if characters > CAPS["characters"]:
+                    raise Stop("too_large")
+                chunks.append(data)
+
+            def text(data):
+                if text_depth:
+                    append(data)
+
+            def reject(*args):
+                raise Stop("failed")
+
+            parser.StartElementHandler = start
+            parser.EndElementHandler = end
+            parser.CharacterDataHandler = text
+            parser.StartDoctypeDeclHandler = reject
+            parser.EntityDeclHandler = reject
+            parser.ExternalEntityRefHandler = reject
+            with archive.open(name) as stream:
+                while True:
+                    block = stream.read(
+                        min(
+                            65536,
+                            CAPS["xml_part_bytes"] - part_bytes + 1,
+                            CAPS["xml_total_bytes"] - actual + 1,
+                        )
+                    )
+                    if not block:
+                        break
+                    part_bytes += len(block)
+                    actual += len(block)
+                    metrics["actual_xml_bytes"] = actual
+                    if (
+                        part_bytes > CAPS["xml_part_bytes"]
+                        or actual > CAPS["xml_total_bytes"]
+                    ):
+                        raise Stop("too_large")
+                    parser.Parse(block, False)
+                parser.Parse(b"", True)
+            chunks.append("\n")
+    return "".join(chunks).strip(), "counted"
 
 
-def extract_pdf(path: Path) -> Extraction:
+def pdf(source, metrics):
     from pypdf import PdfReader
 
-    parts: list[str] = []
-    issue = None
+    class Warnings(logging.Handler):
+        def emit(self, record):
+            # Count without formatting record arguments/document fragments.
+            metrics["pdf_warnings"] = metrics.get("pdf_warnings", 0) + 1
+
     logger = logging.getLogger("pypdf")
-    previous_level = logger.level
-    logger.setLevel(logging.CRITICAL + 1)  # Parser messages can quote private content.
+    previous = logger.level, logger.propagate, logger.handlers[:]
+    logger.setLevel(logging.WARNING)
+    logger.propagate = False
+    logger.handlers = [Warnings(logging.WARNING)]
+    parts = []
+    status = "counted"
+    chars = 0
     try:
-        with path.open("rb") as source:
-            reader = PdfReader(source)
-            if reader.is_encrypted:
-                return Extraction(issue="encrypted PDF")
-            for page in reader.pages:
-                try:
-                    text = page.extract_text() or ""
-                    if text.strip():
-                        parts.append(text.strip())
-                except Exception:
-                    issue = "cannot extract some PDF pages"
-    except Exception:
-        issue = "cannot extract PDF text"
+        reader = PdfReader(source)
+        if reader.is_encrypted:
+            if not reader.decrypt(""):
+                raise Stop("encrypted")
+        if len(reader.pages) > CAPS["pdf_pages"]:
+            raise Stop("too_large")
+        for page in reader.pages:
+            try:
+                text = page.extract_text() or ""
+                chars += len(text)
+                if chars > CAPS["characters"]:
+                    raise Stop("too_large")
+                parts.append(text)
+            except Stop:
+                raise
+            except Exception:
+                status = "partial"
+        if metrics.get("pdf_warnings"):
+            status = "partial"
     finally:
-        logger.setLevel(previous_level)
-    return Extraction("\n\n".join(parts), issue)
-
-
-def extract_doc(path: Path) -> Extraction:
-    reader = shutil.which("libreoffice") or shutil.which("soffice")
-    if reader is None:
-        return Extraction(issue="DOC reader unavailable (install LibreOffice)")
-    try:
-        with tempfile.TemporaryDirectory(prefix="ttree-doc-") as temporary:
-            work = Path(temporary)
-            profile = work / "profile"
-            user = profile / "user"
-            user.mkdir(parents=True)
-            # Use a separate profile. Disable macros and external link updates.
-            (user / "registrymodifications.xcu").write_text(
-                '<?xml version="1.0" encoding="UTF-8"?>'
-                '<oor:items xmlns:oor="http://openoffice.org/2001/registry">'
-                '<item oor:path="/org.openoffice.Office.Common/Security/Scripting">'
-                '<prop oor:name="MacroSecurityLevel" oor:op="fuse"><value>3</value></prop>'
-                '<prop oor:name="DisableMacrosExecution" oor:op="fuse"><value>true</value></prop>'
-                '<prop oor:name="DisableActiveContent" oor:op="fuse"><value>true</value></prop></item>'
-                '<item oor:path="/org.openoffice.Office.Writer/Content/Update">'
-                '<prop oor:name="Link" oor:op="fuse"><value>2</value></prop>'
-                '<prop oor:name="Field" oor:op="fuse"><value>false</value></prop>'
-                '<prop oor:name="Chart" oor:op="fuse"><value>false</value></prop></item>'
-                '</oor:items>', encoding="utf-8",
-            )
-            # A private copy prevents lock files beside the original document.
-            source = work / "input.doc"
-            shutil.copyfile(path, source)
-            returncode = _run_doc_reader(
-                [reader, f"-env:UserInstallation={profile.as_uri()}", "--headless",
-                 "--nologo", "--nodefault", "--norestore", "--convert-to",
-                 "txt:Text (encoded):UTF8", "--outdir", str(work), str(source)],
-            )
-            output = work / "input.txt"
-            if returncode != 0 or not output.is_file():
-                return Extraction(issue="cannot extract DOC text")
-            return Extraction(output.read_text(encoding="utf-8-sig").strip())
-    except subprocess.TimeoutExpired:
-        return Extraction(issue="DOC reader timed out")
-    except (OSError, UnicodeError):
-        return Extraction(issue="cannot extract DOC text")
-
-
-def _run_doc_reader(command: list[str]) -> int:
-    with subprocess.Popen(
-        command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-        start_new_session=os.name == "posix",
-    ) as process:
-        try:
-            return process.wait(timeout=DOC_TIMEOUT_SECONDS)
-        except subprocess.TimeoutExpired:
-            # LibreOffice can spawn a child. Kill our own process group on Unix.
-            if os.name == "posix":
-                try:
-                    os.killpg(process.pid, signal.SIGKILL)
-                except ProcessLookupError:
-                    pass
-            else:
-                process.kill()
-            process.wait()
-            raise
-
-
-def extract_document(path: Path) -> Extraction:
-    return {".docx": extract_docx, ".pdf": extract_pdf, ".doc": extract_doc}[path.suffix.lower()](path)
+        logger.setLevel(previous[0])
+        logger.propagate, logger.handlers = previous[1:]
+    return "\n\n".join(parts), status
