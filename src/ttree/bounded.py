@@ -27,6 +27,8 @@ STATUSES = {
 
 
 def count_fd(fd, kind, limits, deadline):
+    if sys.platform != "linux" or not hasattr(os, "pidfd_open"):
+        return {"status": "limits_unavailable", "tokens": None}
     if time.monotonic() >= deadline:
         return {"status": "timed_out", "tokens": None}
     info = os.fstat(fd)

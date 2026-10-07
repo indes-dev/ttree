@@ -1,5 +1,8 @@
 # ttree
 
+Unreleased TASK-003 remediation candidate: native DOC acceptance and independent
+review are pending. These source changes do not update an existing installation.
+
 `ttree` prints a directory tree with estimated token counts. Counting runs locally
 with `tiktoken` and the bundled, SHA-256-verified `o200k_base` vocabulary.
 Counts describe extracted file contents, not full conversation context or exact
@@ -21,17 +24,18 @@ With multiple roots, the last line shows their combined total.
 
 ## Install
 
-Python 3.10+ is required. Install directly from this public repository with `uv`:
+Python 3.10+ and the Linux containment primitives below are required. For an
+explicitly reviewed revision, replace `<reviewed-SHA>` and install with `uv`:
 
 ```bash
-uv tool install git+https://github.com/indes-dev/ttree.git
+uv tool install git+https://github.com/indes-dev/ttree.git@<reviewed-SHA>
 ttree --help
 ```
 
 Or use `pip` inside your existing Python environment:
 
 ```bash
-python -m pip install git+https://github.com/indes-dev/ttree.git
+python -m pip install git+https://github.com/indes-dev/ttree.git@<reviewed-SHA>
 ```
 
 Installation fetches the Python packages. Subsequent runs need no network or API
@@ -78,44 +82,49 @@ symlinks are intentional complete exclusions; explicit symlink roots are incompl
 
 ## Offline install
 
-A complete offline artifact contains the `ttree` wheel (including the vocabulary),
-all dependency wheels, `manifest.json`, instructions and `SHA256SUMS`.
-Prepare it on a connected machine with the same Python, OS and architecture as
-the destination. Build tools and pip are only needed to prepare the artifact:
+The prepared artifact target is **CPython 3.12, Linux x86_64**. It contains the
+application wheel, all declared dependency wheels, target manifest, hash locks,
+tracked-build metadata, instructions and SHA256SUMS. Other targets need their own
+measured lock/artifact; no broad platform artifact is claimed.
+
+Prepare from an exact tracked Git revision on a connected matching machine. Build
+tools and pip are preparation tools only. For this candidate:
 
 ```bash
-uv build
-uv run --no-project --with pip python scripts/build_offline.py \
-  dist/indes_ttree-0.2.0-py3-none-any.whl dist/offline
+mkdir -p .tmp
+uv venv --python 3.12 --seed .venv
+uv pip install --python .venv/bin/python --require-hashes -r locks/build-linux-cp312-x86_64.txt
+TMPDIR="$PWD/.tmp" .venv/bin/python scripts/build_tracked.py .tmp/build
+.venv/bin/python scripts/build_offline.py .tmp/build/packages/indes_ttree-0.2.0-py3-none-any.whl .tmp/offline
 ```
 
-Transfer the entire `dist/offline` directory and its independently recorded
-`SHA256SUMS` checksum. On the destination, use an existing compatible Python and
-`uv` or `pip`. From the artifact directory:
+`build_tracked.py` exports committed input and fixes SOURCE_DATE_EPOCH. Both
+wheel/sdist use exact file lists and reject unexpected implicit build files.
+Untracked local files are excluded. `build_offline.py` requires tracked-wheel
+metadata, downloads with `--require-hashes`, records the dependency lock digest,
+exact package versions and target, and adds a hash-enforced install lock.
+
+Transfer the entire artifact. Obtain its SHA256SUMS digest through an independently
+trusted channel before verification; checksum files establish byte integrity and
+do not establish publisher identity. No release digest is published by this task.
+On the destination, use an existing compatible Python and pip, from the artifact:
 
 ```bash
 sha256sum -c SHA256SUMS
-uv tool install --offline --no-index --no-python-downloads \
-  --find-links wheels indes-ttree==0.2.0
-ttree docs
+python -m pip install --no-index --find-links wheels --require-hashes -r install-lock.txt
+ttree --json --strict docs
 ```
 
-For a destination without `uv`, use an existing pip environment:
-
-```bash
-python -m pip install --no-index --find-links wheels indes-ttree==0.2.0
-```
-
-The artifact intentionally excludes Python itself, installer executables and
-optional LibreOffice. Prepare a separate wheel artifact for each target platform.
+Python, installers and native tools are excluded. DOC remains inactive pending its
+bounded adapter; the artifact does not enable it or install LibreOffice.
 
 ## Development
 
 ```bash
-uv venv
+uv venv --python 3.12
 uv pip install -e .
-.venv/bin/python -m unittest discover -s tests -v
-unshare -Urn .venv/bin/python scripts/validate_offline.py dist/offline
+mkdir -p .tmp
+TMPDIR="$PWD/.tmp" .venv/bin/python -m unittest discover -s tests -v
 ```
 
 The project is licensed under MIT; see [LICENSE](LICENSE). There is no AUR package yet.
