@@ -9,7 +9,7 @@ description = "Offline directory tree with token estimates and optional byte siz
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10"
-dependencies = ["tiktoken>=0.12,<1", "pypdf>=6.1,<7"]
+dependencies = ["tiktoken>=0.12,<1", "pypdf>=6.19.0,<7"]
 
 [project.urls]
 Homepage = "https://github.com/indes-dev/ttree"

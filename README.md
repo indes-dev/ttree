@@ -51,12 +51,13 @@ See [THIRD_PARTY.md](THIRD_PARTY.md) for the bundled vocabulary notice.
 - UTF-8 text and BOM-marked UTF-16/UTF-32 files are counted locally. Hidden entries require `-a`. Symbolic
   links are shown but never followed.
 - **DOCX:** extract paragraphs, headings, lists and table cell text from the ZIP's
-  WordprocessingML. This integration substage still has pending heading/list/table
-  representation corrections. Count headers, footers and notes once per XML part. Paragraphs
+  WordprocessingML. Count headers, footers and notes once per XML part. Paragraphs
   use line breaks, common heading styles use `#`, lists use `-`, and table cells
   use tabs. Formatting is a small text representation, not a complete rendering
   of Word. Images, deleted revisions, field instructions and embedded objects
-  do not contribute text. XML extraction has actual 4 MiB per-part / 8 MiB aggregate expansion limits.
+  and moved-from revisions do not contribute text. AlternateContent chooses one
+  supported Word namespace branch or its fallback. Duplicate ZIP members and
+  DTD/entity declarations are rejected. XML extraction has actual 4 MiB per-part / 8 MiB aggregate expansion limits.
 - **PDF:** use `pypdf` to extract the existing text layer. No OCR runs. Image-only
   files show `[no text]`. Existing text layers, including previously OCRed layers,
   are readable; layout, font encoding and extraction order can affect estimates.

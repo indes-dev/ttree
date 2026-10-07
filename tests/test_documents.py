@@ -128,3 +128,135 @@ class DocumentTests(TestCase):
         code, roots = self.scan(path)
         self.assertEqual(code, 3)
         self.assertEqual(roots[0]["status"], "failed")
+
+    def extracted(self, path):
+        from ttree.documents import docx
+
+        with path.open("rb") as source:
+            return docx(source, {})[0]
+
+    def test_docx_representation_headers_notes_and_revisions(self):
+        path = self.root / "semantics.docx"
+        make_docx(
+            path,
+            '<w:p><w:pPr><w:pStyle w:val="Heading1"/></w:pPr><w:r><w:t>Heading</w:t></w:r></w:p>'
+            "<w:p><w:r><w:t>First </w:t></w:r><w:r><w:t>paragraph</w:t><w:tab/><w:t>end</w:t><w:br/><w:t>line</w:t></w:r></w:p>"
+            '<w:p><w:pPr><w:numPr><w:numId w:val="1"/></w:numPr></w:pPr><w:r><w:t>Item</w:t></w:r></w:p>'
+            "<w:tbl><w:tr><w:tc><w:p><w:r><w:t>Cell A</w:t></w:r></w:p></w:tc><w:tc><w:p><w:r><w:t>Cell B</w:t></w:r></w:p></w:tc></w:tr></w:tbl>"
+            "<w:p><w:del><w:r><w:t>Deleted</w:t></w:r></w:del><w:moveFrom><w:r><w:t>Moved away</w:t></w:r></w:moveFrom><w:moveTo><w:r><w:t>Moved here</w:t></w:r></w:moveTo><w:r><w:instrText>FIELD</w:instrText></w:r></w:p>",
+            {
+                "word/header1.xml": f'<w:hdr xmlns:w="{WORD}"><w:p><w:r><w:t>Header</w:t></w:r></w:p></w:hdr>',
+                "word/footnotes.xml": f'<w:footnotes xmlns:w="{WORD}"><w:footnote w:id="0"><w:p><w:r><w:t>Separator</w:t></w:r></w:p></w:footnote><w:footnote w:id="1"><w:p><w:r><w:t>Note</w:t></w:r></w:p></w:footnote></w:footnotes>',
+            },
+        )
+        expected = "# Heading\nFirst paragraph\tend\nline\n- Item\nCell A\tCell B\nMoved here\nNote\nHeader"
+        self.assertEqual(self.extracted(path), expected)
+        from ttree.cli import load_tokenizer
+
+        code, roots = self.scan(path)
+        self.assertEqual(code, 0)
+        self.assertEqual(
+            roots[0]["tokens"], len(load_tokenizer().encode(expected.encode()))
+        )
+
+    def test_alternate_content_selects_one_supported_choice_or_fallback(self):
+        mc = "http://schemas.openxmlformats.org/markup-compatibility/2006"
+        path = self.root / "alternate.docx"
+
+        def choice(required, text):
+            return f'<mc:Choice Requires="{required}"><w:p><w:r><w:t>{text}</w:t></w:r></w:p></mc:Choice>'
+
+        for choices, expected in [
+            (choice("w", "Chosen") + choice("w", "Second"), "Chosen"),
+            (choice("unknown", "Unavailable"), "Fallback"),
+        ]:
+            body = (
+                f'<mc:AlternateContent xmlns:mc="{mc}" xmlns:unknown="urn:unsupported">'
+                + choices
+                + "<mc:Fallback><w:p><w:r><w:t>Fallback</w:t></w:r></w:p></mc:Fallback></mc:AlternateContent>"
+            )
+            make_docx(path, body)
+            self.assertEqual(self.extracted(path), expected)
+            code, roots = self.scan(path)
+            self.assertEqual(code, 0)
+            from ttree.cli import load_tokenizer
+
+            self.assertEqual(
+                roots[0]["tokens"], len(load_tokenizer().encode(expected.encode()))
+            )
+
+    def test_strict_namespace_and_invalid_main_document(self):
+        path = self.root / "strict.docx"
+        with ZipFile(path, "w") as archive:
+            archive.writestr(
+                "word/document.xml",
+                '<w:document xmlns:w="http://purl.oclc.org/ooxml/wordprocessingml/main"><w:body><w:p><w:r><w:t>Strict text</w:t></w:r></w:p></w:body></w:document>',
+            )
+        self.assertEqual(self.extracted(path), "Strict text")
+        self.assertEqual(self.scan(path)[0], 0)
+        for xml in ("<unrelated/>", f'<w:document xmlns:w="{WORD}"/>'):
+            with ZipFile(path, "w") as archive:
+                archive.writestr("word/document.xml", xml)
+            code, roots = self.scan(path)
+            self.assertEqual(code, 3)
+            self.assertEqual(roots[0]["status"], "failed")
+
+    def test_recovered_pdf_warnings_remain_partial_without_diagnostics(self):
+        path = self.root / "recovered.pdf"
+        make_pdf(path, "Readable PDF text")
+        raw = path.read_bytes()
+        offset = raw.index(b"startxref\n") + len(b"startxref\n")
+        end = raw.index(b"\n", offset)
+        path.write_bytes(raw[:offset] + b"0" + raw[end:])
+        code, roots = self.scan(path)
+        self.assertEqual(code, 3)
+        self.assertEqual(roots[0]["status"], "partial")
+        self.assertEqual(roots[0]["tokens"], 3)
+
+    def test_empty_damaged_pdf_is_partial(self):
+        path = self.root / "damaged.pdf"
+        make_pdf(path, "x")
+        from pypdf import PdfReader
+
+        writer = PdfWriter()
+        writer.add_page(PdfReader(path).pages[0])
+        page = writer.pages[0]
+        stream = DecodedStreamObject()
+        stream.set_data(b"private invalid deflate")
+        stream[NameObject("/Filter")] = NameObject("/FlateDecode")
+        page[NameObject("/Contents")] = writer._add_object(stream)
+        writer.write(path)
+        code, roots = self.scan(path)
+        self.assertEqual(code, 3)
+        self.assertEqual(roots[0]["status"], "partial")
+        self.assertEqual(roots[0]["tokens"], 0)
+
+    def test_production_actual_docx_expansion_and_structural_caps(self):
+        from zipfile import ZIP_DEFLATED
+
+        path = self.root / "expansion.docx"
+        with ZipFile(path, "w", ZIP_DEFLATED) as archive:
+            archive.writestr(
+                "word/document.xml",
+                f'<w:document xmlns:w="{WORD}"><w:body>'
+                + (" " * 5 * 1024 * 1024)
+                + "</w:body></w:document>",
+            )
+        code, roots = self.scan(path)
+        self.assertEqual(code, 3)
+        self.assertEqual(roots[0]["status"], "too_large")
+        make_docx(path, ("<w:r>" * 130) + ("</w:r>" * 130))
+        code, roots = self.scan(path)
+        self.assertEqual(code, 3)
+        self.assertEqual(roots[0]["status"], "too_large")
+
+    def test_unsupported_pdf_cipher_is_fixed_incomplete(self):
+        path = self.root / "unsupported-cipher.pdf"
+        make_pdf(path, "Cipher text", password="secret")
+        raw = path.read_bytes()
+        self.assertIn(b"/V 2", raw)
+        path.write_bytes(raw.replace(b"/V 2", b"/V 9"))
+        code, roots = self.scan(path)
+        self.assertEqual(code, 3)
+        self.assertEqual(roots[0]["status"], "failed")
+        self.assertIsNone(roots[0]["tokens"])

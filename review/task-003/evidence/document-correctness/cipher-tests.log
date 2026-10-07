@@ -1,0 +1,16 @@
+test_alternate_content_selects_one_supported_choice_or_fallback (test_documents.DocumentTests.test_alternate_content_selects_one_supported_choice_or_fallback) ... ok
+test_docx_representation_headers_notes_and_revisions (test_documents.DocumentTests.test_docx_representation_headers_notes_and_revisions) ... ok
+test_duplicate_members_rejected (test_documents.DocumentTests.test_duplicate_members_rejected) ... ok
+test_empty_damaged_pdf_is_partial (test_documents.DocumentTests.test_empty_damaged_pdf_is_partial) ... ok
+test_malformed_documents_continue (test_documents.DocumentTests.test_malformed_documents_continue) ... ok
+test_normal_docx_pdf_empty_and_encrypted_empty_password (test_documents.DocumentTests.test_normal_docx_pdf_empty_and_encrypted_empty_password) ... ok
+test_production_actual_docx_expansion_and_structural_caps (test_documents.DocumentTests.test_production_actual_docx_expansion_and_structural_caps) ... ok
+test_recovered_pdf_warnings_remain_partial_without_diagnostics (test_documents.DocumentTests.test_recovered_pdf_warnings_remain_partial_without_diagnostics) ... ok
+test_strict_namespace_and_invalid_main_document (test_documents.DocumentTests.test_strict_namespace_and_invalid_main_document) ... ok
+test_unsupported_pdf_cipher_is_fixed_incomplete (test_documents.DocumentTests.test_unsupported_pdf_cipher_is_fixed_incomplete) ... ok
+test_xml_declarations_rejected_across_encodings (test_documents.DocumentTests.test_xml_declarations_rejected_across_encodings) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 3.720s
+
+OK
