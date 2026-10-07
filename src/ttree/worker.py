@@ -73,7 +73,7 @@ def snapshot(fd):
         yield copied
 
 
-def work(fd, kind, control_fd, limits):
+def work(fd, kind, control_fd, limits, expected_parent):
     global CAPS
     CAPS = validated(limits)
     import ttree.documents
@@ -83,7 +83,7 @@ def work(fd, kind, control_fd, limits):
     try:
         # Install parent-death signal in bootstrap BEFORE containment so a dead
         # supervisor cannot leave a bootstrap. Handshake race addressed below.
-        parent = os.getppid()
+        parent = expected_parent
         libc = ctypes.CDLL(None, use_errno=True)
         if libc.prctl(1, signal.SIGKILL, 0, 0, 0) or os.getppid() != parent:
             raise Stop("limits_unavailable")
@@ -155,4 +155,10 @@ def work(fd, kind, control_fd, limits):
 
 
 if __name__ == "__main__":
-    work(int(sys.argv[1]), sys.argv[2], int(sys.argv[3]), json.loads(sys.argv[4]))
+    work(
+        int(sys.argv[1]),
+        sys.argv[2],
+        int(sys.argv[3]),
+        json.loads(sys.argv[4]),
+        int(sys.argv[5]),
+    )

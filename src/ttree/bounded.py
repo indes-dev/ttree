@@ -57,6 +57,7 @@ def supervise(fd, kind, limits, deadline, private):
             kind,
             str(control_write),
             json.dumps(limits, separators=(",", ":")),
+            str(os.getpid()),
         ]
         process = subprocess.Popen(
             command,

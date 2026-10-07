@@ -304,3 +304,32 @@ time.sleep(10)
                 pass
         finally:
             os.close(fd)
+
+    def test_coordinator_death_before_worker_start_fails_closed(self):
+        source = self.root / "text.txt"
+        source.write_text("Hello, world!")
+        # The real coordinator exits while its child waits before exec. The worker
+        # must reject adoption by another process instead of watching its new parent.
+        script = r"""
+import json,os,sys,time
+from ttree.limits import validated
+fd=os.open(sys.argv[1],os.O_RDONLY|os.O_NOFOLLOW);os.set_inheritable(fd,True)
+read,write=os.pipe();os.set_inheritable(write,True)
+expected=os.getpid()
+if os.fork()==0:
+ time.sleep(.1)
+ os.execv(sys.executable,[sys.executable,'-m','ttree.worker',str(fd),'text',str(write),json.dumps(validated()),str(expected)])
+os._exit(0)
+"""
+        result = subprocess.run(
+            [sys.executable, "-c", script, str(source)],
+            capture_output=True,
+            text=True,
+            timeout=3,
+            env={**os.environ, "TMPDIR": str(self.root)},
+        )
+        self.assertEqual(result.returncode, 0)
+        value = json.loads(result.stdout)
+        self.assertEqual(value["status"], "limits_unavailable")
+        self.assertIsNone(value["tokens"])
+        self.assertEqual(result.stderr, "")
