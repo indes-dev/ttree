@@ -333,3 +333,64 @@ os._exit(0)
         self.assertEqual(value["status"], "limits_unavailable")
         self.assertIsNone(value["tokens"])
         self.assertEqual(result.stderr, "")
+
+    def test_dotdot_reparent_race_never_reads_new_outside_parent(self):
+        from unittest.mock import patch
+
+        scanned = self.root / "scanned"
+        scanned.mkdir()
+        (scanned / "bar.txt").write_text("ok")
+        victim = scanned / "foo"
+        victim.mkdir()
+        outside = self.root / "outside"
+        outside.mkdir()
+        (outside / "bar.txt").write_text("OUTSIDE-SENTINEL " * 1000)
+        moved = outside / "moved"
+        trigger = threading.Event()
+        done = threading.Event()
+
+        def mutate():
+            if trigger.wait(2):
+                victim.rename(moved)
+            done.set()
+
+        thread = threading.Thread(target=mutate)
+        thread.start()
+        real_open = os.open
+        injected = False
+
+        def race_open(path, *args, **kwargs):
+            nonlocal injected
+            fd = real_open(path, *args, **kwargs)
+            if path == "foo" and not injected:
+                injected = True
+                trigger.set()
+                self.assertTrue(done.wait(2))
+            return fd
+
+        try:
+            # Scheduling hook only; all opens, rename, FD traversal and worker
+            # reads are real. The old '..' read traversed moved/'..'/bar.txt.
+            with patch("ttree.scan.os.open", side_effect=race_open):
+                roots = scan_roots(
+                    [str(victim) + "/../bar.txt"], validated(), time.monotonic() + 5
+                )
+            self.assertTrue(injected)
+            self.assertEqual(roots[0][1][0].tokens, 1)
+        finally:
+            trigger.set()
+            thread.join(2)
+
+    def test_unreadable_descendant_is_not_misclassified_as_replaced(self):
+        source = self.root / "unreadable.txt"
+        source.write_text("secret")
+        source.chmod(0)
+        try:
+            roots = scan_roots([str(self.root)], validated(), time.monotonic() + 5)
+            entry = next(item for item in roots[0][1] if item.name == "unreadable.txt")
+            self.assertEqual(
+                (entry.status, entry.tokens, entry.bytes), ("unreadable", None, 6)
+            )
+            self.assertFalse(roots[0][1][0].complete)
+        finally:
+            source.chmod(0o600)

@@ -101,7 +101,9 @@ def record(entry):
 def error_status(exc):
     if exc.errno == errno.ENOENT:
         return "missing"
-    if exc.errno in (errno.ELOOP, errno.ENOTDIR):
+    if exc.errno == errno.ETIMEDOUT:
+        return "timed_out"
+    if exc.errno == errno.ELOOP:
         return "link_not_followed"
     return "unreadable"
 
@@ -114,13 +116,44 @@ def same(left, right):
     )
 
 
-def open_root(raw):
-    # Do not resolve(): every ancestor is opened relative to a retained descriptor.
-    parts = PurePath(raw if raw.startswith("/") else os.getcwd() + "/" + raw).parts
+def open_root(raw, deadline):
+    # Validate components that normpath would remove before lexical normalization.
+    # This preserves symlink denial for link/../file without reading through a
+    # moved directory's new parent when interpreting '..'. Validation opens only
+    # directories; all actual file reads use the normalized, revalidated path.
+    absolute = raw if raw.startswith("/") else os.getcwd() + "/" + raw
+    original = PurePath(absolute).parts
+
+    def directory(parent, part):
+        if time.monotonic() >= deadline:
+            raise OSError(errno.ETIMEDOUT, "scan deadline")
+        try:
+            return os.open(part, DIR_FLAGS, dir_fd=parent)
+        except OSError as exc:
+            if exc.errno == errno.ENOTDIR:
+                try:
+                    if stat.S_ISLNK(
+                        os.stat(part, dir_fd=parent, follow_symlinks=False).st_mode
+                    ):
+                        raise OSError(errno.ELOOP, "link not followed") from None
+                except FileNotFoundError:
+                    pass
+            raise
+
+    if ".." in original:
+        validation = os.open("/", DIR_FLAGS)
+        try:
+            for part in original[1:-1]:
+                new = directory(validation, part)
+                os.close(validation)
+                validation = new
+        finally:
+            os.close(validation)
+    parts = PurePath(os.path.normpath(absolute)).parts
     fd = os.open("/", DIR_FLAGS)
     try:
         for part in parts[1:-1]:
-            new = os.open(part, DIR_FLAGS, dir_fd=fd)
+            new = directory(fd, part)
             os.close(fd)
             fd = new
         name = parts[-1] if len(parts) > 1 else "."
@@ -188,7 +221,7 @@ def scan_roots(paths, limits, deadline, include_hidden=False):
             continue
         parent_fd = root_fd = None
         try:
-            parent_fd, name, info, root_fd = open_root(raw)
+            parent_fd, name, info, root_fd = open_root(raw, deadline)
             root.kind = classify(info)
             if root.kind == "link":
                 root.status = "link_not_followed"
@@ -287,10 +320,14 @@ def scan_roots(paths, limits, deadline, include_hidden=False):
                         or before.st_ctime_ns != after.st_ctime_ns
                     ):
                         entry.status = "changed"
-                except OSError:
+                except OSError as exc:
                     # A replaced child/ancestor must not be mistaken for original
                     # content, even when replacement is another regular directory.
-                    entry.status = "changed"
+                    entry.status = (
+                        "unreadable"
+                        if exc.errno in (errno.EACCES, errno.EPERM)
+                        else "changed"
+                    )
                 finally:
                     if fd is not None:
                         os.close(fd)

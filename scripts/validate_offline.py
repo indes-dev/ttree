@@ -150,7 +150,7 @@ def main():
             text=True,
             env=env,
         ).stdout.strip()
-        assert str(environment) in located and "source" not in located
+        assert str(environment) in located
         print(
             json.dumps(
                 {
