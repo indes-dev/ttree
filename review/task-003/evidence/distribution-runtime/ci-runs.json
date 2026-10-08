@@ -1,0 +1,90 @@
+[
+  {
+    "conclusion": "success",
+    "event": "pull_request",
+    "headSha": "4382916510f91b065e45d6fdfa7b1243b174d75f",
+    "jobs": [
+      {
+        "completedAt": "2026-10-08T14:22:57Z",
+        "conclusion": "success",
+        "name": "locked-artifact",
+        "startedAt": "2026-10-08T14:22:12Z",
+        "url": "https://github.com/indes-dev/ttree/actions/runs/37791878792/job/113361127962"
+      },
+      {
+        "completedAt": "2026-10-08T14:22:56Z",
+        "conclusion": "success",
+        "name": "lowest-direct (3.12)",
+        "startedAt": "2026-10-08T14:22:12Z",
+        "url": "https://github.com/indes-dev/ttree/actions/runs/37791878792/job/113361128296"
+      },
+      {
+        "completedAt": "2026-10-08T14:22:44Z",
+        "conclusion": "success",
+        "name": "lowest-direct (3.14)",
+        "startedAt": "2026-10-08T14:22:12Z",
+        "url": "https://github.com/indes-dev/ttree/actions/runs/37791878792/job/113361128502"
+      },
+      {
+        "completedAt": "2026-10-08T14:22:37Z",
+        "conclusion": "success",
+        "name": "lowest-direct (3.11)",
+        "startedAt": "2026-10-08T14:22:12Z",
+        "url": "https://github.com/indes-dev/ttree/actions/runs/37791878792/job/113361128522"
+      },
+      {
+        "completedAt": "2026-10-08T14:22:52Z",
+        "conclusion": "success",
+        "name": "lowest-direct (3.10)",
+        "startedAt": "2026-10-08T14:22:12Z",
+        "url": "https://github.com/indes-dev/ttree/actions/runs/37791878792/job/113361128538"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/indes-dev/ttree/actions/runs/37791878792"
+  },
+  {
+    "conclusion": "success",
+    "event": "push",
+    "headSha": "4382916510f91b065e45d6fdfa7b1243b174d75f",
+    "jobs": [
+      {
+        "completedAt": "2026-10-08T14:22:56Z",
+        "conclusion": "success",
+        "name": "locked-artifact",
+        "startedAt": "2026-10-08T14:22:08Z",
+        "url": "https://github.com/indes-dev/ttree/actions/runs/37791870305/job/113361095502"
+      },
+      {
+        "completedAt": "2026-10-08T14:23:01Z",
+        "conclusion": "success",
+        "name": "lowest-direct (3.12)",
+        "startedAt": "2026-10-08T14:22:14Z",
+        "url": "https://github.com/indes-dev/ttree/actions/runs/37791870305/job/113361095901"
+      },
+      {
+        "completedAt": "2026-10-08T14:22:48Z",
+        "conclusion": "success",
+        "name": "lowest-direct (3.11)",
+        "startedAt": "2026-10-08T14:22:08Z",
+        "url": "https://github.com/indes-dev/ttree/actions/runs/37791870305/job/113361095989"
+      },
+      {
+        "completedAt": "2026-10-08T14:22:48Z",
+        "conclusion": "success",
+        "name": "lowest-direct (3.10)",
+        "startedAt": "2026-10-08T14:22:09Z",
+        "url": "https://github.com/indes-dev/ttree/actions/runs/37791870305/job/113361096004"
+      },
+      {
+        "completedAt": "2026-10-08T14:22:39Z",
+        "conclusion": "success",
+        "name": "lowest-direct (3.14)",
+        "startedAt": "2026-10-08T14:22:08Z",
+        "url": "https://github.com/indes-dev/ttree/actions/runs/37791870305/job/113361096010"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/indes-dev/ttree/actions/runs/37791870305"
+  }
+]

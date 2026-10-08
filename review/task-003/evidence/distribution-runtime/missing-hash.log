@@ -1,0 +1,4 @@
+Looking in links: /home/zak/projects/ttree/.tmp/offline-final-2/wheels
+Processing ./.tmp/offline-final-2/wheels/certifi-2026.7.22-py3-none-any.whl (from -r /home/zak/projects/ttree/.tmp/artifact-controls-2/missing-hash.txt (line 3))
+ERROR: Hashes are required in --require-hashes mode, but they are missing from some requirements. Here is a list of those requirements along with the hashes their downloaded archives actually had. Add lines like these to your requirements files to prevent tampering. (If you did not enable --require-hashes manually, note that it turns on automatically when any package has a hash.)
+    certifi==2026.7.22 --hash=sha256:62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775

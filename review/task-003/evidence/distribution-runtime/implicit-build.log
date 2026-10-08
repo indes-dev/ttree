@@ -1,0 +1,22 @@
+* Getting build dependencies for sdist...
+* Building sdist...
+Traceback (most recent call last):
+  File "/home/zak/projects/ttree/.venv/lib/python3.12/site-packages/pyproject_hooks/_in_process/_in_process.py", line 406, in <module>
+    main()
+  File "/home/zak/projects/ttree/.venv/lib/python3.12/site-packages/pyproject_hooks/_in_process/_in_process.py", line 381, in main
+    json_out["return_val"] = hook(**hook_input["kwargs"])
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zak/projects/ttree/.venv/lib/python3.12/site-packages/pyproject_hooks/_in_process/_in_process.py", line 341, in build_sdist
+    return backend.build_sdist(sdist_directory, config_settings)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zak/projects/ttree/.venv/lib/python3.12/site-packages/hatchling/build.py", line 34, in build_sdist
+    return os.path.basename(next(builder.build(directory=sdist_directory, versions=["standard"])))
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zak/projects/ttree/.venv/lib/python3.12/site-packages/hatchling/builders/plugin/interface.py", line 170, in build
+    build_hook.finalize(version, build_data, artifact)
+  File "/home/zak/projects/ttree/hatch_build.py", line 53, in finalize
+    raise RuntimeError("distribution file list differs from explicit allowlist")
+RuntimeError: distribution file list differs from explicit allowlist
+
+TIP pass --env-dir and --sdist-extract-dir to keep the build environment and sources, then see https://build.pypa.io/en/stable/how-to/troubleshooting.html#debug-a-failed-build for help debugging a failed build
+ERROR Backend subprocess exited when trying to invoke build_sdist

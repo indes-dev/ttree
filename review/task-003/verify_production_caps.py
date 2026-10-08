@@ -154,4 +154,5 @@ def main(python, work):
 
 
 if __name__ == "__main__":
-    main(Path(sys.argv[1]).resolve(), Path(sys.argv[2]).resolve())
+    # Preserve the environment's interpreter symlink; resolving it loses venv.
+    main(Path(sys.argv[1]).absolute(), Path(sys.argv[2]).resolve())
