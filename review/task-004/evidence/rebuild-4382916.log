@@ -1,0 +1,9 @@
+/home/zak/projects/ttree-task004/scripts/build_tracked.py:49: DeprecationWarning: Python 3.14 will, by default, filter extracted tar archives and reject files or modify their metadata. Use the filter argument to control this behavior.
+  tar.extractall(source, members=members)
+[1m* Getting build dependencies for sdist...[0m
+[1m* Building sdist...[0m
+[1m* Building wheel from sdist[0m
+[1m* Getting build dependencies for wheel...[0m
+[1m* Building wheel...[0m
+[1m[92mSuccessfully built [4mindes_ttree-0.2.0.tar.gz[0m[1m[92m and [4mindes_ttree-0.2.0-py3-none-any.whl[0m[1m[92m[0m
+{"build_tools": {"build": "1.6.1", "hatchling": "1.32.4", "packaging": "26.3", "pathspec": "1.1.1", "pluggy": "1.6.0", "pyproject-hooks": "1.3.3", "tomlkit": "0.15.1", "trove-classifiers": "2026.9.21.13"}, "files": {"indes_ttree-0.2.0-py3-none-any.whl": "7bfa4127407bddfe01c3dbfb79f9f19f3631eb95a1b0939e626d4e273753a0cf", "indes_ttree-0.2.0.tar.gz": "02f28180e87518e89d875576eb510f4a63890ece85a24f78161bbe817e136c32"}, "source_date_epoch": 1791469322, "source_revision": "4382916510f91b065e45d6fdfa7b1243b174d75f"}
