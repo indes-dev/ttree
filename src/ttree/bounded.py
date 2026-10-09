@@ -51,6 +51,7 @@ def supervise(fd, kind, limits, deadline, private):
     try:
         command = [
             sys.executable,
+            "-I",
             "-m",
             "ttree.worker",
             str(fd),
@@ -61,6 +62,7 @@ def supervise(fd, kind, limits, deadline, private):
         ]
         process = subprocess.Popen(
             command,
+            cwd=private,
             pass_fds=(fd, control_write),
             stdout=subprocess.PIPE,
             stderr=subprocess.DEVNULL,

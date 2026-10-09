@@ -1,0 +1,11 @@
+{
+  "baseline": "8c6468114f8ce80875570667c44bd63c30455d44",
+  "wheel_sha256": "aa6e68877071dc2706e2d444551c6cdeb119f970f6dd457cd25bf97ed6b5e848",
+  "provisional_dirty_checkout_wheel": true,
+  "bounded_module_equals_fixed_source": true,
+  "installed_python": "/home/zak/projects/ttree/.tmp/matrix-312/bin/python",
+  "test": "test_isolated_worker_ignores_caller_modules",
+  "passed": true,
+  "seconds": 0.833,
+  "final_tracked_artifact_and_four_runtime_matrix": "pending in remaining authorized batch"
+}

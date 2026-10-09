@@ -1,0 +1,6 @@
+test_isolated_worker_ignores_caller_modules (test_security.SecurityTests.test_isolated_worker_ignores_caller_modules) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.833s
+
+OK

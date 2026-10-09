@@ -20,6 +20,48 @@ class SecurityTests(TestCase):
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
 
+    def test_isolated_worker_ignores_caller_modules(self):
+        # Run only against the corrected worker. Markers have no external effects.
+        caller = self.root / "caller"
+        caller.mkdir()
+        marker = self.root / "local-module-imported"
+        local = f"from pathlib import Path\nPath({str(marker)!r}).write_text('synthetic marker')\n"
+        (caller / "ttree").mkdir()
+        (caller / "ttree/__init__.py").write_text(local)
+        for module in ("tiktoken", "pypdf", "ctypes", "json", "sitecustomize"):
+            (caller / (module + ".py")).write_text(local)
+        text = self.root / "normal.txt"
+        text.write_text("Hello, world!")
+        from test_documents import make_docx, make_pdf
+
+        docx = self.root / "normal.docx"
+        make_docx(docx, "<w:p><w:r><w:t>Readable DOCX text</w:t></w:r></w:p>")
+        pdf = self.root / "normal.pdf"
+        make_pdf(pdf, "Readable PDF text")
+        # The installed console script imports its trusted package before workers
+        # start; -m from the untrusted caller would test Python's parent bootstrap.
+        result = subprocess.run(
+            [
+                str(Path(sys.executable).parent / "ttree"),
+                "--json",
+                "--strict",
+                str(text),
+                str(docx),
+                str(pdf),
+            ],
+            cwd=caller,
+            capture_output=True,
+            text=True,
+            timeout=10,
+            env={"PATH": "/usr/bin", "LANG": "C.UTF-8", "TMPDIR": str(self.root)},
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(
+            [root["tokens"] for root in json.loads(result.stdout)["roots"]], [4, 4, 3]
+        )
+        self.assertFalse(marker.exists())
+        self.assertEqual(result.stderr, "")
+
     def test_file_replacement_with_symlink_never_counts_outside(self):
         outside = self.root / "sentinel"
         outside.write_text("OUTSIDE-SENTINEL " * 1000)
@@ -243,8 +285,17 @@ for _ in range(193):os.write(1,b'X'*65536)
 """
 
         def launch(command, **kwargs):
+            position = command.index("ttree.worker")
             return real_start(
-                [sys.executable, "-c", script, command[3], command[5]], **kwargs
+                [
+                    sys.executable,
+                    "-I",
+                    "-c",
+                    script,
+                    command[position + 1],
+                    command[position + 3],
+                ],
+                **kwargs,
             )
 
         try:
@@ -281,8 +332,17 @@ time.sleep(10)
 """
 
         def launch(command, **kwargs):
+            position = command.index("ttree.worker")
             return real_start(
-                [sys.executable, "-c", script, command[3], command[5]], **kwargs
+                [
+                    sys.executable,
+                    "-I",
+                    "-c",
+                    script,
+                    command[position + 1],
+                    command[position + 3],
+                ],
+                **kwargs,
             )
 
         limits = validated({"wall_seconds": 1})
@@ -318,7 +378,7 @@ read,write=os.pipe();os.set_inheritable(write,True)
 expected=os.getpid()
 if os.fork()==0:
  time.sleep(.1)
- os.execv(sys.executable,[sys.executable,'-m','ttree.worker',str(fd),'text',str(write),json.dumps(validated()),str(expected)])
+ os.execv(sys.executable,[sys.executable,'-I','-m','ttree.worker',str(fd),'text',str(write),json.dumps(validated()),str(expected)])
 os._exit(0)
 """
         result = subprocess.run(
