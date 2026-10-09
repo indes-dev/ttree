@@ -76,6 +76,10 @@ console script.
   control on the final wheel (8.121 s, exit 0) corroborates the order of magnitude.
 - **H-1 (hygiene):** in `bounded.py` `supervise()`, `received` is incremented but never read.
   It has no behavioural effect.
+- **H-2 (hygiene):** the rebuild log shows a `DeprecationWarning` from
+  `scripts/build_tracked.py:49`, where `tar.extractall` is called without an extraction filter.
+  The archive is the script's own freshly built sdist, so this is not an exposure today. An
+  explicit `filter="data"` would future-proof it for Python 3.14 defaults.
 
 ## Explicit outcomes kept open
 
