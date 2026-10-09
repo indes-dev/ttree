@@ -1,0 +1,13 @@
+wheel 926c0af25050cbad17b2305c21f0e39f0deb4fcaef14fc5d460861bab53e6e1b
+matrix-310: 10/10 equal; mismatched=[]; extra=[]; editable_pth=[]
+  import: 3.10.22 <root>/.tmp/matrix-310/lib/python3.10/site-packages/ttree/__init__.py
+  launcher: #!<root>/.tmp/matrix-310/bin/python
+matrix-311: 10/10 equal; mismatched=[]; extra=[]; editable_pth=[]
+  import: 3.11.17 <root>/.tmp/matrix-311/lib/python3.11/site-packages/ttree/__init__.py
+  launcher: #!<root>/.tmp/matrix-311/bin/python
+matrix-312: 10/10 equal; mismatched=[]; extra=[]; editable_pth=[]
+  import: 3.12.14 <root>/.tmp/matrix-312/lib/python3.12/site-packages/ttree/__init__.py
+  launcher: #!<root>/.tmp/matrix-312/bin/python
+matrix-314: 10/10 equal; mismatched=[]; extra=[]; editable_pth=[]
+  import: 3.14.7 <root>/.tmp/matrix-314/lib/python3.14/site-packages/ttree/__init__.py
+  launcher: #!<root>/.tmp/matrix-314/bin/python

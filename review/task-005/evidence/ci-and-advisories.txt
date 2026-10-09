@@ -1,0 +1,40 @@
+refreshed_utc 2026-10-09T20:58:37+00:00
+run 37956678593 push 4c07f5a06a80a02002dbfecc73331be6886d0180 success 2026-10-09T16:06:28Z
+  locked-artifact: success
+  lowest-direct (3.14): success
+  lowest-direct (3.11): success
+  lowest-direct (3.12): success
+  lowest-direct (3.10): success
+run 37956687810 pull_request 4c07f5a06a80a02002dbfecc73331be6886d0180 success 2026-10-09T16:06:32Z
+  locked-artifact: success
+  lowest-direct (3.11): success
+  lowest-direct (3.12): success
+  lowest-direct (3.14): success
+  lowest-direct (3.10): success
+run 37957300961 push cae2000fbaa143aff904d84545b85395951f3777 success 2026-10-09T16:11:29Z
+  locked-artifact: success
+  lowest-direct (3.11): success
+  lowest-direct (3.14): success
+  lowest-direct (3.12): success
+  lowest-direct (3.10): success
+run 37957309454 pull_request cae2000fbaa143aff904d84545b85395951f3777 success 2026-10-09T16:11:33Z
+  locked-artifact: success
+  lowest-direct (3.11): success
+  lowest-direct (3.12): success
+  lowest-direct (3.10): success
+  lowest-direct (3.14): success
+run 37987338348 push 758a6cc0e00c6409cac2b46e59aa7b08ec41cd3b success 2026-10-09T20:29:29Z
+  locked-artifact: success
+  lowest-direct (3.12): success
+  lowest-direct (3.14): success
+  lowest-direct (3.11): success
+  lowest-direct (3.10): success
+run 37987346604 pull_request 758a6cc0e00c6409cac2b46e59aa7b08ec41cd3b success 2026-10-09T20:29:33Z
+  locked-artifact: success
+  lowest-direct (3.11): success
+  lowest-direct (3.14): success
+  lowest-direct (3.10): success
+  lowest-direct (3.12): success
+pypdf advisories (all versions): 51
+affecting pypdf==6.1.0: 48 
+affecting pypdf==6.19.0: 0 []
