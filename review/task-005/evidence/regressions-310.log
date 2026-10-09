@@ -1,0 +1,17 @@
+env: matrix-310
+python: /home/zak/projects/ttree/.tmp/matrix-310/bin/python
+3.10.22
+/home/zak/projects/ttree/.tmp/matrix-310/lib/python3.10/site-packages/ttree/__init__.py
+cwd: private /home/zak/projects/ttree/.tmp/task-005/regressions/310/cwd
+limits: timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0
+test_human_literal_escape_line_separators_roots_and_links (test_cli.TreeTests) ... ok
+test_unenumerated_timed_out_directory_and_unknown_only_parent (test_cli.TreeTests) ... ok
+test_unknown_empty_and_mixed_aggregates (test_cli.TreeTests) ... ok
+test_benign_padded_snapshot_sizes_and_independent_response_limit (test_documents.DocumentTests) ... ok
+test_isolated_worker_ignores_caller_modules (test_security.SecurityTests) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 5.050s
+
+OK
+exit: 0

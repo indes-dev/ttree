@@ -1,0 +1,42 @@
+File Name                                             Modified             Size
+ttree/__init__.py                              2026-10-09 16:06:24           43
+ttree/bounded.py                               2026-10-09 16:06:24         5521
+ttree/cli.py                                   2026-10-09 16:06:24         8814
+ttree/documents.py                             2026-10-09 16:06:24         8762
+ttree/limits.py                                2026-10-09 16:06:24          902
+ttree/scan.py                                  2026-10-09 16:06:24        12880
+ttree/tokenizer.py                             2026-10-09 16:06:24         1227
+ttree/worker.py                                2026-10-09 16:06:24         6545
+ttree/data/TIKTOKEN_LICENSE                    2026-10-09 16:06:24         1078
+ttree/data/o200k_base.tiktoken                 2026-10-09 16:06:24      3613922
+indes_ttree-0.2.0.dist-info/METADATA           2026-10-09 16:06:24        11109
+indes_ttree-0.2.0.dist-info/WHEEL              2026-10-09 16:06:24           87
+indes_ttree-0.2.0.dist-info/entry_points.txt   2026-10-09 16:06:24           41
+indes_ttree-0.2.0.dist-info/licenses/LICENSE   2026-10-09 16:06:24         1066
+indes_ttree-0.2.0.dist-info/RECORD             2026-10-09 16:06:24         1171
+indes_ttree-0.2.0/THIRD_PARTY.md 
+indes_ttree-0.2.0/.github/workflows/validate.yml 
+indes_ttree-0.2.0/locks/build-linux-cp312-x86_64.txt 
+indes_ttree-0.2.0/locks/runtime-linux-cp312-x86_64.txt 
+indes_ttree-0.2.0/scripts/build_offline.py 
+indes_ttree-0.2.0/scripts/build_tracked.py 
+indes_ttree-0.2.0/scripts/validate_offline.py 
+indes_ttree-0.2.0/src/ttree/__init__.py 
+indes_ttree-0.2.0/src/ttree/bounded.py 
+indes_ttree-0.2.0/src/ttree/cli.py 
+indes_ttree-0.2.0/src/ttree/documents.py 
+indes_ttree-0.2.0/src/ttree/limits.py 
+indes_ttree-0.2.0/src/ttree/scan.py 
+indes_ttree-0.2.0/src/ttree/tokenizer.py 
+indes_ttree-0.2.0/src/ttree/worker.py 
+indes_ttree-0.2.0/src/ttree/data/TIKTOKEN_LICENSE 
+indes_ttree-0.2.0/src/ttree/data/o200k_base.tiktoken 
+indes_ttree-0.2.0/tests/test_cli.py 
+indes_ttree-0.2.0/tests/test_documents.py 
+indes_ttree-0.2.0/tests/test_security.py 
+indes_ttree-0.2.0/.gitignore 
+indes_ttree-0.2.0/LICENSE 
+indes_ttree-0.2.0/README.md 
+indes_ttree-0.2.0/hatch_build.py 
+indes_ttree-0.2.0/pyproject.toml 
+indes_ttree-0.2.0/PKG-INFO 
