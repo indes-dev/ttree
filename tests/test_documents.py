@@ -69,6 +69,42 @@ class DocumentTests(TestCase):
         self.assertEqual(result.stderr, "")
         return result.returncode, json.loads(result.stdout)["roots"]
 
+    def test_benign_padded_snapshot_sizes_and_independent_response_limit(self):
+        # Stored unused padding, not compressed expansion or active content.
+        from zipfile import ZIP_STORED
+
+        mib = 1024 * 1024
+        body = f'<w:document xmlns:w="{WORD}"><w:body><w:p><w:r><w:t>Readable DOCX text</w:t></w:r></w:p></w:body></w:document>'
+        paths = []
+        for size in (11 * mib, 13 * mib, 64 * mib, 64 * mib + 1):
+            path = self.root / f"padded-{size}.docx"
+            with ZipFile(path, "w", compression=ZIP_STORED) as archive:
+                archive.writestr("word/document.xml", body)
+                archive.writestr("padding.bin", b"")
+            padding = size - path.stat().st_size
+            with ZipFile(path, "w", compression=ZIP_STORED) as archive:
+                archive.writestr("word/document.xml", body)
+                with archive.open("padding.bin", "w") as output:
+                    while padding:
+                        chunk = min(padding, mib)
+                        output.write(b"x" * chunk)
+                        padding -= chunk
+            self.assertEqual(path.stat().st_size, size)
+            paths.append(path)
+        normal = self.root / "following.txt"
+        normal.write_text("Hello, world!")
+        code, roots = self.scan(*paths, normal)
+        self.assertEqual(code, 3)
+        self.assertEqual([r["tokens"] for r in roots], [4, 4, 4, None, 4])
+        self.assertEqual(roots[3]["status"], "too_large")
+        for options, expected in [
+            (("--limit-response-bytes", "512"), 4),
+            (("--limit-input-bytes", str(12 * mib)), None),
+        ]:
+            code, roots = self.scan(*options, paths[1], normal)
+            self.assertEqual(roots[0]["tokens"], expected)
+            self.assertEqual(roots[1]["tokens"], 4)
+
     def test_normal_docx_pdf_empty_and_encrypted_empty_password(self):
         docx = self.root / "normal.DOCX"
         make_docx(docx, "<w:p><w:r><w:t>Readable DOCX text</w:t></w:r></w:p>")

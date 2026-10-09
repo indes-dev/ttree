@@ -89,7 +89,12 @@ def work(fd, kind, control_fd, limits, expected_parent):
             raise Stop("limits_unavailable")
         resource.setrlimit(resource.RLIMIT_AS, (CAPS["address_space_bytes"],) * 2)
         resource.setrlimit(resource.RLIMIT_CPU, (CAPS["cpu_seconds"],) * 2)
-        resource.setrlimit(resource.RLIMIT_FSIZE, (CAPS["response_bytes"],) * 2)
+        # Snapshot storage follows the input ceiling, independently of IPC.
+        # The snapshot loop rejects excess input before writing it.
+        resource.setrlimit(
+            resource.RLIMIT_FSIZE,
+            (max(CAPS["input_bytes"], CAPS["response_bytes"]),) * 2,
+        )
         resource.setrlimit(resource.RLIMIT_CORE, (0, 0))
         # A pidfd opened before fork survives namespace creation. Poll it in PID1
         # after setting PDEATHSIG; a readable pidfd means the bootstrap has died.
@@ -101,6 +106,10 @@ def work(fd, kind, control_fd, limits, expected_parent):
                 os._exit(1)
         os.close(bootstrap_fd)
         for source in snapshot(fd):
+            # Parsers read the completed snapshot. Subsequent
+            # output files have the smaller finite output ceiling; IPC also has
+            # its own incremental supervisor byte counter.
+            resource.setrlimit(resource.RLIMIT_FSIZE, (CAPS["response_bytes"],) * 2)
             if kind == "docx":
                 text, status = docx(source, metrics)
             elif kind == "pdf":

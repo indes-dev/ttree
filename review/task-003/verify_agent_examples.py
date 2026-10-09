@@ -100,7 +100,7 @@ def main(python, work):
     report = {
         "passed": True,
         "python": str(python),
-        "source_revision": "4382916510f91b065e45d6fdfa7b1243b174d75f",
+        "source_revision": sys.argv[3],
         "examples": records,
     }
     (work / "results.json").write_text(

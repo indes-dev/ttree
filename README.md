@@ -132,7 +132,10 @@ The project is licensed under MIT; see [LICENSE](LICENSE). There is no AUR packa
 ## Bounded candidate and agent results
 
 The current draft requires Linux user/PID namespaces and pidfds for base-worker
-containment. Unavailable limits fail closed (`limits_unavailable`). There are no
+containment, including permission to create unprivileged namespaces. Restricted
+Linux hosts can deny these primitives and cannot count content in this candidate;
+use a compatible Linux environment. Unavailable limits fail closed
+(`limits_unavailable`); there is no weaker containment fallback. There are no
 new host command dependencies for DOCX/PDF/plain text. A descriptor-relative,
 no-follow traversal and private file snapshots prevent redirecting reads through
 symlinks. All scans, aggregation, sorting and rendering use iterative traversal.
@@ -143,6 +146,12 @@ Defaults: 64 MiB input; DOCX 4 MiB/part, 8 MiB aggregate expanded XML, depth 128
 100,000 elements and 4,096 ZIP members; 2,000 PDF pages; 1,000,000 extracted Unicode
 characters; per-worker 15 s wall / 10 s CPU / 512 MiB address space; 12 MiB response;
 120 s aggregate scan work, 100,000 entries, 16 MiB combined stored path bytes.
+Snapshot storage follows the input ceiling (64 MiB by default), independently of
+the 12 MiB incrementally enforced IPC response ceiling. After the snapshot is
+complete, subsequent worker file output is capped at 12 MiB as well. Lowering the
+response limit does not lower the input/snapshot limit. Each file gets a fresh
+Python worker in isolated mode (`-I`), a private working directory and an
+allowlisted environment; caller modules and Python environment paths are excluded.
 Parser allocations remain inside the process envelope even before content limits
 can be checked. Output blocking is outside the scan deadline. Each `--limit-...`
 option accepts a positive integer up to its displayed default; `--help` lists the
@@ -152,12 +161,28 @@ exact names. No option disables a boundary.
 object: schema_version 1, effective_limits, roots and total. Each root preserves
 its supplied path and has tokens/bytes/complete/status plus a flat entries list,
 including relative path `.`. POSIX paths also have base64 raw-byte fields. Human
-output escapes terminal controls and surrogate/format characters; JSON preserves
+output escapes literal backslashes, U+2028/U+2029, terminal controls and
+surrogate/format characters; JSON preserves
 native paths through ordinary JSON escaping. Missing roots are retained. Display
 flags (`-h`, `--exact`, `-L`, `--sort`) do not filter scanned JSON entries.
 
-Unknown file counts are null. Empty/no-text counts are zero. Directory/total counts
-sum known values and propagate incomplete descendants. `--json` does not imply
+Unknown counts are null, including unenumerated unreadable/timed-out directories.
+Completely enumerated empty directories, empty/no-text files and completed token
+exclusions have known zero tokens. Directory/total counts sum known contributions
+for each field separately and propagate incomplete descendants. If no contribution
+is known, the incomplete field remains null. Failed files can retain known bytes.
+`--json` does not imply
 strict: exit 0 normally; 3 for incomplete results with `--strict`; 1 for missing
 roots or an unrecoverable startup/run failure; 2 for usage/configuration errors.
 Per-file failures allow later files and roots to continue.
+
+Fresh isolation and vocabulary loading have a measurable per-file cost. A benign
+40-file installed-wheel profile on indes-front (Python 3.12.14) took 9.049 s wall /
+9.010 s CPU; the maximum waited-process RSS was 93,404 KiB, not aggregate memory.
+Interpreter startup took 14–22 ms and startup plus vocabulary load/count took
+228–231 ms in three standalone measurements. The linear projection of about
+530 identical files per 120 s is host/workload specific, not a fixed entry limit.
+Larger batches can hit the scan deadline; unprocessed content remains incomplete.
+Selecting smaller subtrees can keep individual scans useful. Persistent workers
+or batching need further design and validation; this candidate preserves fresh
+per-file limits. Profile evidence: review/task-003/evidence/amendment-3-base/.

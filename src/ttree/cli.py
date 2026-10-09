@@ -13,7 +13,7 @@ from collections import Counter
 from pathlib import Path
 
 from ttree.limits import CAPS, validated
-from ttree.scan import Entry, encoded, record, scan_roots
+from ttree.scan import Entry, encoded, known_sum, record, scan_roots
 from ttree.tokenizer import LocalTokenizer
 
 TOKENIZER_URL = (
@@ -72,10 +72,12 @@ def escape(value):
     chunks = []
     for char in value:
         code = ord(char)
-        if (
+        if char == "\\":
+            chunks.append("\\\\")
+        elif (
             code < 32
             or 0x7F <= code <= 0x9F
-            or unicodedata.category(char) in {"Cf", "Cs"}
+            or unicodedata.category(char) in {"Cf", "Cs", "Zl", "Zp"}
         ):
             chunks.append("\\u%04x" % code if code <= 0xFFFF else "\\U%08x" % code)
         else:
@@ -161,8 +163,8 @@ def output_json(roots, limits):
             }
         )
     total = {
-        "tokens": sum(root[1][0].tokens or 0 for root in roots),
-        "bytes": sum(root[1][0].bytes or 0 for root in roots),
+        "tokens": known_sum([items[0] for _, items in roots], "tokens"),
+        "bytes": known_sum([items[0] for _, items in roots], "bytes"),
         "complete": all(root[1][0].complete for root in roots),
     }
     print(
@@ -246,8 +248,8 @@ def main(argv=None):
                 ".",
                 "Total",
                 "directory",
-                tokens=sum(items[0].tokens or 0 for _, items in roots),
-                bytes=sum(items[0].bytes or 0 for _, items in roots),
+                tokens=known_sum([items[0] for _, items in roots], "tokens"),
+                bytes=known_sum([items[0] for _, items in roots], "bytes"),
                 status="counted"
                 if all(items[0].complete for _, items in roots)
                 else "partial",

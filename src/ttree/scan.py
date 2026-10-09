@@ -67,6 +67,7 @@ class Entry:
     status: str = "counted"
     children: list = field(default_factory=list)
     target: str | None = None
+    enumerated: bool = False
 
     @property
     def complete(self):
@@ -80,6 +81,12 @@ def encoded(path):
             "ascii"
         )
     return result
+
+
+def known_sum(entries, field, *, empty_known=False):
+    values = [getattr(entry, field) for entry in entries]
+    known = [value for value in values if value is not None]
+    return sum(known) if known else (0 if empty_known else None)
 
 
 def record(entry):
@@ -193,6 +200,7 @@ def file_count(entry, fd, limits, deadline):
         return
     if suffix in MEDIA:
         entry.status = "excluded"
+        entry.tokens = 0
         return
     if entry.bytes > limits["input_bytes"]:
         entry.status = "too_large"
@@ -302,6 +310,7 @@ def scan_roots(paths, limits, deadline, include_hidden=False):
                                 item.kind = classify(meta)
                                 if item.kind == "link":
                                     item.status = "excluded"
+                                    item.tokens = 0
                                     item.bytes = meta.st_size
                                     item.target = os.readlink(child.name, dir_fd=fd)
                                 elif item.kind in {"file", "directory"}:
@@ -314,6 +323,8 @@ def scan_roots(paths, limits, deadline, include_hidden=False):
                                     item.status = "unsupported"
                             except OSError:
                                 item.status = "unreadable"
+                        else:
+                            entry.enumerated = True
                     after = os.fstat(fd)
                     if (
                         before.st_mtime_ns != after.st_mtime_ns
@@ -333,8 +344,13 @@ def scan_roots(paths, limits, deadline, include_hidden=False):
                         os.close(fd)
             for entry in reversed(flat):
                 if entry.kind == "directory":
-                    entry.tokens = sum(item.tokens or 0 for item in entry.children)
-                    entry.bytes = sum(item.bytes or 0 for item in entry.children)
+                    empty_known = entry.enumerated and not entry.children
+                    entry.tokens = known_sum(
+                        entry.children, "tokens", empty_known=empty_known
+                    )
+                    entry.bytes = known_sum(
+                        entry.children, "bytes", empty_known=empty_known
+                    )
                     if entry.status == "counted" and any(
                         not item.complete for item in entry.children
                     ):
