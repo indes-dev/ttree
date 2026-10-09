@@ -1,0 +1,42 @@
+test_bom_empty_non_utf8_and_binary_policy (test_cli.TreeTests) ... ok
+test_budget_marks_incomplete_and_keeps_next_root (test_cli.TreeTests) ... ok
+test_bundled_vocabulary_without_network (test_cli.TreeTests) ... ok
+test_compact_pt_br_units (test_cli.TreeTests) ... ok
+test_doc_quarantine_null_and_strict_precedence (test_cli.TreeTests) ... ok
+test_human_control_escape_and_posix_raw_path_roundtrip (test_cli.TreeTests) ... ok
+test_human_literal_escape_line_separators_roots_and_links (test_cli.TreeTests) ... ok
+test_json_totals_all_entries_and_display_flags (test_cli.TreeTests) ... ok
+test_limits_usage_and_actual_input_cap (test_cli.TreeTests) ... ok
+test_symlinks_explicit_descendant_and_ancestor (test_cli.TreeTests) ... ok
+test_unenumerated_timed_out_directory_and_unknown_only_parent (test_cli.TreeTests) ... ok
+test_unknown_empty_and_mixed_aggregates (test_cli.TreeTests) ... ok
+test_vocabulary_rejects_bad_hash (test_cli.TreeTests) ... ok
+test_alternate_content_selects_one_supported_choice_or_fallback (test_documents.DocumentTests) ... ok
+test_benign_padded_snapshot_sizes_and_independent_response_limit (test_documents.DocumentTests) ... ok
+test_docx_representation_headers_notes_and_revisions (test_documents.DocumentTests) ... ok
+test_duplicate_members_rejected (test_documents.DocumentTests) ... ok
+test_empty_damaged_pdf_is_partial (test_documents.DocumentTests) ... ok
+test_malformed_documents_continue (test_documents.DocumentTests) ... ok
+test_normal_docx_pdf_empty_and_encrypted_empty_password (test_documents.DocumentTests) ... ok
+test_production_actual_docx_expansion_and_structural_caps (test_documents.DocumentTests) ... ok
+test_recovered_pdf_warnings_remain_partial_without_diagnostics (test_documents.DocumentTests) ... ok
+test_strict_namespace_and_invalid_main_document (test_documents.DocumentTests) ... ok
+test_unsupported_pdf_cipher_is_fixed_incomplete (test_documents.DocumentTests) ... ok
+test_xml_declarations_rejected_across_encodings (test_documents.DocumentTests) ... ok
+test_coordinator_death_before_worker_start_fails_closed (test_security.SecurityTests) ... ok
+test_deadline_includes_tokenization_and_next_root_is_retained (test_security.SecurityTests) ... ok
+test_deeper_than_python_recursion_limit (test_security.SecurityTests) ... ok
+test_directory_replacement_with_symlink_never_counts_outside (test_security.SecurityTests) ... ok
+test_dotdot_reparent_race_never_reads_new_outside_parent (test_security.SecurityTests) ... ok
+test_file_replacement_with_symlink_never_counts_outside (test_security.SecurityTests) ... ok
+test_isolated_worker_ignores_caller_modules (test_security.SecurityTests) ... ok
+test_kernel_denied_namespace_fails_closed (test_security.SecurityTests) ... ok
+test_production_ipc_rejects_real_oversized_writer (test_security.SecurityTests) ... ok
+test_production_timeout_waits_for_setsid_descendant (test_security.SecurityTests) ... ok
+test_unreadable_descendant_is_not_misclassified_as_replaced (test_security.SecurityTests) ... ok
+test_unreadable_file_preserves_known_bytes (test_security.SecurityTests) ... ok
+
+----------------------------------------------------------------------
+Ran 37 tests in 31.204s
+
+OK

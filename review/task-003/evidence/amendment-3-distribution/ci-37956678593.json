@@ -1,0 +1,441 @@
+{
+  "conclusion": "success",
+  "databaseId": 37956678593,
+  "event": "push",
+  "headSha": "4c07f5a06a80a02002dbfecc73331be6886d0180",
+  "jobs": [
+    {
+      "completedAt": "2026-10-09T16:07:25Z",
+      "conclusion": "success",
+      "databaseId": 113908835714,
+      "name": "locked-artifact",
+      "startedAt": "2026-10-09T16:06:30Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-09T16:06:31Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-09T16:06:31Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:32Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-10-09T16:06:31Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:32Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "number": 3,
+          "startedAt": "2026-10-09T16:06:32Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:38Z",
+          "conclusion": "success",
+          "name": "Run python -m pip install --require-hashes -r locks/build-linux-cp312-x86_64.txt",
+          "number": 4,
+          "startedAt": "2026-10-09T16:06:32Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:40Z",
+          "conclusion": "success",
+          "name": "Run mkdir -p .tmp && TMPDIR=\"$PWD/.tmp\" python scripts/build_tracked.py .tmp/build",
+          "number": 5,
+          "startedAt": "2026-10-09T16:06:38Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:42Z",
+          "conclusion": "success",
+          "name": "Run python scripts/build_offline.py .tmp/build/packages/indes_ttree-0.2.0-py3-none-any.whl .tmp/artifact",
+          "number": 6,
+          "startedAt": "2026-10-09T16:06:40Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:43Z",
+          "conclusion": "success",
+          "name": "Run python -m pip install --no-index --find-links .tmp/artifact/wheels --require-hashes -r .tmp/artifact/install-lock.txt",
+          "number": 7,
+          "startedAt": "2026-10-09T16:06:42Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:07:23Z",
+          "conclusion": "success",
+          "name": "Run TMPDIR=\"$PWD/.tmp\" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 python -m unittest discover -s tests -v",
+          "number": 8,
+          "startedAt": "2026-10-09T16:06:43Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:07:23Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "number": 15,
+          "startedAt": "2026-10-09T16:07:23Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:07:23Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 16,
+          "startedAt": "2026-10-09T16:07:23Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:07:23Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 17,
+          "startedAt": "2026-10-09T16:07:23Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/indes-dev/ttree/actions/runs/37956678593/job/113908835714"
+    },
+    {
+      "completedAt": "2026-10-09T16:07:19Z",
+      "conclusion": "success",
+      "databaseId": 113908835986,
+      "name": "lowest-direct (3.14)",
+      "startedAt": "2026-10-09T16:06:30Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-09T16:06:31Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-09T16:06:30Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:32Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-10-09T16:06:31Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:32Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "number": 3,
+          "startedAt": "2026-10-09T16:06:32Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:40Z",
+          "conclusion": "success",
+          "name": "Run python -m pip install uv",
+          "number": 4,
+          "startedAt": "2026-10-09T16:06:32Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:41Z",
+          "conclusion": "success",
+          "name": "Run uv pip install --system --resolution lowest-direct . 'tiktoken>=0.12,<1' 'pypdf>=6.19.0,<7'",
+          "number": 5,
+          "startedAt": "2026-10-09T16:06:40Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:07:17Z",
+          "conclusion": "success",
+          "name": "Run mkdir -p .tmp && TMPDIR=\"$PWD/.tmp\" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 python -m unittest discover -s tests -v",
+          "number": 6,
+          "startedAt": "2026-10-09T16:06:41Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:07:17Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "number": 11,
+          "startedAt": "2026-10-09T16:07:17Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:07:17Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 12,
+          "startedAt": "2026-10-09T16:07:17Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:07:18Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 13,
+          "startedAt": "2026-10-09T16:07:17Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/indes-dev/ttree/actions/runs/37956678593/job/113908835986"
+    },
+    {
+      "completedAt": "2026-10-09T16:07:13Z",
+      "conclusion": "success",
+      "databaseId": 113908836047,
+      "name": "lowest-direct (3.11)",
+      "startedAt": "2026-10-09T16:06:30Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-09T16:06:31Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-09T16:06:31Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:32Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-10-09T16:06:31Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:32Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "number": 3,
+          "startedAt": "2026-10-09T16:06:32Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:36Z",
+          "conclusion": "success",
+          "name": "Run python -m pip install uv",
+          "number": 4,
+          "startedAt": "2026-10-09T16:06:32Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:37Z",
+          "conclusion": "success",
+          "name": "Run uv pip install --system --resolution lowest-direct . 'tiktoken>=0.12,<1' 'pypdf>=6.19.0,<7'",
+          "number": 5,
+          "startedAt": "2026-10-09T16:06:36Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:07:10Z",
+          "conclusion": "success",
+          "name": "Run mkdir -p .tmp && TMPDIR=\"$PWD/.tmp\" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 python -m unittest discover -s tests -v",
+          "number": 6,
+          "startedAt": "2026-10-09T16:06:37Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:07:11Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "number": 11,
+          "startedAt": "2026-10-09T16:07:10Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:07:11Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 12,
+          "startedAt": "2026-10-09T16:07:11Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:07:11Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 13,
+          "startedAt": "2026-10-09T16:07:11Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/indes-dev/ttree/actions/runs/37956678593/job/113908836047"
+    },
+    {
+      "completedAt": "2026-10-09T16:07:21Z",
+      "conclusion": "success",
+      "databaseId": 113908836158,
+      "name": "lowest-direct (3.12)",
+      "startedAt": "2026-10-09T16:06:30Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-09T16:06:32Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-09T16:06:31Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:33Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-10-09T16:06:32Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:33Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "number": 3,
+          "startedAt": "2026-10-09T16:06:33Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:35Z",
+          "conclusion": "success",
+          "name": "Run python -m pip install uv",
+          "number": 4,
+          "startedAt": "2026-10-09T16:06:33Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:36Z",
+          "conclusion": "success",
+          "name": "Run uv pip install --system --resolution lowest-direct . 'tiktoken>=0.12,<1' 'pypdf>=6.19.0,<7'",
+          "number": 5,
+          "startedAt": "2026-10-09T16:06:35Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:07:19Z",
+          "conclusion": "success",
+          "name": "Run mkdir -p .tmp && TMPDIR=\"$PWD/.tmp\" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 python -m unittest discover -s tests -v",
+          "number": 6,
+          "startedAt": "2026-10-09T16:06:36Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:07:19Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "number": 11,
+          "startedAt": "2026-10-09T16:07:19Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:07:19Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 12,
+          "startedAt": "2026-10-09T16:07:19Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:07:19Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 13,
+          "startedAt": "2026-10-09T16:07:19Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/indes-dev/ttree/actions/runs/37956678593/job/113908836158"
+    },
+    {
+      "completedAt": "2026-10-09T16:07:22Z",
+      "conclusion": "success",
+      "databaseId": 113908836281,
+      "name": "lowest-direct (3.10)",
+      "startedAt": "2026-10-09T16:06:30Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-09T16:06:32Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-09T16:06:31Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:33Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-10-09T16:06:32Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:33Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "number": 3,
+          "startedAt": "2026-10-09T16:06:33Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:37Z",
+          "conclusion": "success",
+          "name": "Run python -m pip install uv",
+          "number": 4,
+          "startedAt": "2026-10-09T16:06:33Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:06:38Z",
+          "conclusion": "success",
+          "name": "Run uv pip install --system --resolution lowest-direct . 'tiktoken>=0.12,<1' 'pypdf>=6.19.0,<7'",
+          "number": 5,
+          "startedAt": "2026-10-09T16:06:37Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:07:19Z",
+          "conclusion": "success",
+          "name": "Run mkdir -p .tmp && TMPDIR=\"$PWD/.tmp\" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 python -m unittest discover -s tests -v",
+          "number": 6,
+          "startedAt": "2026-10-09T16:06:38Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:07:19Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "number": 11,
+          "startedAt": "2026-10-09T16:07:19Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:07:20Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 12,
+          "startedAt": "2026-10-09T16:07:19Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-09T16:07:20Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 13,
+          "startedAt": "2026-10-09T16:07:20Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/indes-dev/ttree/actions/runs/37956678593/job/113908836281"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/indes-dev/ttree/actions/runs/37956678593"
+}

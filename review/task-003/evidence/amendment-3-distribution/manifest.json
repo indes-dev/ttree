@@ -1,0 +1,54 @@
+{
+  "build_host": {
+    "libc": [
+      "glibc",
+      "2.44"
+    ],
+    "python": "3.12.14"
+  },
+  "build_tools": {
+    "build": "1.6.1",
+    "hatchling": "1.32.4",
+    "packaging": "26.3",
+    "pathspec": "1.1.1",
+    "pluggy": "1.6.0",
+    "pyproject-hooks": "1.3.3",
+    "tomlkit": "0.15.1",
+    "trove-classifiers": "2026.9.21.13"
+  },
+  "dependency_lock_sha256": "54b42ab94295f072a0d32ae9115d4e2d3667aba9c97f3e829b74028a0f564f14",
+  "install_lock_sha256": "8721242f019cd0e58501371be547385cc6e83c54ad3e5a4efcb5846685f5d5e9",
+  "native_doc": "inactive pending bounded adapter; no native reader included",
+  "project": "indes-ttree",
+  "source_date_epoch": 1791561984,
+  "source_revision": "4c07f5a06a80a02002dbfecc73331be6886d0180",
+  "target": {
+    "architecture": "x86_64",
+    "implementation": "cpython",
+    "python": "3.12",
+    "system": "Linux"
+  },
+  "version": "0.2.0",
+  "versions": {
+    "certifi": "2026.7.22",
+    "charset-normalizer": "3.5.2",
+    "idna": "3.20",
+    "indes-ttree": "0.2.0",
+    "pypdf": "6.19.0",
+    "regex": "2026.9.29",
+    "requests": "2.34.2",
+    "tiktoken": "0.14.0",
+    "urllib3": "2.8.0"
+  },
+  "wheels": [
+    "certifi-2026.7.22-py3-none-any.whl",
+    "charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+    "idna-3.20-py3-none-any.whl",
+    "indes_ttree-0.2.0-py3-none-any.whl",
+    "pypdf-6.19.0-py3-none-any.whl",
+    "regex-2026.9.29-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+    "requests-2.34.2-py3-none-any.whl",
+    "tiktoken-0.14.0-cp312-cp312-manylinux_2_28_x86_64.whl",
+    "urllib3-2.8.0-py3-none-any.whl"
+  ]
+}

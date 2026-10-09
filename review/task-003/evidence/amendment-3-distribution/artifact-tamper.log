@@ -1,0 +1,11 @@
+Looking in links: /home/zak/projects/ttree/.tmp/amendment-3-artifact-controls/tampered-wheels
+Processing ./.tmp/amendment-3-artifact-controls/tampered-wheels/indes_ttree-0.2.0-py3-none-any.whl (from -r /home/zak/projects/ttree/.tmp/amendment-3-offline/install-lock.txt (line 1))
+Processing ./.tmp/amendment-3-artifact-controls/tampered-wheels/certifi-2026.7.22-py3-none-any.whl (from -r /home/zak/projects/ttree/.tmp/amendment-3-offline/install-lock.txt (line 4))
+Processing ./.tmp/amendment-3-artifact-controls/tampered-wheels/charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from -r /home/zak/projects/ttree/.tmp/amendment-3-offline/install-lock.txt (line 5))
+Processing ./.tmp/amendment-3-artifact-controls/tampered-wheels/idna-3.20-py3-none-any.whl (from -r /home/zak/projects/ttree/.tmp/amendment-3-offline/install-lock.txt (line 6))
+Processing ./.tmp/amendment-3-artifact-controls/tampered-wheels/pypdf-6.19.0-py3-none-any.whl (from -r /home/zak/projects/ttree/.tmp/amendment-3-offline/install-lock.txt (line 7))
+ERROR: THESE PACKAGES DO NOT MATCH THE HASHES FROM THE REQUIREMENTS FILE. If you have updated the package versions, please update the hashes. Otherwise, examine the package contents carefully; someone may have tampered with them.
+    pypdf==6.19.0 from file:///home/zak/projects/ttree/.tmp/amendment-3-artifact-controls/tampered-wheels/pypdf-6.19.0-py3-none-any.whl (from -r /home/zak/projects/ttree/.tmp/amendment-3-offline/install-lock.txt (line 7)):
+        Expected sha256 7e5d6e730e7dae87d560a2cee218b852f6498c8be61966f3cd02ead971e48d14
+             Got        7f5fc32d490b80ff9e44db6d92137a5e1a9d4306f1b118de78b22ab94c1b99dd
+

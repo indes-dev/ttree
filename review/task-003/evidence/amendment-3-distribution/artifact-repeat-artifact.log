@@ -1,0 +1,26 @@
+Collecting certifi==2026.7.22 (from -r /home/zak/projects/ttree/.tmp/amendment-3-artifact-controls/repeated-artifact/dependency-lock.txt (line 3))
+  Using cached certifi-2026.7.22-py3-none-any.whl (136 kB)
+Collecting charset-normalizer==3.5.2 (from -r /home/zak/projects/ttree/.tmp/amendment-3-artifact-controls/repeated-artifact/dependency-lock.txt (line 4))
+  Using cached charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+Collecting idna==3.20 (from -r /home/zak/projects/ttree/.tmp/amendment-3-artifact-controls/repeated-artifact/dependency-lock.txt (line 5))
+  Using cached idna-3.20-py3-none-any.whl (69 kB)
+Collecting pypdf==6.19.0 (from -r /home/zak/projects/ttree/.tmp/amendment-3-artifact-controls/repeated-artifact/dependency-lock.txt (line 6))
+  Using cached pypdf-6.19.0-py3-none-any.whl (395 kB)
+Collecting regex==2026.9.29 (from -r /home/zak/projects/ttree/.tmp/amendment-3-artifact-controls/repeated-artifact/dependency-lock.txt (line 7))
+  Using cached regex-2026.9.29-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+Collecting requests==2.34.2 (from -r /home/zak/projects/ttree/.tmp/amendment-3-artifact-controls/repeated-artifact/dependency-lock.txt (line 8))
+  Using cached requests-2.34.2-py3-none-any.whl (73 kB)
+Collecting tiktoken==0.14.0 (from -r /home/zak/projects/ttree/.tmp/amendment-3-artifact-controls/repeated-artifact/dependency-lock.txt (line 9))
+  Using cached tiktoken-0.14.0-cp312-cp312-manylinux_2_28_x86_64.whl (1.2 MB)
+Collecting urllib3==2.8.0 (from -r /home/zak/projects/ttree/.tmp/amendment-3-artifact-controls/repeated-artifact/dependency-lock.txt (line 10))
+  Using cached urllib3-2.8.0-py3-none-any.whl (135 kB)
+Saved ./.tmp/amendment-3-artifact-controls/repeated-artifact/wheels/certifi-2026.7.22-py3-none-any.whl
+Saved ./.tmp/amendment-3-artifact-controls/repeated-artifact/wheels/charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+Saved ./.tmp/amendment-3-artifact-controls/repeated-artifact/wheels/idna-3.20-py3-none-any.whl
+Saved ./.tmp/amendment-3-artifact-controls/repeated-artifact/wheels/pypdf-6.19.0-py3-none-any.whl
+Saved ./.tmp/amendment-3-artifact-controls/repeated-artifact/wheels/regex-2026.9.29-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+Saved ./.tmp/amendment-3-artifact-controls/repeated-artifact/wheels/requests-2.34.2-py3-none-any.whl
+Saved ./.tmp/amendment-3-artifact-controls/repeated-artifact/wheels/urllib3-2.8.0-py3-none-any.whl
+Saved ./.tmp/amendment-3-artifact-controls/repeated-artifact/wheels/tiktoken-0.14.0-cp312-cp312-manylinux_2_28_x86_64.whl
+Successfully downloaded certifi charset-normalizer idna pypdf regex requests urllib3 tiktoken
+{"artifact": "/home/zak/projects/ttree/.tmp/amendment-3-artifact-controls/repeated-artifact", "sha256sums_sha256": "e872bab11fd69a6fae9c194b86ca4e7c2c2a8789c376392e506d4162e23a19a2"}
