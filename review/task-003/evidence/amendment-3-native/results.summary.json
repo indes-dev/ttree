@@ -1,0 +1,313 @@
+{
+  "starting_head": "907b306130706636648d1f27f47d87da2e8244a9",
+  "scope": "transient delegated scope with retained reader cgroup; no production changes",
+  "batch_wall_seconds": 115,
+  "poll_seconds": 0.02,
+  "cases": {
+    "import_1024": {
+      "scope": "ttree-task003-import-360aaac7f1d3.scope",
+      "command": [
+        "/usr/bin/bwrap",
+        "--unshare-all",
+        "--die-with-parent",
+        "--new-session",
+        "--ro-bind",
+        "/usr",
+        "/usr",
+        "--symlink",
+        "usr/bin",
+        "/bin",
+        "--symlink",
+        "usr/lib",
+        "/lib",
+        "--symlink",
+        "usr/lib",
+        "/lib64",
+        "--proc",
+        "/proc",
+        "--dev",
+        "/dev",
+        "--dir",
+        "/etc",
+        "--ro-bind",
+        "/etc/fonts",
+        "/etc/fonts",
+        "--ro-bind",
+        "/etc/libreoffice/bootstraprc",
+        "/etc/libreoffice/bootstraprc",
+        "--ro-bind",
+        "/etc/libreoffice/sofficerc",
+        "/etc/libreoffice/sofficerc",
+        "--bind",
+        "/home/zak/projects/ttree/.tmp/amendment-3-native-observation/import_1024/data",
+        "/work",
+        "--symlink",
+        "/work/tmp",
+        "/tmp",
+        "--chdir",
+        "/work",
+        "--clearenv",
+        "--setenv",
+        "PATH",
+        "/usr/bin",
+        "--setenv",
+        "HOME",
+        "/work/home",
+        "--setenv",
+        "TMPDIR",
+        "/work/tmp",
+        "--setenv",
+        "LANG",
+        "C.UTF-8",
+        "--setenv",
+        "SAL_USE_VCLPLUGIN",
+        "svp",
+        "--setenv",
+        "MALLOC_ARENA_MAX",
+        "1",
+        "--",
+        "/usr/bin/libreoffice",
+        "-env:UserInstallation=file:///work/profile",
+        "--headless",
+        "--nologo",
+        "--nodefault",
+        "--norestore",
+        "--infilter=MS Word 97",
+        "--convert-to",
+        "txt:Text (encoded):UTF8",
+        "--outdir",
+        "/work/output",
+        "/work/input.doc"
+      ],
+      "scope_command": [
+        "systemd-run",
+        "--user",
+        "--scope",
+        "--quiet",
+        "--collect",
+        "--unit=ttree-task003-import-360aaac7f1d3.scope",
+        "-p",
+        "Delegate=yes",
+        "-p",
+        "MemoryMax=805306368",
+        "-p",
+        "MemorySwapMax=0",
+        "-p",
+        "TasksMax=64",
+        "-p",
+        "CPUQuota=100%",
+        "-p",
+        "CPUQuotaPeriodSec=10ms",
+        "-p",
+        "RuntimeMaxSec=25s",
+        "-p",
+        "TimeoutStopSec=100ms",
+        "-p",
+        "KillMode=control-group",
+        "/home/zak/projects/ttree/.venv/bin/python",
+        "/home/zak/projects/ttree/review/task-003/import_diagnostic.py",
+        "keeper",
+        "/home/zak/projects/ttree/.tmp/amendment-3-native-observation/import_1024"
+      ],
+      "as_mib_per_reader_process": 1024,
+      "reader_wall_seconds": 20,
+      "aggregate_cpu_seconds": 15,
+      "cpu_seconds_per_reader_process": 15,
+      "memory_mib_aggregate_reader": 768,
+      "status": "failed",
+      "readback": {
+        "reader_cgroup": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-import-360aaac7f1d3.scope/reader",
+        "scope_cgroup": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-import-360aaac7f1d3.scope",
+        "reader_limits": {
+          "memory.max": "805306368",
+          "memory.swap.max": "0",
+          "pids.max": "64",
+          "cpu.max": "10000 10000",
+          "memory.current": "0",
+          "memory.peak": "0",
+          "memory.events": {
+            "low": "0",
+            "high": "0",
+            "max": "0",
+            "oom": "0",
+            "oom_kill": "0",
+            "oom_group_kill": "0",
+            "sock_throttled": "0"
+          },
+          "cpu.stat": {
+            "usage_usec": "0",
+            "user_usec": "0",
+            "system_usec": "0",
+            "nice_usec": "0",
+            "core_sched.force_idle_usec": "0",
+            "nr_periods": "0",
+            "nr_throttled": "0",
+            "throttled_usec": "0",
+            "nr_bursts": "0",
+            "burst_usec": "0"
+          },
+          "pids.current": "0",
+          "pids.events": {
+            "max": "0"
+          },
+          "cgroup.events": {
+            "populated": "0",
+            "frozen": "0"
+          }
+        },
+        "scope_limits": {
+          "memory.max": "805306368",
+          "memory.swap.max": "0",
+          "pids.max": "64",
+          "cpu.max": "10000 10000",
+          "memory.current": "12316672",
+          "memory.peak": "12316672",
+          "memory.events": {
+            "low": "0",
+            "high": "0",
+            "max": "0",
+            "oom": "0",
+            "oom_kill": "0",
+            "oom_group_kill": "0",
+            "sock_throttled": "0"
+          },
+          "cpu.stat": {
+            "usage_usec": "54533",
+            "user_usec": "48499",
+            "system_usec": "6034",
+            "nice_usec": "0",
+            "core_sched.force_idle_usec": "0",
+            "nr_periods": "7",
+            "nr_throttled": "0",
+            "throttled_usec": "0",
+            "nr_bursts": "0",
+            "burst_usec": "0"
+          },
+          "pids.current": "1",
+          "pids.events": {
+            "max": "0"
+          },
+          "cgroup.events": {
+            "populated": "1",
+            "frozen": "0"
+          }
+        }
+      },
+      "reader_result": {
+        "returncode": 139,
+        "seconds": 4.9449
+      },
+      "before_termination": {
+        "memory.max": "805306368",
+        "memory.swap.max": "0",
+        "pids.max": "64",
+        "cpu.max": "10000 10000",
+        "memory.current": "753745920",
+        "memory.peak": "796319744",
+        "memory.events": {
+          "low": "0",
+          "high": "0",
+          "max": "0",
+          "oom": "0",
+          "oom_kill": "0",
+          "oom_group_kill": "0",
+          "sock_throttled": "0"
+        },
+        "cpu.stat": {
+          "usage_usec": "3165673",
+          "user_usec": "2119915",
+          "system_usec": "1045758",
+          "nice_usec": "0",
+          "core_sched.force_idle_usec": "0",
+          "nr_periods": "494",
+          "nr_throttled": "1",
+          "throttled_usec": "842",
+          "nr_bursts": "0",
+          "burst_usec": "0"
+        },
+        "pids.current": "3",
+        "pids.events": {
+          "max": "0"
+        },
+        "cgroup.events": {
+          "populated": "1",
+          "frozen": "0"
+        }
+      },
+      "final_after_whole_tree_termination": {
+        "memory.max": "805306368",
+        "memory.swap.max": "0",
+        "pids.max": "64",
+        "cpu.max": "10000 10000",
+        "memory.current": "741249024",
+        "memory.peak": "796319744",
+        "memory.events": {
+          "low": "0",
+          "high": "0",
+          "max": "0",
+          "oom": "0",
+          "oom_kill": "0",
+          "oom_group_kill": "0",
+          "sock_throttled": "0"
+        },
+        "cpu.stat": {
+          "usage_usec": "3169217",
+          "user_usec": "2120301",
+          "system_usec": "1048916",
+          "nice_usec": "0",
+          "core_sched.force_idle_usec": "0",
+          "nr_periods": "495",
+          "nr_throttled": "1",
+          "throttled_usec": "842",
+          "nr_bursts": "0",
+          "burst_usec": "0"
+        },
+        "pids.current": "1",
+        "pids.events": {
+          "max": "0"
+        },
+        "cgroup.events": {
+          "populated": "0",
+          "frozen": "0"
+        }
+      },
+      "final_members": [],
+      "final_cpu_seconds": 3.169217,
+      "final_cpu_overshoot_seconds": 0,
+      "scope_collected": true,
+      "survivors": [],
+      "reader_cgroup_removed": true,
+      "total_seconds": 5.1643,
+      "expected_text_observed": false,
+      "output_bytes": null
+    }
+  },
+  "checks": {
+    "pinned_fixture": true,
+    "import_1024_identity": true,
+    "import_1024_kernel_readback": true,
+    "import_1024_retained_final_accounting": true,
+    "import_1024_cpu_final_overshoot": true,
+    "import_1024_cleanup": true,
+    "private_data_removed": true
+  },
+  "passed": false,
+  "elapsed_seconds": 5.228,
+  "unchanged_enforcement_sha256": {
+    "import_diagnostic.py": "47ed6f1829cc1ffbb460c54dd40c9c58e1f6368b2d1e02795ae6af0c9bf0ff19",
+    "diagnostic.py": "32e8c29718851aedd096ceb7556bbf04349333a63611595276ee922418206f36",
+    "prototype.py": "661f07d71509285d36dbaa4d21f2e0c87b3e932a0957e7acebe26172add12825"
+  },
+  "native_import_success": false,
+  "virtual_size_observation": {
+    "poll_seconds": 0.02,
+    "retained_sample_cap": 1002,
+    "dropped_samples": 0,
+    "incomplete_process_samples": [],
+    "native_sample_count": 212,
+    "native_max_VmPeak_KiB": 1048576,
+    "native_max_VmSize_KiB": 1048576,
+    "scope": "actual soffice.bin PID plus starttime; wrappers labelled separately; trusted sibling meter excluded",
+    "interpretation": "Polling can miss short lifetimes. Low VmPeak does not exclude denied reservation or another cause. One observation only; no unique causal proof."
+  }
+}
