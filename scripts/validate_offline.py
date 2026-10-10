@@ -8,7 +8,6 @@ review/task-003 artifact evidence for the paired parent listener invocation.
 from __future__ import annotations
 
 import argparse
-import base64
 import hashlib
 import json
 import os
@@ -109,7 +108,7 @@ def main():
                 "word/document.xml",
                 '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body><w:p><w:r><w:t>Readable DOCX text</w:t></w:r></w:p></w:body></w:document>',
             )
-        (fixtures / "inactive.doc").write_bytes(
+        (fixtures / "invalid.doc").write_bytes(
             bytes.fromhex("d0cf11e0a1b11ae1") + b"synthetic"
         )
         cli = environment / "bin/ttree"
@@ -129,9 +128,9 @@ def main():
             and entries["text.docx"]["tokens"] == 4
         )
         assert (
-            entries["inactive.doc"]["status"] == "unsupported"
-            and entries["inactive.doc"]["tokens"] is None
-            and not entries["inactive.doc"]["complete"]
+            entries["invalid.doc"]["status"] == "failed"
+            and entries["invalid.doc"]["tokens"] is None
+            and not entries["invalid.doc"]["complete"]
         )
         assert value["total"]["tokens"] == 8 and not value["total"]["complete"]
         mixed = subprocess.run(
@@ -145,7 +144,7 @@ def main():
         roots = json.loads(mixed.stdout)["roots"]
         assert len(roots) == 2 and roots[1]["status"] == "missing"
         located = checked(
-            [str(python), "-c", "import ttree;print(ttree.__file__)"],
+            [str(python), "-c", "import ttree,olefile;print(ttree.__file__)"],
             capture_output=True,
             text=True,
             env=env,
