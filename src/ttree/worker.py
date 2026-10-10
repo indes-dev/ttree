@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import ctypes
+import errno
 import json
 import os
+import platform
 import resource
 import selectors
 import signal
@@ -12,7 +14,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-from ttree.documents import Stop, docx, pdf
+from ttree.documents import Stop, doc, docx, pdf
 from ttree.limits import CAPS, validated
 
 
@@ -28,7 +30,12 @@ def contain(control_fd):
     uid, gid = os.getuid(), os.getgid()
     libc = ctypes.CDLL(None, use_errno=True)
     if libc.unshare(0x10000000) != 0:
-        raise Stop("limits_unavailable")
+        # Restricted hosts can use a single-process syscall sandbox. With fork,
+        # clone, exec and networking denied there are no descendants to escape
+        # the supervisor's process limits or cleanup. Never run uncontained.
+        single_process_filter(libc)
+        os.close(control_fd)
+        return False
     try:
         Path("/proc/self/setgroups").write_text("deny")
         Path("/proc/self/uid_map").write_text(f"0 {uid} 1")
@@ -48,6 +55,7 @@ def contain(control_fd):
     # detects loss of the real bootstrap, closing the pre-prctl parent death race.
     if libc.prctl(1, signal.SIGKILL, 0, 0, 0) != 0:
         raise Stop("limits_unavailable")
+    return True
 
 
 def snapshot(fd):
@@ -99,18 +107,23 @@ def work(fd, kind, control_fd, limits, expected_parent):
         # A pidfd opened before fork survives namespace creation. Poll it in PID1
         # after setting PDEATHSIG; a readable pidfd means the bootstrap has died.
         bootstrap_fd = os.pidfd_open(os.getpid())
-        contain(control_fd)
-        with selectors.DefaultSelector() as selector:
-            selector.register(bootstrap_fd, selectors.EVENT_READ)
-            if selector.select(0):
-                os._exit(1)
+        contained = contain(control_fd)
+        if contained and platform.machine() == "x86_64":
+            single_process_filter(libc)
+        if contained:
+            with selectors.DefaultSelector() as selector:
+                selector.register(bootstrap_fd, selectors.EVENT_READ)
+                if selector.select(0):
+                    os._exit(1)
         os.close(bootstrap_fd)
         for source in snapshot(fd):
             # Parsers read the completed snapshot. Subsequent
             # output files have the smaller finite output ceiling; IPC also has
             # its own incremental supervisor byte counter.
             resource.setrlimit(resource.RLIMIT_FSIZE, (CAPS["response_bytes"],) * 2)
-            if kind == "docx":
+            if kind == "doc":
+                text, status = doc(source, metrics)
+            elif kind == "docx":
                 text, status = docx(source, metrics)
             elif kind == "pdf":
                 text, status = pdf(source, metrics)
@@ -161,6 +174,122 @@ def work(fd, kind, control_fd, limits, expected_parent):
         peak_rss_kib=usage.ru_maxrss,
     )
     print(json.dumps(result), flush=True)
+
+
+def single_process_filter(libc):
+    """Finite Linux x86_64 syscall allowlist; deny process creation and networking.
+
+    This is for static Python readers only. No converter runs in this mode.
+    Fail closed on another ABI; reject x32 and all alternate audit architectures.
+    """
+    if platform.machine() != "x86_64":
+        raise Stop("limits_unavailable")
+
+    class Filter(ctypes.Structure):
+        _fields_ = [
+            ("code", ctypes.c_ushort),
+            ("jt", ctypes.c_ubyte),
+            ("jf", ctypes.c_ubyte),
+            ("k", ctypes.c_uint),
+        ]
+
+    class Program(ctypes.Structure):
+        _fields_ = [("len", ctypes.c_ushort), ("filter", ctypes.POINTER(Filter))]
+
+    # Linux x86_64 ABI, asm/unistd_64.h. No socket, fork/vfork/clone/clone3,
+    # execve/execveat, ptrace, process_vm_*, pidfd_getfd or io_uring operations.
+    allowed = (
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        24,
+        25,
+        28,
+        32,
+        33,
+        35,
+        39,
+        60,
+        63,
+        72,
+        74,
+        75,
+        77,
+        79,
+        87,
+        89,
+        95,
+        97,
+        98,
+        99,
+        102,
+        104,
+        107,
+        108,
+        110,
+        131,
+        137,
+        138,
+        157,
+        158,
+        186,
+        202,
+        204,
+        217,
+        218,
+        228,
+        230,
+        231,
+        232,
+        233,
+        257,
+        262,
+        263,
+        267,
+        269,
+        270,
+        271,
+        273,
+        281,
+        291,
+        302,
+        318,
+        332,
+        334,
+        436,
+        439,
+    )
+    instructions = [
+        Filter(0x20, 0, 0, 4),
+        Filter(0x15, 1, 0, 0xC000003E),
+        Filter(0x06, 0, 0, 0x80000000),
+        Filter(0x20, 0, 0, 0),
+    ]
+    for call in allowed:
+        instructions.extend((Filter(0x15, 0, 1, call), Filter(0x06, 0, 0, 0x7FFF0000)))
+    instructions.append(Filter(0x06, 0, 0, 0x50000 | errno.EPERM))
+    filters = (Filter * len(instructions))(*instructions)
+    program = Program(len(filters), filters)
+    if libc.prctl(38, 1, 0, 0, 0) or libc.prctl(22, 2, ctypes.byref(program), 0, 0):
+        raise Stop("limits_unavailable")
 
 
 if __name__ == "__main__":

@@ -217,7 +217,7 @@ class SecurityTests(TestCase):
         self.assertEqual(value["roots"][0]["status"], "timed_out")
         self.assertEqual(value["roots"][1]["status"], "timed_out")
 
-    def test_kernel_denied_namespace_fails_closed(self):
+    def test_kernel_denied_namespace_uses_single_process_filter(self):
         # Disposable syscall filter in this child only: deny real unshare(2).
         # No host sysctl/permission change and no mocked availability result.
         import platform
@@ -226,6 +226,14 @@ class SecurityTests(TestCase):
             self.skipTest("Linux x86_64 syscall fixture")
         source = self.root / "text.txt"
         source.write_text("Hello, world!")
+        from test_documents import make_doc, make_docx, make_pdf
+
+        legacy = self.root / "normal.doc"
+        make_doc(legacy, "Readable DOC text")
+        word = self.root / "normal.docx"
+        make_docx(word, "<w:p><w:r><w:t>Readable DOCX text</w:t></w:r></w:p>")
+        pdf = self.root / "normal.pdf"
+        make_pdf(pdf, "Readable PDF text")
         script = r"""
 import ctypes,errno,sys
 from ttree.cli import main
@@ -237,19 +245,28 @@ filters=(Filter*4)(Filter(0x20,0,0,0),Filter(0x15,0,1,272),Filter(0x06,0,0,0x500
 program=Program(4,filters);libc=ctypes.CDLL(None,use_errno=True)
 assert libc.prctl(38,1,0,0,0)==0
 assert libc.prctl(22,2,ctypes.byref(program),0,0)==0
-raise SystemExit(main(['--json','--strict',sys.argv[1]]))
+raise SystemExit(main(['--json','--strict',*sys.argv[1:]]))
 """
         result = subprocess.run(
-            [sys.executable, "-c", script, str(source)],
+            [
+                sys.executable,
+                "-c",
+                script,
+                str(source),
+                str(legacy),
+                str(word),
+                str(pdf),
+            ],
             capture_output=True,
             text=True,
             timeout=4,
             env={**os.environ, "TMPDIR": str(self.root)},
         )
-        self.assertEqual(result.returncode, 3, result.stderr)
+        self.assertEqual(result.returncode, 0, result.stderr)
         value = json.loads(result.stdout)
-        self.assertEqual(value["roots"][0]["status"], "limits_unavailable")
-        self.assertIsNone(value["roots"][0]["tokens"])
+        self.assertEqual(value["roots"][0]["status"], "counted")
+        self.assertEqual([root["tokens"] for root in value["roots"]], [4, 3, 4, 3])
+        self.assertTrue(value["total"]["complete"])
         self.assertEqual(result.stderr, "")
 
     def test_unreadable_file_preserves_known_bytes(self):
@@ -454,3 +471,33 @@ os._exit(0)
             self.assertFalse(roots[0][1][0].complete)
         finally:
             source.chmod(0o600)
+
+    def test_static_reader_filter_denies_network_and_children(self):
+        import platform
+
+        if sys.platform != "linux" or platform.machine() != "x86_64":
+            self.skipTest("Linux x86_64 filter")
+        script = r"""
+import ctypes, errno, os, socket
+from ttree.worker import single_process_filter
+single_process_filter(ctypes.CDLL(None, use_errno=True))
+for operation in (socket.socket, os.fork):
+    try:
+        result = operation()
+    except OSError as exc:
+        assert exc.errno == errno.EPERM
+    else:
+        if operation is os.fork and result == 0:
+            os._exit(91)
+        raise AssertionError("restricted syscall succeeded")
+print("network and process creation denied")
+"""
+        result = subprocess.run(
+            [sys.executable, "-I", "-c", script],
+            capture_output=True,
+            text=True,
+            timeout=4,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, "network and process creation denied\n")

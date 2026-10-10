@@ -1,7 +1,7 @@
 # ttree
 
-Unreleased TASK-003 remediation candidate: native DOC acceptance and independent
-review are pending. These source changes do not update an existing installation.
+DOC, DOCX and text-PDF counting runs locally with bounded workers.
+Installing this revision updates the command; changing a source checkout alone does not.
 
 `ttree` prints a directory tree with estimated token counts. Counting runs locally
 with `tiktoken` and the bundled, SHA-256-verified `o200k_base` vocabulary.
@@ -24,28 +24,26 @@ With multiple roots, the last line shows their combined total.
 
 ## Install
 
-Python 3.10+ and the Linux containment primitives below are required. For an
-explicitly reviewed revision, replace `<reviewed-SHA>` and install with `uv`:
+Python 3.10+ on Linux is required. Install the current main revision with `uv`:
 
 ```bash
-uv tool install git+https://github.com/indes-dev/ttree.git@<reviewed-SHA>
+uv tool install git+https://github.com/indes-dev/ttree.git@main
 ttree --help
 ```
 
 Or use `pip` inside your existing Python environment:
 
 ```bash
-python -m pip install git+https://github.com/indes-dev/ttree.git@<reviewed-SHA>
+python -m pip install git+https://github.com/indes-dev/ttree.git@main
 ```
 
 Installation fetches the Python packages. Subsequent runs need no network or API
-key. There are two direct Python dependencies: `tiktoken` and `pypdf`; installers
+key. There are three direct Python dependencies: `tiktoken`, `pypdf` and the small
+pure-Python OLE reader `olefile`; installers
 resolve their dependencies automatically. DOCX needs no additional library.
 No LibreOffice, Pandoc, Poppler or OCR tool is required for DOCX or PDF.
-Legacy DOC is deliberately inactive in this remediation candidate. It reports
-`unsupported`, null tokens and incomplete results while its bounded adapter is
-pending. For trusted documents, manually convert to DOCX outside ttree. Installing
-LibreOffice does not enable a native fallback.
+Legacy DOC needs no native program. Its static reader reads stored Word binary
+text without launching LibreOffice, evaluating fields or opening embedded objects.
 The project is validated on Linux; macOS and Windows have not been validated.
 Binary wheel availability depends on Python version and platform.
 See [THIRD_PARTY.md](THIRD_PARTY.md) for the bundled vocabulary notice.
@@ -67,7 +65,14 @@ See [THIRD_PARTY.md](THIRD_PARTY.md) for the bundled vocabulary notice.
   are readable; layout, font encoding and extraction order can affect estimates.
   Only an empty user password is tried. Other encrypted PDFs show `[encrypted]`
   with unknown tokens. Recovery warnings make a result incomplete.
-- **DOC:** deliberately inactive pending native boundary validation; see above.
+- **DOC:** read Word 97–2003 binary piece-table text, including stored auxiliary
+  stories such as headers and notes. Paragraphs become newlines and table cell
+  marks become tabs. Field instructions are skipped; their saved display text is
+  counted. Macros, DDE, links and embedded objects are never evaluated. This is
+  stored text, not a rendered Word view: hidden/revision text may contribute.
+  Encrypted DOC reports `[encrypted]`; pre-Word-97, RTF/HTML renamed to DOC and
+  unsupported variants remain incomplete. Convert those trusted documents to DOCX
+  outside ttree when necessary.
 
 Image, audio, video and other binary files contribute bytes but no tokens. Byte
 sizes always refer to the original files. Malformed or unreadable documents show
@@ -115,8 +120,8 @@ python -m pip install --no-index --find-links wheels --require-hashes -r install
 ttree --json --strict docs
 ```
 
-Python, installers and native tools are excluded. DOC remains inactive pending its
-bounded adapter; the artifact does not enable it or install LibreOffice.
+Python and installers are excluded. The artifact includes the static DOC reader;
+it does not require or install LibreOffice.
 
 ## Development
 
@@ -131,16 +136,17 @@ The project is licensed under MIT; see [LICENSE](LICENSE). There is no AUR packa
 
 ## Bounded candidate and agent results
 
-The current draft requires Linux user/PID namespaces and pidfds for base-worker
-containment, including permission to create unprivileged namespaces. Restricted
-Linux hosts can deny these primitives and cannot count content in this candidate;
-use a compatible Linux environment. Unavailable limits fail closed
-(`limits_unavailable`); there is no weaker containment fallback. There are no
-new host command dependencies for DOCX/PDF/plain text. A descriptor-relative,
-no-follow traversal and private file snapshots prevent redirecting reads through
-symlinks. All scans, aggregation, sorting and rendering use iterative traversal.
-macOS/Windows remain unverified. Native DOC acceptance is still open; this draft
-is not a released fulfillment of complete document support.
+Linux workers use user/PID namespaces and pidfds. On Linux x86_64 hosts that
+restrict user namespaces, a syscall allowlist instead enforces a single process:
+no fork/clone, exec, networking, ptrace or io_uring. The same memory, CPU, output,
+parent-death and supervisor wall limits apply. There is no unsandboxed fallback.
+If the kernel denies both containment mechanisms, counting fails closed with
+`limits_unavailable`; use a Linux environment that permits one of them. Other
+Linux architectures require user/PID namespaces. macOS and Windows are not
+supported by this version. No host command dependencies are required for counting.
+A descriptor-relative, no-follow traversal and private file snapshots prevent
+redirecting reads through symlinks. Scanning, aggregation, sorting and rendering
+use iterative traversal.
 
 Defaults: 64 MiB input; DOCX 4 MiB/part, 8 MiB aggregate expanded XML, depth 128,
 100,000 elements and 4,096 ZIP members; 2,000 PDF pages; 1,000,000 extracted Unicode
@@ -148,7 +154,8 @@ characters; per-worker 15 s wall / 10 s CPU / 512 MiB address space; 12 MiB resp
 120 s aggregate scan work, 100,000 entries, 16 MiB combined stored path bytes.
 Snapshot storage follows the input ceiling (64 MiB by default), independently of
 the 12 MiB incrementally enforced IPC response ceiling. After the snapshot is
-complete, subsequent worker file output is capped at 12 MiB as well. Lowering the
+complete, subsequent worker file output is capped at the effective response limit
+(12 MiB by default) as well. Lowering the
 response limit does not lower the input/snapshot limit. Each file gets a fresh
 Python worker in isolated mode (`-I`), a private working directory and an
 allowlisted environment; caller modules and Python environment paths are excluded.
@@ -176,13 +183,9 @@ strict: exit 0 normally; 3 for incomplete results with `--strict`; 1 for missing
 roots or an unrecoverable startup/run failure; 2 for usage/configuration errors.
 Per-file failures allow later files and roots to continue.
 
-Fresh isolation and vocabulary loading have a measurable per-file cost. A benign
-40-file installed-wheel profile on indes-front (Python 3.12.14) took 9.049 s wall /
-9.010 s CPU; the maximum waited-process RSS was 93,404 KiB, not aggregate memory.
-Interpreter startup took 14–22 ms and startup plus vocabulary load/count took
-228–231 ms in three standalone measurements. The linear projection of about
-530 identical files per 120 s is host/workload specific, not a fixed entry limit.
-Larger batches can hit the scan deadline; unprocessed content remains incomplete.
-Selecting smaller subtrees can keep individual scans useful. Persistent workers
-or batching need further design and validation; this candidate preserves fresh
-per-file limits. Profile evidence: review/task-003/evidence/amendment-3-base/.
+Fresh isolation and vocabulary loading have a measurable per-file cost. The
+120 s scan budget is a time limit, not a fixed file count. A batch that exceeds
+that budget returns all enumerated entries and marks unprocessed content incomplete
+(null tokens); `--strict` returns 3. Split large workloads into smaller subtrees.
+The final installed-wheel measurement and exact artifact provenance are recorded
+in [the completion report](docs/reviews/TASK-006-completion.md).

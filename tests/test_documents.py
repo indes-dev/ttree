@@ -296,3 +296,116 @@ class DocumentTests(TestCase):
         self.assertEqual(code, 3)
         self.assertEqual(roots[0]["status"], "failed")
         self.assertIsNone(roots[0]["tokens"])
+
+    def test_static_word_doc_text_fields_and_story_text(self):
+        path = self.root / "normal.doc"
+        make_doc(
+            path,
+            "Contrato café 😀\rItem\x07Valor\r\x13HYPERLINK ignored\x14Link visível\x15\r",
+        )
+        from ttree.documents import doc
+        from ttree.tokenizer import LocalTokenizer
+        import ttree
+
+        with path.open("rb") as source:
+            text, status = doc(source, {})
+        self.assertEqual(status, "counted")
+        self.assertEqual(text, "Contrato café 😀\nItem\tValor\nLink visível")
+        tokenizer = LocalTokenizer(
+            Path(ttree.__file__).parent / "data/o200k_base.tiktoken"
+        )
+        code, roots = self.scan(path)
+        self.assertEqual(code, 0)
+        self.assertEqual(roots[0]["tokens"], len(tokenizer.encode(text.encode())))
+        self.assertTrue(roots[0]["complete"])
+
+    def test_static_word_doc_compressed_and_empty(self):
+        for text in ("Café — Ÿ\r", ""):
+            path = self.root / "ansi.doc"
+            make_doc(path, text, compressed=True)
+            from ttree.documents import doc
+
+            with path.open("rb") as source:
+                value, status = doc(source, {})
+            self.assertEqual((value, status), (text.strip(), "counted"))
+            code, roots = self.scan(path)
+            self.assertEqual(code, 0)
+            self.assertEqual(roots[0]["status"], "counted" if text else "no_text")
+
+    def test_static_doc_encryption_and_format_status(self):
+        path = self.root / "encrypted.doc"
+        make_doc(path, "Readable text", encrypted=True)
+        code, roots = self.scan(path)
+        self.assertEqual(code, 3)
+        self.assertEqual(roots[0]["status"], "encrypted")
+        self.assertIsNone(roots[0]["tokens"])
+        path.write_bytes(b"This is ordinary text, not a Word binary document.")
+        code, roots = self.scan(path)
+        self.assertEqual(
+            (code, roots[0]["status"], roots[0]["tokens"]), (3, "unsupported", None)
+        )
+
+
+def make_doc(path, text, *, compressed=False, encrypted=False):
+    """Small inert OLE document with ordinary Word 97 text and no objects.
+
+    Use full 4096-byte streams so no mini-stream implementation is needed.
+    This is a valid container, not a malformed or adversarial fixture.
+    """
+    import struct
+
+    end, free, fatsect = 0xFFFFFFFE, 0xFFFFFFFF, 0xFFFFFFFD
+    header = bytearray(512)
+    header[:8] = bytes.fromhex("d0cf11e0a1b11ae1")
+    struct.pack_into("<HHHH", header, 24, 0x3E, 3, 0xFFFE, 9)
+    struct.pack_into("<H", header, 32, 6)
+    for offset, value in ((44, 1), (48, 16), (56, 4096), (60, end), (68, end)):
+        struct.pack_into("<I", header, offset, value)
+    struct.pack_into("<109I", header, 76, 17, *([free] * 108))
+    word = bytearray(4096)
+    flags = 0x1200 | (0x100 if encrypted else 0)
+    struct.pack_into("<HH", word, 0, 0xA5EC, 0xC1)
+    struct.pack_into("<H", word, 10, flags)
+    struct.pack_into("<H", word, 32, 14)
+    struct.pack_into("<H", word, 62, 22)
+    raw = text.encode("cp1252" if compressed else "utf-16-le")
+    count = len(raw) if compressed else len(raw) // 2
+    struct.pack_into("<I", word, 76, count)
+    struct.pack_into("<H", word, 152, 93)
+    plc = struct.pack(
+        "<IIHIH", 0, max(1, count), 0, (0x40000000 | 2048) if compressed else 1024, 0
+    )
+    clx = b"\x02" + struct.pack("<I", len(plc)) + plc
+    struct.pack_into("<II", word, 418, 0, len(clx))
+    word[1024 : 1024 + len(raw)] = raw
+    table = clx.ljust(4096, b"\0")
+    directory = bytearray(512)
+    for i, (name, kind, start, size) in enumerate(
+        (
+            ("Root Entry", 5, end, 0),
+            ("WordDocument", 2, 0, 4096),
+            ("1Table", 2, 8, 4096),
+        )
+    ):
+        base = i * 128
+        name = (name + "\0").encode("utf-16-le")
+        directory[base : base + len(name)] = name
+        struct.pack_into(
+            "<HBBIII",
+            directory,
+            base + 64,
+            len(name),
+            kind,
+            0 if i == 2 else 1,
+            2 if i == 1 else free,
+            free,
+            1 if i == 0 else free,
+        )
+        struct.pack_into("<IQ", directory, base + 116, start, size)
+    fat = [free] * 128
+    for first in (0, 8):
+        for index in range(first, first + 7):
+            fat[index] = index + 1
+        fat[first + 7] = end
+    fat[16], fat[17] = end, fatsect
+    path.write_bytes(header + word + table + directory + struct.pack("<128I", *fat))

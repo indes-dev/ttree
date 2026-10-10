@@ -46,7 +46,19 @@ def main():
                 or not (member.isfile() or member.isdir())
             ):
                 raise RuntimeError("tracked export contains unsupported paths or links")
-        tar.extractall(source, members=members)
+        # Export regular tracked files explicitly. Do not let tarfile apply
+        # archive ownership, modes, links or future extraction defaults.
+        for member in members:
+            target = source / member.name
+            if member.isdir():
+                target.mkdir(parents=True, exist_ok=True)
+            else:
+                target.parent.mkdir(parents=True, exist_ok=True)
+                with tar.extractfile(member) as content, target.open("xb") as dest:
+                    import shutil
+
+                    shutil.copyfileobj(content, dest)
+                target.chmod(0o755 if member.mode & 0o111 else 0o644)
     subprocess.run(
         [
             sys.executable,

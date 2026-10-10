@@ -51,7 +51,7 @@ MEDIA = {
     ".ttf",
     ".otf",
 }
-UNSUPPORTED = {".doc", ".ppt", ".pptx", ".xls", ".xlsx", ".odt", ".ods", ".odp", ".rtf"}
+UNSUPPORTED = { ".ppt", ".pptx", ".xls", ".xlsx", ".odt", ".ods", ".odp", ".rtf"}
 COMPLETE = {"counted", "empty", "no_text", "excluded"}
 DIR_FLAGS = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC
 FILE_FLAGS = os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK | os.O_CLOEXEC
@@ -206,7 +206,7 @@ def file_count(entry, fd, limits, deadline):
         entry.status = "too_large"
         return
     result = count_fd(
-        fd, suffix[1:] if suffix in {".docx", ".pdf"} else "text", limits, deadline
+        fd, suffix[1:] if suffix in {".doc", ".docx", ".pdf"} else "text", limits, deadline
     )
     entry.status = result["status"]
     entry.tokens = result["tokens"]

@@ -78,7 +78,7 @@ class TreeTests(TestCase):
             {".", "sub", "sub/a.md", "b.md"},
         )
 
-    def test_doc_quarantine_null_and_strict_precedence(self):
+    def test_invalid_doc_null_and_strict_precedence(self):
         legacy = self.root / "private.doc"
         legacy.write_bytes(bytes.fromhex("d0cf11e0a1b11ae1") + b"private")
         code, value = self.result("--strict", legacy)
@@ -86,7 +86,7 @@ class TreeTests(TestCase):
         self.assertEqual(code, 3)
         self.assertEqual(
             (root["status"], root["tokens"], root["complete"], root["bytes"]),
-            ("unsupported", None, False, 15),
+            ("failed", None, False, 15),
         )
         code, value = self.result("--strict", legacy, self.root / "missing")
         self.assertEqual(code, 1)

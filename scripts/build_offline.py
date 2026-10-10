@@ -117,7 +117,7 @@ def main():
         "install_lock_sha256": digest(install),
         "versions": versions,
         "wheels": sorted(p.name for p in wheels.glob("*.whl")),
-        "native_doc": "inactive pending bounded adapter; no native reader included",
+        "doc_reader": "static Word 97-2003 text via included olefile; no native program",
     }
     (output / "manifest.json").write_text(
         json.dumps(manifest, sort_keys=True, indent=2) + "\n"
@@ -135,8 +135,8 @@ ttree --json --strict docs
 ```
 
 The artifact includes the entire declared dependency closure and bundled verified
-vocabulary. Runtime makes no downloads. DOC is inactive, unsupported and incomplete
-pending native adjudication; trusted manual conversion to DOCX is outside ttree.
+vocabulary and the static DOC reader. Runtime makes no downloads. DOC parsing never
+launches a native program; encrypted or unsupported variants remain incomplete.
 Python/installer/native tools are not included. License notices remain in wheels.
 """)
     paths = sorted(path for path in output.rglob("*") if path.is_file())

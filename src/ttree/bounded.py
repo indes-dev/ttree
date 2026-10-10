@@ -13,6 +13,7 @@ import time
 
 STATUSES = {
     "counted",
+    "unsupported",
     "empty",
     "no_text",
     "partial",
@@ -47,7 +48,6 @@ def supervise(fd, kind, limits, deadline, private):
     namespace_fd = process = None
     status = None
     output = bytearray()
-    received = 0
     try:
         command = [
             sys.executable,
@@ -102,7 +102,6 @@ def supervise(fd, kind, limits, deadline, private):
                     process.stdout.fileno(),
                     min(65536, limits["response_bytes"] - len(output) + 1),
                 )
-                received += len(chunk)
                 if not chunk:
                     break
                 if len(output) + len(chunk) > limits["response_bytes"]:
