@@ -1,0 +1,46 @@
+test_bom_empty_non_utf8_and_binary_policy (test_cli.TreeTests.test_bom_empty_non_utf8_and_binary_policy) ... ok
+test_budget_marks_incomplete_and_keeps_next_root (test_cli.TreeTests.test_budget_marks_incomplete_and_keeps_next_root) ... ok
+test_bundled_vocabulary_without_network (test_cli.TreeTests.test_bundled_vocabulary_without_network) ... ok
+test_compact_pt_br_units (test_cli.TreeTests.test_compact_pt_br_units) ... ok
+test_human_control_escape_and_posix_raw_path_roundtrip (test_cli.TreeTests.test_human_control_escape_and_posix_raw_path_roundtrip) ... ok
+test_human_literal_escape_line_separators_roots_and_links (test_cli.TreeTests.test_human_literal_escape_line_separators_roots_and_links) ... ok
+test_invalid_doc_null_and_strict_precedence (test_cli.TreeTests.test_invalid_doc_null_and_strict_precedence) ... ok
+test_json_totals_all_entries_and_display_flags (test_cli.TreeTests.test_json_totals_all_entries_and_display_flags) ... ok
+test_limits_usage_and_actual_input_cap (test_cli.TreeTests.test_limits_usage_and_actual_input_cap) ... ok
+test_symlinks_explicit_descendant_and_ancestor (test_cli.TreeTests.test_symlinks_explicit_descendant_and_ancestor) ... ok
+test_unenumerated_timed_out_directory_and_unknown_only_parent (test_cli.TreeTests.test_unenumerated_timed_out_directory_and_unknown_only_parent) ... ok
+test_unknown_empty_and_mixed_aggregates (test_cli.TreeTests.test_unknown_empty_and_mixed_aggregates) ... ok
+test_vocabulary_rejects_bad_hash (test_cli.TreeTests.test_vocabulary_rejects_bad_hash) ... ok
+test_alternate_content_selects_one_supported_choice_or_fallback (test_documents.DocumentTests.test_alternate_content_selects_one_supported_choice_or_fallback) ... ok
+test_benign_padded_snapshot_sizes_and_independent_response_limit (test_documents.DocumentTests.test_benign_padded_snapshot_sizes_and_independent_response_limit) ... ok
+test_docx_representation_headers_notes_and_revisions (test_documents.DocumentTests.test_docx_representation_headers_notes_and_revisions) ... ok
+test_duplicate_members_rejected (test_documents.DocumentTests.test_duplicate_members_rejected) ... ok
+test_empty_damaged_pdf_is_partial (test_documents.DocumentTests.test_empty_damaged_pdf_is_partial) ... ok
+test_malformed_documents_continue (test_documents.DocumentTests.test_malformed_documents_continue) ... ok
+test_normal_docx_pdf_empty_and_encrypted_empty_password (test_documents.DocumentTests.test_normal_docx_pdf_empty_and_encrypted_empty_password) ... ok
+test_production_actual_docx_expansion_and_structural_caps (test_documents.DocumentTests.test_production_actual_docx_expansion_and_structural_caps) ... ok
+test_recovered_pdf_warnings_remain_partial_without_diagnostics (test_documents.DocumentTests.test_recovered_pdf_warnings_remain_partial_without_diagnostics) ... ok
+test_static_doc_encryption_and_format_status (test_documents.DocumentTests.test_static_doc_encryption_and_format_status) ... ok
+test_static_word_doc_compressed_and_empty (test_documents.DocumentTests.test_static_word_doc_compressed_and_empty) ... ok
+test_static_word_doc_text_fields_and_story_text (test_documents.DocumentTests.test_static_word_doc_text_fields_and_story_text) ... ok
+test_strict_namespace_and_invalid_main_document (test_documents.DocumentTests.test_strict_namespace_and_invalid_main_document) ... ok
+test_unsupported_pdf_cipher_is_fixed_incomplete (test_documents.DocumentTests.test_unsupported_pdf_cipher_is_fixed_incomplete) ... ok
+test_xml_declarations_rejected_across_encodings (test_documents.DocumentTests.test_xml_declarations_rejected_across_encodings) ... ok
+test_coordinator_death_before_worker_start_fails_closed (test_security.SecurityTests.test_coordinator_death_before_worker_start_fails_closed) ... ok
+test_deadline_includes_tokenization_and_next_root_is_retained (test_security.SecurityTests.test_deadline_includes_tokenization_and_next_root_is_retained) ... ok
+test_deeper_than_python_recursion_limit (test_security.SecurityTests.test_deeper_than_python_recursion_limit) ... ok
+test_directory_replacement_with_symlink_never_counts_outside (test_security.SecurityTests.test_directory_replacement_with_symlink_never_counts_outside) ... ok
+test_dotdot_reparent_race_never_reads_new_outside_parent (test_security.SecurityTests.test_dotdot_reparent_race_never_reads_new_outside_parent) ... ok
+test_file_replacement_with_symlink_never_counts_outside (test_security.SecurityTests.test_file_replacement_with_symlink_never_counts_outside) ... ok
+test_isolated_worker_ignores_caller_modules (test_security.SecurityTests.test_isolated_worker_ignores_caller_modules) ... ok
+test_kernel_denied_namespace_uses_single_process_filter (test_security.SecurityTests.test_kernel_denied_namespace_uses_single_process_filter) ... ok
+test_production_ipc_rejects_real_oversized_writer (test_security.SecurityTests.test_production_ipc_rejects_real_oversized_writer) ... ok
+test_production_timeout_waits_for_setsid_descendant (test_security.SecurityTests.test_production_timeout_waits_for_setsid_descendant) ... ok
+test_static_reader_filter_denies_network_and_children (test_security.SecurityTests.test_static_reader_filter_denies_network_and_children) ... ok
+test_unreadable_descendant_is_not_misclassified_as_replaced (test_security.SecurityTests.test_unreadable_descendant_is_not_misclassified_as_replaced) ... ok
+test_unreadable_file_preserves_known_bytes (test_security.SecurityTests.test_unreadable_file_preserves_known_bytes) ... ok
+
+----------------------------------------------------------------------
+Ran 41 tests in 31.643s
+
+OK
