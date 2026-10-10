@@ -1,7 +1,6 @@
 """Benign marker regression for the new optional-import surface."""
 
 import json
-import os
 import subprocess
 from pathlib import Path
 
