@@ -1,0 +1,391 @@
+{
+  "examples": [
+    {
+      "arguments": [
+        "--json",
+        "--strict",
+        "normal.docx",
+        "normal.pdf",
+        "utf16.txt",
+        "empty.txt"
+      ],
+      "exit": 0,
+      "metrics": {
+        "peak_rss_kib": 106180,
+        "system_seconds": 0.122347,
+        "user_seconds": 0.763274,
+        "wall_seconds": 0.8925
+      },
+      "metrics_scope": "CPU delta per CLI family; cumulative max waited-process RSS, not aggregate memory. Normal is the first child run.",
+      "name": "normal",
+      "result": {
+        "effective_limits": {
+          "address_space_bytes": 536870912,
+          "characters": 1000000,
+          "cpu_seconds": 10,
+          "entries": 100000,
+          "input_bytes": 67108864,
+          "path_bytes": 16777216,
+          "pdf_pages": 2000,
+          "response_bytes": 12582912,
+          "scan_seconds": 120,
+          "wall_seconds": 15,
+          "xml_depth": 128,
+          "xml_elements": 100000,
+          "xml_part_bytes": 4194304,
+          "xml_total_bytes": 8388608,
+          "zip_members": 4096
+        },
+        "roots": [
+          {
+            "bytes": 296,
+            "complete": true,
+            "entries": [
+              {
+                "bytes": 296,
+                "complete": true,
+                "kind": "file",
+                "path": ".",
+                "path_bytes_base64": "Lg==",
+                "status": "counted",
+                "tokens": 4
+              }
+            ],
+            "path": "normal.docx",
+            "path_bytes_base64": "bm9ybWFsLmRvY3g=",
+            "status": "counted",
+            "tokens": 4
+          },
+          {
+            "bytes": 677,
+            "complete": true,
+            "entries": [
+              {
+                "bytes": 677,
+                "complete": true,
+                "kind": "file",
+                "path": ".",
+                "path_bytes_base64": "Lg==",
+                "status": "counted",
+                "tokens": 3
+              }
+            ],
+            "path": "normal.pdf",
+            "path_bytes_base64": "bm9ybWFsLnBkZg==",
+            "status": "counted",
+            "tokens": 3
+          },
+          {
+            "bytes": 28,
+            "complete": true,
+            "entries": [
+              {
+                "bytes": 28,
+                "complete": true,
+                "kind": "file",
+                "path": ".",
+                "path_bytes_base64": "Lg==",
+                "status": "counted",
+                "tokens": 4
+              }
+            ],
+            "path": "utf16.txt",
+            "path_bytes_base64": "dXRmMTYudHh0",
+            "status": "counted",
+            "tokens": 4
+          },
+          {
+            "bytes": 0,
+            "complete": true,
+            "entries": [
+              {
+                "bytes": 0,
+                "complete": true,
+                "kind": "file",
+                "path": ".",
+                "path_bytes_base64": "Lg==",
+                "status": "empty",
+                "tokens": 0
+              }
+            ],
+            "path": "empty.txt",
+            "path_bytes_base64": "ZW1wdHkudHh0",
+            "status": "empty",
+            "tokens": 0
+          }
+        ],
+        "schema_version": 1,
+        "total": {
+          "bytes": 1001,
+          "complete": true,
+          "tokens": 11
+        }
+      }
+    },
+    {
+      "arguments": [
+        "--json",
+        "--strict",
+        "legacy.doc",
+        "latin1.txt"
+      ],
+      "exit": 3,
+      "metrics": {
+        "peak_rss_kib": 106180,
+        "system_seconds": 0.015571,
+        "user_seconds": 0.056484,
+        "wall_seconds": 0.0739
+      },
+      "metrics_scope": "CPU delta per CLI family; cumulative max waited-process RSS, not aggregate memory. Normal is the first child run.",
+      "name": "strict-incomplete",
+      "result": {
+        "effective_limits": {
+          "address_space_bytes": 536870912,
+          "characters": 1000000,
+          "cpu_seconds": 10,
+          "entries": 100000,
+          "input_bytes": 67108864,
+          "path_bytes": 16777216,
+          "pdf_pages": 2000,
+          "response_bytes": 12582912,
+          "scan_seconds": 120,
+          "wall_seconds": 15,
+          "xml_depth": 128,
+          "xml_elements": 100000,
+          "xml_part_bytes": 4194304,
+          "xml_total_bytes": 8388608,
+          "zip_members": 4096
+        },
+        "roots": [
+          {
+            "bytes": 17,
+            "complete": false,
+            "entries": [
+              {
+                "bytes": 17,
+                "complete": false,
+                "kind": "file",
+                "path": ".",
+                "path_bytes_base64": "Lg==",
+                "status": "unsupported",
+                "tokens": null
+              }
+            ],
+            "path": "legacy.doc",
+            "path_bytes_base64": "bGVnYWN5LmRvYw==",
+            "status": "unsupported",
+            "tokens": null
+          },
+          {
+            "bytes": 10,
+            "complete": false,
+            "entries": [
+              {
+                "bytes": 10,
+                "complete": false,
+                "kind": "file",
+                "path": ".",
+                "path_bytes_base64": "Lg==",
+                "status": "not_utf8",
+                "tokens": null
+              }
+            ],
+            "path": "latin1.txt",
+            "path_bytes_base64": "bGF0aW4xLnR4dA==",
+            "status": "not_utf8",
+            "tokens": null
+          }
+        ],
+        "schema_version": 1,
+        "total": {
+          "bytes": 27,
+          "complete": false,
+          "tokens": 0
+        }
+      }
+    },
+    {
+      "arguments": [
+        "--json",
+        "legacy.doc"
+      ],
+      "exit": 0,
+      "metrics": {
+        "peak_rss_kib": 106180,
+        "system_seconds": 0.006992,
+        "user_seconds": 0.029906,
+        "wall_seconds": 0.0378
+      },
+      "metrics_scope": "CPU delta per CLI family; cumulative max waited-process RSS, not aggregate memory. Normal is the first child run.",
+      "name": "json-default-exit",
+      "result": {
+        "effective_limits": {
+          "address_space_bytes": 536870912,
+          "characters": 1000000,
+          "cpu_seconds": 10,
+          "entries": 100000,
+          "input_bytes": 67108864,
+          "path_bytes": 16777216,
+          "pdf_pages": 2000,
+          "response_bytes": 12582912,
+          "scan_seconds": 120,
+          "wall_seconds": 15,
+          "xml_depth": 128,
+          "xml_elements": 100000,
+          "xml_part_bytes": 4194304,
+          "xml_total_bytes": 8388608,
+          "zip_members": 4096
+        },
+        "roots": [
+          {
+            "bytes": 17,
+            "complete": false,
+            "entries": [
+              {
+                "bytes": 17,
+                "complete": false,
+                "kind": "file",
+                "path": ".",
+                "path_bytes_base64": "Lg==",
+                "status": "unsupported",
+                "tokens": null
+              }
+            ],
+            "path": "legacy.doc",
+            "path_bytes_base64": "bGVnYWN5LmRvYw==",
+            "status": "unsupported",
+            "tokens": null
+          }
+        ],
+        "schema_version": 1,
+        "total": {
+          "bytes": 17,
+          "complete": false,
+          "tokens": 0
+        }
+      }
+    },
+    {
+      "arguments": [
+        "--json",
+        "--strict",
+        "normal.docx",
+        "legacy.doc",
+        "missing"
+      ],
+      "exit": 1,
+      "metrics": {
+        "peak_rss_kib": 106180,
+        "system_seconds": 0.04177,
+        "user_seconds": 0.196873,
+        "wall_seconds": 0.2409
+      },
+      "metrics_scope": "CPU delta per CLI family; cumulative max waited-process RSS, not aggregate memory. Normal is the first child run.",
+      "name": "mixed-missing",
+      "result": {
+        "effective_limits": {
+          "address_space_bytes": 536870912,
+          "characters": 1000000,
+          "cpu_seconds": 10,
+          "entries": 100000,
+          "input_bytes": 67108864,
+          "path_bytes": 16777216,
+          "pdf_pages": 2000,
+          "response_bytes": 12582912,
+          "scan_seconds": 120,
+          "wall_seconds": 15,
+          "xml_depth": 128,
+          "xml_elements": 100000,
+          "xml_part_bytes": 4194304,
+          "xml_total_bytes": 8388608,
+          "zip_members": 4096
+        },
+        "roots": [
+          {
+            "bytes": 296,
+            "complete": true,
+            "entries": [
+              {
+                "bytes": 296,
+                "complete": true,
+                "kind": "file",
+                "path": ".",
+                "path_bytes_base64": "Lg==",
+                "status": "counted",
+                "tokens": 4
+              }
+            ],
+            "path": "normal.docx",
+            "path_bytes_base64": "bm9ybWFsLmRvY3g=",
+            "status": "counted",
+            "tokens": 4
+          },
+          {
+            "bytes": 17,
+            "complete": false,
+            "entries": [
+              {
+                "bytes": 17,
+                "complete": false,
+                "kind": "file",
+                "path": ".",
+                "path_bytes_base64": "Lg==",
+                "status": "unsupported",
+                "tokens": null
+              }
+            ],
+            "path": "legacy.doc",
+            "path_bytes_base64": "bGVnYWN5LmRvYw==",
+            "status": "unsupported",
+            "tokens": null
+          },
+          {
+            "bytes": null,
+            "complete": false,
+            "entries": [
+              {
+                "bytes": null,
+                "complete": false,
+                "kind": "missing",
+                "path": ".",
+                "path_bytes_base64": "Lg==",
+                "status": "missing",
+                "tokens": null
+              }
+            ],
+            "path": "missing",
+            "path_bytes_base64": "bWlzc2luZw==",
+            "status": "missing",
+            "tokens": null
+          }
+        ],
+        "schema_version": 1,
+        "total": {
+          "bytes": 313,
+          "complete": false,
+          "tokens": 4
+        }
+      }
+    },
+    {
+      "arguments": [
+        "--json",
+        "--limit-wall-seconds",
+        "0",
+        "normal.pdf"
+      ],
+      "exit": 2,
+      "metrics": {
+        "peak_rss_kib": 106180,
+        "system_seconds": 0.003007,
+        "user_seconds": 0.03,
+        "wall_seconds": 0.0343
+      },
+      "metrics_scope": "CPU delta per CLI family; cumulative max waited-process RSS, not aggregate memory. Normal is the first child run.",
+      "name": "usage"
+    }
+  ],
+  "passed": true,
+  "python": "/home/zak/projects/ttree/.tmp/matrix-312/bin/python",
+  "source_revision": "4382916510f91b065e45d6fdfa7b1243b174d75f"
+}

@@ -1,15 +1,16 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling==1.32.4"]
 build-backend = "hatchling.build"
 
 [project]
 name = "indes-ttree"
-version = "0.1.0"
-description = "Directory tree with byte and token counts"
+version = "0.2.0"
+description = "Offline directory tree with token estimates and optional byte sizes"
 readme = "README.md"
 license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.10"
-dependencies = ["gigatoken>=0.10,<1"]
+dependencies = ["tiktoken>=0.12,<1", "pypdf>=6.19.0,<7", "olefile>=0.47,<0.48"]
 
 [project.urls]
 Homepage = "https://github.com/indes-dev/ttree"
@@ -19,5 +20,49 @@ Issues = "https://github.com/indes-dev/ttree/issues"
 [project.scripts]
 ttree = "ttree.cli:main"
 
+[tool.hatch.build.hooks.custom]
+path = "hatch_build.py"
+
 [tool.hatch.build.targets.wheel]
-packages = ["src/ttree"]
+only-include = [
+    "src/ttree/__init__.py",
+    "src/ttree/bounded.py",
+    "src/ttree/cli.py",
+    "src/ttree/documents.py",
+    "src/ttree/limits.py",
+    "src/ttree/scan.py",
+    "src/ttree/tokenizer.py",
+    "src/ttree/worker.py",
+    "src/ttree/data/o200k_base.tiktoken",
+    "src/ttree/data/TIKTOKEN_LICENSE",
+]
+sources = ["src"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/hatch_build.py",
+    "/.gitignore",
+    "/README.md",
+    "/LICENSE",
+    "/THIRD_PARTY.md",
+    "/pyproject.toml",
+    "/src/ttree/__init__.py",
+    "/src/ttree/bounded.py",
+    "/src/ttree/cli.py",
+    "/src/ttree/documents.py",
+    "/src/ttree/limits.py",
+    "/src/ttree/scan.py",
+    "/src/ttree/tokenizer.py",
+    "/src/ttree/worker.py",
+    "/src/ttree/data/o200k_base.tiktoken",
+    "/src/ttree/data/TIKTOKEN_LICENSE",
+    "/tests/test_cli.py",
+    "/tests/test_documents.py",
+    "/tests/test_security.py",
+    "/scripts/build_tracked.py",
+    "/scripts/build_offline.py",
+    "/scripts/validate_offline.py",
+    "/locks/runtime-linux-cp312-x86_64.txt",
+    "/locks/build-linux-cp312-x86_64.txt",
+    "/.github/workflows/validate.yml",
+]

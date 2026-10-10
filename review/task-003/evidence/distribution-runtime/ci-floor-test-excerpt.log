@@ -1,0 +1,18 @@
+locked-artifact	Run TMPDIR="$PWD/.tmp" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 python -m unittest discover -s tests -v	2026-10-08T14:22:55.1921454Z Ran 32 tests in 32.994s
+locked-artifact	Run TMPDIR="$PWD/.tmp" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 python -m unittest discover -s tests -v	2026-10-08T14:22:55.1921831Z OK
+lowest-direct (3.12)	Run uv pip install --system --resolution lowest-direct . 'tiktoken>=0.12,<1' 'pypdf>=6.19.0,<7'	2026-10-08T14:22:23.1406182Z  + pypdf==6.19.0
+lowest-direct (3.12)	Run uv pip install --system --resolution lowest-direct . 'tiktoken>=0.12,<1' 'pypdf>=6.19.0,<7'	2026-10-08T14:22:23.1406945Z  + tiktoken==0.12.0
+lowest-direct (3.12)	Run mkdir -p .tmp && TMPDIR="$PWD/.tmp" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 python -m unittest discover -s tests -v	2026-10-08T14:22:53.4565936Z Ran 32 tests in 28.585s
+lowest-direct (3.12)	Run mkdir -p .tmp && TMPDIR="$PWD/.tmp" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 python -m unittest discover -s tests -v	2026-10-08T14:22:53.4566218Z OK
+lowest-direct (3.14)	Run uv pip install --system --resolution lowest-direct . 'tiktoken>=0.12,<1' 'pypdf>=6.19.0,<7'	2026-10-08T14:22:21.4572150Z  + pypdf==6.19.0
+lowest-direct (3.14)	Run uv pip install --system --resolution lowest-direct . 'tiktoken>=0.12,<1' 'pypdf>=6.19.0,<7'	2026-10-08T14:22:21.4572941Z  + tiktoken==0.12.0
+lowest-direct (3.14)	Run mkdir -p .tmp && TMPDIR="$PWD/.tmp" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 python -m unittest discover -s tests -v	2026-10-08T14:22:41.7229560Z Ran 32 tests in 18.412s
+lowest-direct (3.14)	Run mkdir -p .tmp && TMPDIR="$PWD/.tmp" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 python -m unittest discover -s tests -v	2026-10-08T14:22:41.7229871Z OK
+lowest-direct (3.11)	Run uv pip install --system --resolution lowest-direct . 'tiktoken>=0.12,<1' 'pypdf>=6.19.0,<7'	2026-10-08T14:22:17.7267442Z  + pypdf==6.19.0
+lowest-direct (3.11)	Run uv pip install --system --resolution lowest-direct . 'tiktoken>=0.12,<1' 'pypdf>=6.19.0,<7'	2026-10-08T14:22:17.7267866Z  + tiktoken==0.12.0
+lowest-direct (3.11)	Run mkdir -p .tmp && TMPDIR="$PWD/.tmp" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 python -m unittest discover -s tests -v	2026-10-08T14:22:35.6371272Z Ran 32 tests in 16.931s
+lowest-direct (3.11)	Run mkdir -p .tmp && TMPDIR="$PWD/.tmp" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 python -m unittest discover -s tests -v	2026-10-08T14:22:35.6371410Z OK
+lowest-direct (3.10)	Run uv pip install --system --resolution lowest-direct . 'tiktoken>=0.12,<1' 'pypdf>=6.19.0,<7'	2026-10-08T14:22:17.8270493Z  + pypdf==6.19.0
+lowest-direct (3.10)	Run uv pip install --system --resolution lowest-direct . 'tiktoken>=0.12,<1' 'pypdf>=6.19.0,<7'	2026-10-08T14:22:17.8271610Z  + tiktoken==0.12.0
+lowest-direct (3.10)	Run mkdir -p .tmp && TMPDIR="$PWD/.tmp" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 python -m unittest discover -s tests -v	2026-10-08T14:22:50.0897397Z Ran 32 tests in 31.465s
+lowest-direct (3.10)	Run mkdir -p .tmp && TMPDIR="$PWD/.tmp" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 python -m unittest discover -s tests -v	2026-10-08T14:22:50.0897766Z OK

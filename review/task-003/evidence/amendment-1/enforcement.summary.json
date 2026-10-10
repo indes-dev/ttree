@@ -1,0 +1,1529 @@
+{
+  "starting_head": "f87e6493cb9a3234b9b1cf6054621a7b949ca8a0",
+  "batch_wall_seconds": 115,
+  "batch_cpu_seconds_per_process": 60,
+  "poll_seconds": 0.02,
+  "cases": {
+    "memory": {
+      "scope": "ttree-task003-3ac7f3d80633.scope",
+      "command": [
+        "/usr/bin/bwrap",
+        "--unshare-all",
+        "--die-with-parent",
+        "--new-session",
+        "--ro-bind",
+        "/usr",
+        "/usr",
+        "--symlink",
+        "usr/bin",
+        "/bin",
+        "--symlink",
+        "usr/lib",
+        "/lib",
+        "--symlink",
+        "usr/lib",
+        "/lib64",
+        "--proc",
+        "/proc",
+        "--dev",
+        "/dev",
+        "--dir",
+        "/etc",
+        "--ro-bind",
+        "/etc/fonts",
+        "/etc/fonts",
+        "--ro-bind",
+        "/etc/libreoffice/bootstraprc",
+        "/etc/libreoffice/bootstraprc",
+        "--ro-bind",
+        "/etc/libreoffice/sofficerc",
+        "/etc/libreoffice/sofficerc",
+        "--bind",
+        "/home/zak/projects/ttree/.tmp/diagnostic-enforcement/memory/data",
+        "/work",
+        "--symlink",
+        "/work/tmp",
+        "/tmp",
+        "--chdir",
+        "/work",
+        "--clearenv",
+        "--setenv",
+        "PATH",
+        "/usr/bin",
+        "--setenv",
+        "HOME",
+        "/work/home",
+        "--setenv",
+        "TMPDIR",
+        "/work/tmp",
+        "--setenv",
+        "LANG",
+        "C.UTF-8",
+        "--setenv",
+        "SAL_USE_VCLPLUGIN",
+        "svp",
+        "--setenv",
+        "MALLOC_ARENA_MAX",
+        "1",
+        "--",
+        "/usr/bin/python3.14",
+        "-c",
+        "import os,time,json; from pathlib import Path; p=os.fork(); \nif p==0:\n os.setsid(); Path('/work/child.json').write_text(json.dumps({'pid':os.getpid(),'sid':os.getsid(0)})); time.sleep(.15); a=[]\n for i in range(192): a.append(bytearray(1024*1024)); time.sleep(.002)\n time.sleep(3)\nelse: time.sleep(5)\n"
+      ],
+      "scope_command": [
+        "/usr/bin/systemd-run",
+        "--user",
+        "--scope",
+        "--quiet",
+        "--collect",
+        "--unit=ttree-task003-3ac7f3d80633.scope",
+        "--property=MemoryMax=134217728",
+        "--property=MemorySwapMax=0",
+        "--property=TasksMax=64",
+        "--property=CPUQuota=100%",
+        "--property=CPUQuotaPeriodSec=10ms",
+        "--property=RuntimeMaxSec=22s",
+        "--property=TimeoutStopSec=100ms",
+        "--property=KillMode=control-group",
+        "/usr/bin/prlimit",
+        "--as=2147483648",
+        "--cpu=60",
+        "--core=0",
+        "/usr/bin/unshare",
+        "-Urnpf",
+        "--mount-proc",
+        "/home/zak/projects/ttree/.venv/bin/python",
+        "/home/zak/projects/ttree/review/task-003/diagnostic.py",
+        "launch",
+        "/home/zak/projects/ttree/.tmp/diagnostic-enforcement/memory"
+      ],
+      "as_mib_per_reader_process": 512,
+      "wall_seconds": 6,
+      "cpu_seconds_per_reader_process": 5,
+      "aggregate_cpu_limit_seconds": 15,
+      "membership_samples": [
+        {
+          "seconds": 0.0006,
+          "members": [
+            {
+              "pid": 703687,
+              "starttime": "32861352",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703687"
+            },
+            {
+              "pid": 703696,
+              "starttime": "32861354",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703696\t1"
+            }
+          ]
+        },
+        {
+          "seconds": 0.022,
+          "members": [
+            {
+              "pid": 703687,
+              "starttime": "32861352",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703687"
+            },
+            {
+              "pid": 703696,
+              "starttime": "32861354",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703696\t1"
+            },
+            {
+              "pid": 703698,
+              "starttime": "32861358",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703698\t3"
+            },
+            {
+              "pid": 703699,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703699\t4\t1"
+            },
+            {
+              "pid": 703700,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703700\t5\t2"
+            }
+          ]
+        },
+        {
+          "seconds": 0.0434,
+          "members": [
+            {
+              "pid": 703687,
+              "starttime": "32861352",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703687"
+            },
+            {
+              "pid": 703696,
+              "starttime": "32861354",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703696\t1"
+            },
+            {
+              "pid": 703698,
+              "starttime": "32861358",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703698\t3"
+            },
+            {
+              "pid": 703699,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703699\t4\t1"
+            },
+            {
+              "pid": 703700,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703700\t5\t2"
+            },
+            {
+              "pid": 703708,
+              "starttime": "32861361",
+              "session": 703708,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703708\t6\t3"
+            }
+          ]
+        },
+        {
+          "seconds": 0.065,
+          "members": [
+            {
+              "pid": 703687,
+              "starttime": "32861352",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703687"
+            },
+            {
+              "pid": 703696,
+              "starttime": "32861354",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703696\t1"
+            },
+            {
+              "pid": 703698,
+              "starttime": "32861358",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703698\t3"
+            },
+            {
+              "pid": 703699,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703699\t4\t1"
+            },
+            {
+              "pid": 703700,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703700\t5\t2"
+            },
+            {
+              "pid": 703708,
+              "starttime": "32861361",
+              "session": 703708,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703708\t6\t3"
+            }
+          ]
+        },
+        {
+          "seconds": 0.0866,
+          "members": [
+            {
+              "pid": 703687,
+              "starttime": "32861352",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703687"
+            },
+            {
+              "pid": 703696,
+              "starttime": "32861354",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703696\t1"
+            },
+            {
+              "pid": 703698,
+              "starttime": "32861358",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703698\t3"
+            },
+            {
+              "pid": 703699,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703699\t4\t1"
+            },
+            {
+              "pid": 703700,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703700\t5\t2"
+            },
+            {
+              "pid": 703708,
+              "starttime": "32861361",
+              "session": 703708,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703708\t6\t3"
+            }
+          ]
+        },
+        {
+          "seconds": 0.108,
+          "members": [
+            {
+              "pid": 703687,
+              "starttime": "32861352",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703687"
+            },
+            {
+              "pid": 703696,
+              "starttime": "32861354",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703696\t1"
+            },
+            {
+              "pid": 703698,
+              "starttime": "32861358",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703698\t3"
+            },
+            {
+              "pid": 703699,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703699\t4\t1"
+            },
+            {
+              "pid": 703700,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703700\t5\t2"
+            },
+            {
+              "pid": 703708,
+              "starttime": "32861361",
+              "session": 703708,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703708\t6\t3"
+            }
+          ]
+        },
+        {
+          "seconds": 0.1289,
+          "members": [
+            {
+              "pid": 703687,
+              "starttime": "32861352",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703687"
+            },
+            {
+              "pid": 703696,
+              "starttime": "32861354",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703696\t1"
+            },
+            {
+              "pid": 703698,
+              "starttime": "32861358",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703698\t3"
+            },
+            {
+              "pid": 703699,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703699\t4\t1"
+            },
+            {
+              "pid": 703700,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703700\t5\t2"
+            },
+            {
+              "pid": 703708,
+              "starttime": "32861361",
+              "session": 703708,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703708\t6\t3"
+            }
+          ]
+        },
+        {
+          "seconds": 0.1502,
+          "members": [
+            {
+              "pid": 703687,
+              "starttime": "32861352",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703687"
+            },
+            {
+              "pid": 703696,
+              "starttime": "32861354",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703696\t1"
+            },
+            {
+              "pid": 703698,
+              "starttime": "32861358",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703698\t3"
+            },
+            {
+              "pid": 703699,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703699\t4\t1"
+            },
+            {
+              "pid": 703700,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703700\t5\t2"
+            },
+            {
+              "pid": 703708,
+              "starttime": "32861361",
+              "session": 703708,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703708\t6\t3"
+            }
+          ]
+        },
+        {
+          "seconds": 0.1718,
+          "members": [
+            {
+              "pid": 703687,
+              "starttime": "32861352",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703687"
+            },
+            {
+              "pid": 703696,
+              "starttime": "32861354",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703696\t1"
+            },
+            {
+              "pid": 703698,
+              "starttime": "32861358",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703698\t3"
+            },
+            {
+              "pid": 703699,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703699\t4\t1"
+            },
+            {
+              "pid": 703700,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703700\t5\t2"
+            },
+            {
+              "pid": 703708,
+              "starttime": "32861361",
+              "session": 703708,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703708\t6\t3"
+            }
+          ]
+        },
+        {
+          "seconds": 0.1931,
+          "members": [
+            {
+              "pid": 703687,
+              "starttime": "32861352",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703687"
+            },
+            {
+              "pid": 703696,
+              "starttime": "32861354",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703696\t1"
+            },
+            {
+              "pid": 703698,
+              "starttime": "32861358",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703698\t3"
+            },
+            {
+              "pid": 703699,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703699\t4\t1"
+            },
+            {
+              "pid": 703700,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703700\t5\t2"
+            },
+            {
+              "pid": 703708,
+              "starttime": "32861361",
+              "session": 703708,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703708\t6\t3"
+            }
+          ]
+        },
+        {
+          "seconds": 0.214,
+          "members": [
+            {
+              "pid": 703687,
+              "starttime": "32861352",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703687"
+            },
+            {
+              "pid": 703696,
+              "starttime": "32861354",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703696\t1"
+            },
+            {
+              "pid": 703698,
+              "starttime": "32861358",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703698\t3"
+            },
+            {
+              "pid": 703699,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703699\t4\t1"
+            },
+            {
+              "pid": 703700,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703700\t5\t2"
+            },
+            {
+              "pid": 703708,
+              "starttime": "32861361",
+              "session": 703708,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703708\t6\t3"
+            }
+          ]
+        },
+        {
+          "seconds": 0.2349,
+          "members": [
+            {
+              "pid": 703687,
+              "starttime": "32861352",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703687"
+            },
+            {
+              "pid": 703696,
+              "starttime": "32861354",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703696\t1"
+            },
+            {
+              "pid": 703698,
+              "starttime": "32861358",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703698\t3"
+            },
+            {
+              "pid": 703699,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703699\t4\t1"
+            },
+            {
+              "pid": 703700,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703700\t5\t2"
+            },
+            {
+              "pid": 703708,
+              "starttime": "32861361",
+              "session": 703708,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703708\t6\t3"
+            }
+          ]
+        },
+        {
+          "seconds": 0.2557,
+          "members": [
+            {
+              "pid": 703687,
+              "starttime": "32861352",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703687"
+            },
+            {
+              "pid": 703696,
+              "starttime": "32861354",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703696\t1"
+            },
+            {
+              "pid": 703698,
+              "starttime": "32861358",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703698\t3"
+            },
+            {
+              "pid": 703699,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703699\t4\t1"
+            },
+            {
+              "pid": 703700,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703700\t5\t2"
+            },
+            {
+              "pid": 703708,
+              "starttime": "32861361",
+              "session": 703708,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703708\t6\t3"
+            }
+          ]
+        },
+        {
+          "seconds": 0.2764,
+          "members": [
+            {
+              "pid": 703687,
+              "starttime": "32861352",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703687"
+            },
+            {
+              "pid": 703696,
+              "starttime": "32861354",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703696\t1"
+            },
+            {
+              "pid": 703698,
+              "starttime": "32861358",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703698\t3"
+            },
+            {
+              "pid": 703699,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703699\t4\t1"
+            },
+            {
+              "pid": 703700,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703700\t5\t2"
+            },
+            {
+              "pid": 703708,
+              "starttime": "32861361",
+              "session": 703708,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703708\t6\t3"
+            }
+          ]
+        },
+        {
+          "seconds": 0.2972,
+          "members": [
+            {
+              "pid": 703687,
+              "starttime": "32861352",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703687"
+            },
+            {
+              "pid": 703696,
+              "starttime": "32861354",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703696\t1"
+            },
+            {
+              "pid": 703698,
+              "starttime": "32861358",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703698\t3"
+            },
+            {
+              "pid": 703699,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703699\t4\t1"
+            },
+            {
+              "pid": 703700,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703700\t5\t2"
+            },
+            {
+              "pid": 703708,
+              "starttime": "32861361",
+              "session": 703708,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703708\t6\t3"
+            }
+          ]
+        },
+        {
+          "seconds": 0.318,
+          "members": [
+            {
+              "pid": 703687,
+              "starttime": "32861352",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703687"
+            },
+            {
+              "pid": 703696,
+              "starttime": "32861354",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703696\t1"
+            },
+            {
+              "pid": 703698,
+              "starttime": "32861358",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703698\t3"
+            },
+            {
+              "pid": 703699,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703699\t4\t1"
+            },
+            {
+              "pid": 703700,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703700\t5\t2"
+            },
+            {
+              "pid": 703708,
+              "starttime": "32861361",
+              "session": 703708,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703708\t6\t3"
+            }
+          ]
+        },
+        {
+          "seconds": 0.3388,
+          "members": [
+            {
+              "pid": 703687,
+              "starttime": "32861352",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703687"
+            },
+            {
+              "pid": 703696,
+              "starttime": "32861354",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703696\t1"
+            },
+            {
+              "pid": 703698,
+              "starttime": "32861358",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703698\t3"
+            },
+            {
+              "pid": 703699,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703699\t4\t1"
+            },
+            {
+              "pid": 703700,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703700\t5\t2"
+            },
+            {
+              "pid": 703708,
+              "starttime": "32861361",
+              "session": 703708,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703708\t6\t3"
+            }
+          ]
+        },
+        {
+          "seconds": 0.3598,
+          "members": [
+            {
+              "pid": 703687,
+              "starttime": "32861352",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703687"
+            },
+            {
+              "pid": 703696,
+              "starttime": "32861354",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703696\t1"
+            },
+            {
+              "pid": 703698,
+              "starttime": "32861358",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703698\t3"
+            },
+            {
+              "pid": 703699,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703699\t4\t1"
+            },
+            {
+              "pid": 703700,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703700\t5\t2"
+            },
+            {
+              "pid": 703708,
+              "starttime": "32861361",
+              "session": 703708,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703708\t6\t3"
+            }
+          ]
+        },
+        {
+          "seconds": 0.3807,
+          "members": [
+            {
+              "pid": 703687,
+              "starttime": "32861352",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703687"
+            },
+            {
+              "pid": 703696,
+              "starttime": "32861354",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703696\t1"
+            },
+            {
+              "pid": 703698,
+              "starttime": "32861358",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703698\t3"
+            },
+            {
+              "pid": 703699,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703699\t4\t1"
+            },
+            {
+              "pid": 703700,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703700\t5\t2"
+            },
+            {
+              "pid": 703708,
+              "starttime": "32861361",
+              "session": 703708,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703708\t6\t3"
+            }
+          ]
+        },
+        {
+          "seconds": 0.4014,
+          "members": [
+            {
+              "pid": 703687,
+              "starttime": "32861352",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703687"
+            },
+            {
+              "pid": 703696,
+              "starttime": "32861354",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703696\t1"
+            },
+            {
+              "pid": 703698,
+              "starttime": "32861358",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703698\t3"
+            },
+            {
+              "pid": 703699,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703699\t4\t1"
+            },
+            {
+              "pid": 703700,
+              "starttime": "32861359",
+              "session": 703699,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703700\t5\t2"
+            },
+            {
+              "pid": 703708,
+              "starttime": "32861361",
+              "session": 703708,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+              "nspid": "NSpid:\t703708\t6\t3"
+            }
+          ]
+        }
+      ],
+      "status": "oom_killed",
+      "initial": {
+        "memory.max": "134217728",
+        "memory.swap.max": "0",
+        "pids.max": "64",
+        "cpu.max": "10000 10000",
+        "memory.current": "12144640",
+        "memory.peak": "12144640",
+        "memory.events": {
+          "low": "0",
+          "high": "0",
+          "max": "0",
+          "oom": "0",
+          "oom_kill": "0",
+          "oom_group_kill": "0",
+          "sock_throttled": "0"
+        },
+        "cpu.stat": {
+          "usage_usec": "41471",
+          "user_usec": "35556",
+          "system_usec": "5915",
+          "nice_usec": "0",
+          "core_sched.force_idle_usec": "0",
+          "nr_periods": "5",
+          "nr_throttled": "0",
+          "throttled_usec": "0",
+          "nr_bursts": "0",
+          "burst_usec": "0"
+        },
+        "pids.current": "2",
+        "pids.events": {
+          "max": "0"
+        },
+        "cgroup.events": {
+          "populated": "1",
+          "frozen": "0"
+        }
+      },
+      "readback_before_reader": true,
+      "supervisor_cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/eryon-helper.service",
+      "final_before_kill": {
+        "memory.max": "134217728",
+        "memory.swap.max": "0",
+        "pids.max": "64",
+        "cpu.max": "10000 10000",
+        "memory.current": "12251136",
+        "memory.peak": "134217728",
+        "memory.events": {
+          "low": "0",
+          "high": "0",
+          "max": "29",
+          "oom": "1",
+          "oom_kill": "1",
+          "oom_group_kill": "0",
+          "sock_throttled": "0"
+        },
+        "cpu.stat": {
+          "usage_usec": "114115",
+          "user_usec": "65113",
+          "system_usec": "49002",
+          "nice_usec": "0",
+          "core_sched.force_idle_usec": "0",
+          "nr_periods": "38",
+          "nr_throttled": "0",
+          "throttled_usec": "0",
+          "nr_bursts": "0",
+          "burst_usec": "0"
+        },
+        "pids.current": "3",
+        "pids.events": {
+          "max": "0"
+        },
+        "cgroup.events": {
+          "populated": "1",
+          "frozen": "0"
+        }
+      },
+      "final_membership": [
+        {
+          "pid": 703687,
+          "starttime": "32861352",
+          "session": 703652,
+          "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+          "nspid": "NSpid:\t703687"
+        },
+        {
+          "pid": 703696,
+          "starttime": "32861354",
+          "session": 703652,
+          "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-3ac7f3d80633.scope",
+          "nspid": "NSpid:\t703696\t1"
+        }
+      ],
+      "child_marker": {
+        "pid": 3,
+        "sid": 3
+      },
+      "kill_returncode": 0,
+      "unit_inactive": true,
+      "scope_collected": true,
+      "survivors": [],
+      "cgroup_empty_or_removed": true,
+      "sampled_peak_tree_rss_kib": 158860,
+      "sampled_peak_process_vms_kib": 129592,
+      "total_seconds": 0.552,
+      "metrics_samples_count": 23
+    },
+    "cpu": {
+      "scope": "ttree-task003-57bde43fbea4.scope",
+      "command": [
+        "/usr/bin/bwrap",
+        "--unshare-all",
+        "--die-with-parent",
+        "--new-session",
+        "--ro-bind",
+        "/usr",
+        "/usr",
+        "--symlink",
+        "usr/bin",
+        "/bin",
+        "--symlink",
+        "usr/lib",
+        "/lib",
+        "--symlink",
+        "usr/lib",
+        "/lib64",
+        "--proc",
+        "/proc",
+        "--dev",
+        "/dev",
+        "--dir",
+        "/etc",
+        "--ro-bind",
+        "/etc/fonts",
+        "/etc/fonts",
+        "--ro-bind",
+        "/etc/libreoffice/bootstraprc",
+        "/etc/libreoffice/bootstraprc",
+        "--ro-bind",
+        "/etc/libreoffice/sofficerc",
+        "/etc/libreoffice/sofficerc",
+        "--bind",
+        "/home/zak/projects/ttree/.tmp/diagnostic-enforcement/cpu/data",
+        "/work",
+        "--symlink",
+        "/work/tmp",
+        "/tmp",
+        "--chdir",
+        "/work",
+        "--clearenv",
+        "--setenv",
+        "PATH",
+        "/usr/bin",
+        "--setenv",
+        "HOME",
+        "/work/home",
+        "--setenv",
+        "TMPDIR",
+        "/work/tmp",
+        "--setenv",
+        "LANG",
+        "C.UTF-8",
+        "--setenv",
+        "SAL_USE_VCLPLUGIN",
+        "svp",
+        "--setenv",
+        "MALLOC_ARENA_MAX",
+        "1",
+        "--",
+        "/usr/bin/python3.14",
+        "-c",
+        "import os; p=os.fork(); os.setsid() if p==0 else None\nwhile True: pass\n"
+      ],
+      "scope_command": [
+        "/usr/bin/systemd-run",
+        "--user",
+        "--scope",
+        "--quiet",
+        "--collect",
+        "--unit=ttree-task003-57bde43fbea4.scope",
+        "--property=MemoryMax=805306368",
+        "--property=MemorySwapMax=0",
+        "--property=TasksMax=64",
+        "--property=CPUQuota=100%",
+        "--property=CPUQuotaPeriodSec=10ms",
+        "--property=RuntimeMaxSec=22s",
+        "--property=TimeoutStopSec=100ms",
+        "--property=KillMode=control-group",
+        "/usr/bin/prlimit",
+        "--as=2147483648",
+        "--cpu=60",
+        "--core=0",
+        "/usr/bin/unshare",
+        "-Urnpf",
+        "--mount-proc",
+        "/home/zak/projects/ttree/.venv/bin/python",
+        "/home/zak/projects/ttree/review/task-003/diagnostic.py",
+        "launch",
+        "/home/zak/projects/ttree/.tmp/diagnostic-enforcement/cpu"
+      ],
+      "as_mib_per_reader_process": 512,
+      "wall_seconds": 20,
+      "cpu_seconds_per_reader_process": 15,
+      "aggregate_cpu_limit_seconds": 15,
+      "membership_samples": [
+        {
+          "seconds": 0.0002,
+          "members": [
+            {
+              "pid": 703722,
+              "starttime": "32861408",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+              "nspid": "NSpid:\t703722"
+            },
+            {
+              "pid": 703723,
+              "starttime": "32861409",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+              "nspid": "NSpid:\t703723\t1"
+            }
+          ]
+        },
+        {
+          "seconds": 0.0212,
+          "members": [
+            {
+              "pid": 703722,
+              "starttime": "32861408",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+              "nspid": "NSpid:\t703722"
+            },
+            {
+              "pid": 703723,
+              "starttime": "32861409",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+              "nspid": "NSpid:\t703723\t1"
+            },
+            {
+              "pid": 703726,
+              "starttime": "32861414",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+              "nspid": "NSpid:\t703726\t3"
+            },
+            {
+              "pid": 703727,
+              "starttime": "32861414",
+              "session": 703727,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+              "nspid": "NSpid:\t703727\t4\t1"
+            },
+            {
+              "pid": 703728,
+              "starttime": "32861414",
+              "session": 703727,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+              "nspid": "NSpid:\t703728\t5\t2"
+            },
+            {
+              "pid": 703729,
+              "starttime": "32861415",
+              "session": 703729,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+              "nspid": "NSpid:\t703729\t6\t3"
+            }
+          ]
+        },
+        {
+          "seconds": 0.042,
+          "members": [
+            {
+              "pid": 703722,
+              "starttime": "32861408",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+              "nspid": "NSpid:\t703722"
+            },
+            {
+              "pid": 703723,
+              "starttime": "32861409",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+              "nspid": "NSpid:\t703723\t1"
+            },
+            {
+              "pid": 703726,
+              "starttime": "32861414",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+              "nspid": "NSpid:\t703726\t3"
+            },
+            {
+              "pid": 703727,
+              "starttime": "32861414",
+              "session": 703727,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+              "nspid": "NSpid:\t703727\t4\t1"
+            },
+            {
+              "pid": 703728,
+              "starttime": "32861414",
+              "session": 703727,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+              "nspid": "NSpid:\t703728\t5\t2"
+            },
+            {
+              "pid": 703729,
+              "starttime": "32861415",
+              "session": 703729,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+              "nspid": "NSpid:\t703729\t6\t3"
+            }
+          ]
+        },
+        {
+          "seconds": 0.0628,
+          "members": [
+            {
+              "pid": 703722,
+              "starttime": "32861408",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+              "nspid": "NSpid:\t703722"
+            },
+            {
+              "pid": 703723,
+              "starttime": "32861409",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+              "nspid": "NSpid:\t703723\t1"
+            },
+            {
+              "pid": 703726,
+              "starttime": "32861414",
+              "session": 703652,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+              "nspid": "NSpid:\t703726\t3"
+            },
+            {
+              "pid": 703727,
+              "starttime": "32861414",
+              "session": 703727,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+              "nspid": "NSpid:\t703727\t4\t1"
+            },
+            {
+              "pid": 703728,
+              "starttime": "32861414",
+              "session": 703727,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+              "nspid": "NSpid:\t703728\t5\t2"
+            },
+            {
+              "pid": 703729,
+              "starttime": "32861415",
+              "session": 703729,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+              "nspid": "NSpid:\t703729\t6\t3"
+            }
+          ]
+        }
+      ],
+      "status": "cpu_limit",
+      "initial": {
+        "memory.max": "805306368",
+        "memory.swap.max": "0",
+        "pids.max": "64",
+        "cpu.max": "10000 10000",
+        "memory.current": "11890688",
+        "memory.peak": "11890688",
+        "memory.events": {
+          "low": "0",
+          "high": "0",
+          "max": "0",
+          "oom": "0",
+          "oom_kill": "0",
+          "oom_group_kill": "0",
+          "sock_throttled": "0"
+        },
+        "cpu.stat": {
+          "usage_usec": "34918",
+          "user_usec": "28923",
+          "system_usec": "5994",
+          "nice_usec": "0",
+          "core_sched.force_idle_usec": "0",
+          "nr_periods": "5",
+          "nr_throttled": "3",
+          "throttled_usec": "2355",
+          "nr_bursts": "0",
+          "burst_usec": "0"
+        },
+        "pids.current": "2",
+        "pids.events": {
+          "max": "0"
+        },
+        "cgroup.events": {
+          "populated": "1",
+          "frozen": "0"
+        }
+      },
+      "readback_before_reader": true,
+      "supervisor_cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/eryon-helper.service",
+      "cpu_overshoot_seconds": 0.00815,
+      "final_before_kill": {
+        "memory.max": "805306368",
+        "memory.swap.max": "0",
+        "pids.max": "64",
+        "cpu.max": "10000 10000",
+        "memory.current": "15630336",
+        "memory.peak": "16683008",
+        "memory.events": {
+          "low": "0",
+          "high": "0",
+          "max": "0",
+          "oom": "0",
+          "oom_kill": "0",
+          "oom_group_kill": "0",
+          "sock_throttled": "0"
+        },
+        "cpu.stat": {
+          "usage_usec": "15012145",
+          "user_usec": "14999771",
+          "system_usec": "12373",
+          "nice_usec": "0",
+          "core_sched.force_idle_usec": "0",
+          "nr_periods": "1503",
+          "nr_throttled": "1500",
+          "throttled_usec": "14821280",
+          "nr_bursts": "0",
+          "burst_usec": "0"
+        },
+        "pids.current": "6",
+        "pids.events": {
+          "max": "0"
+        },
+        "cgroup.events": {
+          "populated": "1",
+          "frozen": "0"
+        }
+      },
+      "final_membership": [
+        {
+          "pid": 703722,
+          "starttime": "32861408",
+          "session": 703652,
+          "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+          "nspid": "NSpid:\t703722"
+        },
+        {
+          "pid": 703723,
+          "starttime": "32861409",
+          "session": 703652,
+          "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+          "nspid": "NSpid:\t703723\t1"
+        },
+        {
+          "pid": 703726,
+          "starttime": "32861414",
+          "session": 703652,
+          "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+          "nspid": "NSpid:\t703726\t3"
+        },
+        {
+          "pid": 703727,
+          "starttime": "32861414",
+          "session": 703727,
+          "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+          "nspid": "NSpid:\t703727\t4\t1"
+        },
+        {
+          "pid": 703728,
+          "starttime": "32861414",
+          "session": 703727,
+          "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+          "nspid": "NSpid:\t703728\t5\t2"
+        },
+        {
+          "pid": 703729,
+          "starttime": "32861415",
+          "session": 703729,
+          "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-57bde43fbea4.scope",
+          "nspid": "NSpid:\t703729\t6\t3"
+        }
+      ],
+      "kill_returncode": 0,
+      "unit_inactive": true,
+      "scope_collected": true,
+      "survivors": [],
+      "cgroup_empty_or_removed": true,
+      "sampled_peak_tree_rss_kib": 42564,
+      "sampled_peak_process_vms_kib": 45124,
+      "total_seconds": 15.0637,
+      "metrics_samples_count": 711
+    }
+  },
+  "checks": {
+    "memory_cleanup": true,
+    "memory_kernel_enforced": true,
+    "escaped_child_accounted": true,
+    "memory_private_outputs_removed": true,
+    "cpu_cleanup": true,
+    "aggregate_cpu_enforced": true,
+    "cpu_private_outputs_removed": true
+  },
+  "passed": true,
+  "versions": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "kernel": "7.2.8-arch1-2",
+    "systemd": "systemd 262 (262-1-arch)",
+    "bubblewrap": "bubblewrap 0.13.0",
+    "libreoffice": "LibreOffice 26.8.0.3 680(Build:3)"
+  },
+  "elapsed_seconds": 15.7753,
+  "coverage_note": "CPU assertion checks trigger overshoot; final termination CPU overshoot is unverified. No native export/import succeeded."
+}

@@ -1,0 +1,16 @@
+15
+ttree/__init__.py
+ttree/bounded.py
+ttree/cli.py
+ttree/documents.py
+ttree/limits.py
+ttree/scan.py
+ttree/tokenizer.py
+ttree/worker.py
+ttree/data/TIKTOKEN_LICENSE
+ttree/data/o200k_base.tiktoken
+indes_ttree-0.2.0.dist-info/METADATA
+indes_ttree-0.2.0.dist-info/WHEEL
+indes_ttree-0.2.0.dist-info/entry_points.txt
+indes_ttree-0.2.0.dist-info/licenses/LICENSE
+indes_ttree-0.2.0.dist-info/RECORD

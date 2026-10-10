@@ -1,0 +1,19 @@
+locked-artifact	Run python -m pip install --require-hashes -r locks/build-linux-cp312-x86_64.txt	2026-10-09T16:06:38.7262134Z Successfully installed build-1.6.1 hatchling-1.32.4 packaging-26.3 pathspec-1.1.1 pluggy-1.6.0 pyproject-hooks-1.3.3 tomlkit-0.15.1 trove-classifiers-2026.9.21.13
+locked-artifact	Run python -m pip install --no-index --find-links .tmp/artifact/wheels --require-hashes -r .tmp/artifact/install-lock.txt	2026-10-09T16:06:43.4966125Z Successfully installed certifi-2026.7.22 charset-normalizer-3.5.2 idna-3.20 indes-ttree-0.2.0 pypdf-6.19.0 regex-2026.9.29 requests-2.34.2 tiktoken-0.14.0 urllib3-2.8.0
+locked-artifact	Run TMPDIR="$PWD/.tmp" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 python -m unittest discover -s tests -v	2026-10-09T16:07:23.2139588Z Ran 37 tests in 38.378s
+lowest-direct (3.14)	Run python -m pip install uv	2026-10-09T16:06:40.0496987Z Successfully installed uv-0.12.24
+lowest-direct (3.14)	Run uv pip install --system --resolution lowest-direct . 'tiktoken>=0.12,<1' 'pypdf>=6.19.0,<7'	2026-10-09T16:06:41.0965075Z  + pypdf==6.19.0
+lowest-direct (3.14)	Run uv pip install --system --resolution lowest-direct . 'tiktoken>=0.12,<1' 'pypdf>=6.19.0,<7'	2026-10-09T16:06:41.0965991Z  + tiktoken==0.12.0
+lowest-direct (3.14)	Run mkdir -p .tmp && TMPDIR="$PWD/.tmp" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 python -m unittest discover -s tests -v	2026-10-09T16:07:17.6110397Z Ran 37 tests in 34.307s
+lowest-direct (3.11)	Run python -m pip install uv	2026-10-09T16:06:36.2809282Z Successfully installed uv-0.12.24
+lowest-direct (3.11)	Run uv pip install --system --resolution lowest-direct . 'tiktoken>=0.12,<1' 'pypdf>=6.19.0,<7'	2026-10-09T16:06:37.4142507Z  + pypdf==6.19.0
+lowest-direct (3.11)	Run uv pip install --system --resolution lowest-direct . 'tiktoken>=0.12,<1' 'pypdf>=6.19.0,<7'	2026-10-09T16:06:37.4143731Z  + tiktoken==0.12.0
+lowest-direct (3.11)	Run mkdir -p .tmp && TMPDIR="$PWD/.tmp" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 python -m unittest discover -s tests -v	2026-10-09T16:07:10.8657473Z Ran 37 tests in 32.543s
+lowest-direct (3.12)	Run python -m pip install uv	2026-10-09T16:06:35.3954175Z Successfully installed uv-0.12.24
+lowest-direct (3.12)	Run uv pip install --system --resolution lowest-direct . 'tiktoken>=0.12,<1' 'pypdf>=6.19.0,<7'	2026-10-09T16:06:36.7200126Z  + pypdf==6.19.0
+lowest-direct (3.12)	Run uv pip install --system --resolution lowest-direct . 'tiktoken>=0.12,<1' 'pypdf>=6.19.0,<7'	2026-10-09T16:06:36.7201170Z  + tiktoken==0.12.0
+lowest-direct (3.12)	Run mkdir -p .tmp && TMPDIR="$PWD/.tmp" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 python -m unittest discover -s tests -v	2026-10-09T16:07:18.9829938Z Ran 37 tests in 41.240s
+lowest-direct (3.10)	Run python -m pip install uv	2026-10-09T16:06:37.1937548Z Successfully installed uv-0.12.24
+lowest-direct (3.10)	Run uv pip install --system --resolution lowest-direct . 'tiktoken>=0.12,<1' 'pypdf>=6.19.0,<7'	2026-10-09T16:06:38.3789801Z  + pypdf==6.19.0
+lowest-direct (3.10)	Run uv pip install --system --resolution lowest-direct . 'tiktoken>=0.12,<1' 'pypdf>=6.19.0,<7'	2026-10-09T16:06:38.3790837Z  + tiktoken==0.12.0
+lowest-direct (3.10)	Run mkdir -p .tmp && TMPDIR="$PWD/.tmp" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 python -m unittest discover -s tests -v	2026-10-09T16:07:19.7842855Z Ran 37 tests in 40.570s

@@ -1,0 +1,929 @@
+{
+  "checked_at_utc": "2026-10-07T20:44:00.336254+00:00",
+  "source": "https://api.github.com/advisories?ecosystem=pip&affects=pypdf&per_page=100",
+  "source_sha256": "ba858d355c1ab1dc823cd09763267af7c2c287ea1038d80e75e39a4bd9ee64b2",
+  "returned_count": 51,
+  "per_page": 100,
+  "floor": "6.19.0",
+  "advisories": [
+    {
+      "ghsa_id": "GHSA-v247-6f48-mgcj",
+      "html_url": "https://github.com/advisories/GHSA-v247-6f48-mgcj",
+      "published_at": "2026-10-01T15:07:35Z",
+      "updated_at": "2026-10-01T15:07:36Z",
+      "severity": "high",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.19.0",
+          "first_patched_version": "6.19.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-php9-fj8v-98fj",
+      "html_url": "https://github.com/advisories/GHSA-php9-fj8v-98fj",
+      "published_at": "2026-10-01T15:07:21Z",
+      "updated_at": "2026-10-01T15:07:24Z",
+      "severity": "high",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.19.0",
+          "first_patched_version": "6.19.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-w23x-9jrw-r45c",
+      "html_url": "https://github.com/advisories/GHSA-w23x-9jrw-r45c",
+      "published_at": "2026-10-01T15:07:08Z",
+      "updated_at": "2026-10-01T15:07:09Z",
+      "severity": "high",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.19.0",
+          "first_patched_version": "6.19.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-jw7q-gvrg-4vj3",
+      "html_url": "https://github.com/advisories/GHSA-jw7q-gvrg-4vj3",
+      "published_at": "2026-10-01T15:06:33Z",
+      "updated_at": "2026-10-01T15:06:34Z",
+      "severity": "high",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.18.1",
+          "first_patched_version": "6.18.1",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-g9cg-prrw-2r8q",
+      "html_url": "https://github.com/advisories/GHSA-g9cg-prrw-2r8q",
+      "published_at": "2026-10-01T15:06:13Z",
+      "updated_at": "2026-10-01T15:06:14Z",
+      "severity": "high",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.18.1",
+          "first_patched_version": "6.18.1",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-fp3h-c4fm-7vvf",
+      "html_url": "https://github.com/advisories/GHSA-fp3h-c4fm-7vvf",
+      "published_at": "2026-10-01T15:06:04Z",
+      "updated_at": "2026-10-01T15:06:05Z",
+      "severity": "high",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.18.1",
+          "first_patched_version": "6.18.1",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-5jq2-8x83-x246",
+      "html_url": "https://github.com/advisories/GHSA-5jq2-8x83-x246",
+      "published_at": "2026-10-01T15:05:53Z",
+      "updated_at": "2026-10-01T15:05:54Z",
+      "severity": "high",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.18.0",
+          "first_patched_version": "6.18.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-qv6h-rv94-w285",
+      "html_url": "https://github.com/advisories/GHSA-qv6h-rv94-w285",
+      "published_at": "2026-10-01T15:03:45Z",
+      "updated_at": "2026-10-01T15:03:48Z",
+      "severity": "high",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.17.0",
+          "first_patched_version": "6.17.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-fc8x-2rww-xw9m",
+      "html_url": "https://github.com/advisories/GHSA-fc8x-2rww-xw9m",
+      "published_at": "2026-09-02T14:38:12Z",
+      "updated_at": "2026-09-02T14:38:13Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.15.0",
+          "first_patched_version": "6.15.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-23w6-3w8w-8484",
+      "html_url": "https://github.com/advisories/GHSA-23w6-3w8w-8484",
+      "published_at": "2026-09-01T21:28:37Z",
+      "updated_at": "2026-09-01T21:28:39Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.16.1",
+          "first_patched_version": "6.16.1",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-763m-79hh-57f2",
+      "html_url": "https://github.com/advisories/GHSA-763m-79hh-57f2",
+      "published_at": "2026-09-01T21:27:22Z",
+      "updated_at": "2026-09-01T21:27:24Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.16.1",
+          "first_patched_version": "6.16.1",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-jp53-mhqp-8xcg",
+      "html_url": "https://github.com/advisories/GHSA-jp53-mhqp-8xcg",
+      "published_at": "2026-09-01T21:20:20Z",
+      "updated_at": "2026-09-01T21:21:21Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.16.0",
+          "first_patched_version": "6.16.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-fp3f-mc75-235c",
+      "html_url": "https://github.com/advisories/GHSA-fp3f-mc75-235c",
+      "published_at": "2026-08-07T19:29:09Z",
+      "updated_at": "2026-08-09T05:26:55Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.15.0",
+          "first_patched_version": "6.15.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-fwg2-594c-jp42",
+      "html_url": "https://github.com/advisories/GHSA-fwg2-594c-jp42",
+      "published_at": "2026-08-07T18:54:00Z",
+      "updated_at": "2026-08-07T18:54:00Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.15.0",
+          "first_patched_version": "6.15.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-g867-7843-wf8q",
+      "html_url": "https://github.com/advisories/GHSA-g867-7843-wf8q",
+      "published_at": "2026-07-23T16:37:07Z",
+      "updated_at": "2026-07-23T16:37:08Z",
+      "severity": "high",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.14.2",
+          "first_patched_version": "6.14.2",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-5xf7-4p34-54qr",
+      "html_url": "https://github.com/advisories/GHSA-5xf7-4p34-54qr",
+      "published_at": "2026-07-23T16:36:41Z",
+      "updated_at": "2026-07-23T16:36:43Z",
+      "severity": "high",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.14.1",
+          "first_patched_version": "6.14.1",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-55h5-xmcq-c37v",
+      "html_url": "https://github.com/advisories/GHSA-55h5-xmcq-c37v",
+      "published_at": "2026-07-23T15:07:33Z",
+      "updated_at": "2026-07-23T15:07:34Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.14.0",
+          "first_patched_version": "6.14.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-5qjq-93h5-hrgp",
+      "html_url": "https://github.com/advisories/GHSA-5qjq-93h5-hrgp",
+      "published_at": "2026-07-23T15:06:58Z",
+      "updated_at": "2026-07-23T15:06:59Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.14.0",
+          "first_patched_version": "6.14.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-g9xf-7f8q-9mcj",
+      "html_url": "https://github.com/advisories/GHSA-g9xf-7f8q-9mcj",
+      "published_at": "2026-07-09T21:09:53Z",
+      "updated_at": "2026-07-09T21:09:54Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.13.1",
+          "first_patched_version": "6.13.1",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-jm82-fx9c-mx94",
+      "html_url": "https://github.com/advisories/GHSA-jm82-fx9c-mx94",
+      "published_at": "2026-06-18T14:28:49Z",
+      "updated_at": "2026-06-18T14:28:51Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.13.3",
+          "first_patched_version": "6.13.3",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-m2v9-299j-rv96",
+      "html_url": "https://github.com/advisories/GHSA-m2v9-299j-rv96",
+      "published_at": "2026-06-16T14:05:57Z",
+      "updated_at": "2026-06-16T14:05:58Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.13.0",
+          "first_patched_version": "6.13.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-52x6-gq3r-vpf4",
+      "html_url": "https://github.com/advisories/GHSA-52x6-gq3r-vpf4",
+      "published_at": "2026-06-16T14:05:40Z",
+      "updated_at": "2026-06-16T14:05:43Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.13.0",
+          "first_patched_version": "6.13.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-j543-4vmf-qm7v",
+      "html_url": "https://github.com/advisories/GHSA-j543-4vmf-qm7v",
+      "published_at": "2026-06-16T13:47:08Z",
+      "updated_at": "2026-06-16T13:47:10Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.12.2",
+          "first_patched_version": "6.12.2",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-5hgr-hg42-57jg",
+      "html_url": "https://github.com/advisories/GHSA-5hgr-hg42-57jg",
+      "published_at": "2026-06-16T13:46:42Z",
+      "updated_at": "2026-06-16T13:46:42Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.12.2",
+          "first_patched_version": "6.12.2",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-wjqc-6w8f-h24c",
+      "html_url": "https://github.com/advisories/GHSA-wjqc-6w8f-h24c",
+      "published_at": "2026-06-16T13:45:58Z",
+      "updated_at": "2026-06-16T13:45:59Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.12.1",
+          "first_patched_version": "6.12.1",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-248m-82v9-q6g6",
+      "html_url": "https://github.com/advisories/GHSA-248m-82v9-q6g6",
+      "published_at": "2026-06-12T18:29:59Z",
+      "updated_at": "2026-06-12T18:30:01Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.12.0",
+          "first_patched_version": "6.12.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-cj93-chg6-vgv8",
+      "html_url": "https://github.com/advisories/GHSA-cj93-chg6-vgv8",
+      "published_at": "2026-06-12T18:29:15Z",
+      "updated_at": "2026-06-12T18:29:16Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.12.0",
+          "first_patched_version": "6.12.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-x284-j5p8-9c5p",
+      "html_url": "https://github.com/advisories/GHSA-x284-j5p8-9c5p",
+      "published_at": "2026-04-16T21:30:25Z",
+      "updated_at": "2026-05-05T15:44:28Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.10.2",
+          "first_patched_version": "6.10.2",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-4pxv-j86v-mhcw",
+      "html_url": "https://github.com/advisories/GHSA-4pxv-j86v-mhcw",
+      "published_at": "2026-04-16T21:30:12Z",
+      "updated_at": "2026-05-05T15:44:21Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.10.2",
+          "first_patched_version": "6.10.2",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-7gw9-cf7v-778f",
+      "html_url": "https://github.com/advisories/GHSA-7gw9-cf7v-778f",
+      "published_at": "2026-04-16T21:30:00Z",
+      "updated_at": "2026-05-05T15:44:13Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.10.2",
+          "first_patched_version": "6.10.2",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-jj6c-8h6c-hppx",
+      "html_url": "https://github.com/advisories/GHSA-jj6c-8h6c-hppx",
+      "published_at": "2026-04-15T19:43:09Z",
+      "updated_at": "2026-04-24T20:51:52Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.10.1",
+          "first_patched_version": "6.10.1",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-3crg-w4f6-42mx",
+      "html_url": "https://github.com/advisories/GHSA-3crg-w4f6-42mx",
+      "published_at": "2026-04-10T20:59:36Z",
+      "updated_at": "2026-04-24T20:37:33Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.10.0",
+          "first_patched_version": "6.10.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-87mj-5ggw-8qc3",
+      "html_url": "https://github.com/advisories/GHSA-87mj-5ggw-8qc3",
+      "published_at": "2026-03-25T20:05:22Z",
+      "updated_at": "2026-03-27T21:36:44Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.9.2",
+          "first_patched_version": "6.9.2",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-qpxp-75px-xjcp",
+      "html_url": "https://github.com/advisories/GHSA-qpxp-75px-xjcp",
+      "published_at": "2026-03-18T16:17:31Z",
+      "updated_at": "2026-03-20T21:27:32Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.9.1",
+          "first_patched_version": "6.9.1",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-hqmh-ppp3-xvm7",
+      "html_url": "https://github.com/advisories/GHSA-hqmh-ppp3-xvm7",
+      "published_at": "2026-03-11T00:14:02Z",
+      "updated_at": "2026-03-11T05:46:58Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.8.0",
+          "first_patched_version": "6.8.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-9m86-7pmv-2852",
+      "html_url": "https://github.com/advisories/GHSA-9m86-7pmv-2852",
+      "published_at": "2026-03-02T22:03:45Z",
+      "updated_at": "2026-03-06T21:56:41Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.7.5",
+          "first_patched_version": "6.7.5",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-f2v5-7jq9-h8cg",
+      "html_url": "https://github.com/advisories/GHSA-f2v5-7jq9-h8cg",
+      "published_at": "2026-02-28T02:46:10Z",
+      "updated_at": "2026-02-28T02:46:13Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.7.4",
+          "first_patched_version": "6.7.4",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-x7hp-r3qg-r3cj",
+      "html_url": "https://github.com/advisories/GHSA-x7hp-r3qg-r3cj",
+      "published_at": "2026-02-26T19:55:33Z",
+      "updated_at": "2026-02-26T19:55:35Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.7.3",
+          "first_patched_version": "6.7.3",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-2rw7-x74f-jg35",
+      "html_url": "https://github.com/advisories/GHSA-2rw7-x74f-jg35",
+      "published_at": "2026-02-25T16:09:03Z",
+      "updated_at": "2026-02-25T16:09:03Z",
+      "severity": "low",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.7.2",
+          "first_patched_version": "6.7.2",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-9mvc-8737-8j8h",
+      "html_url": "https://github.com/advisories/GHSA-9mvc-8737-8j8h",
+      "published_at": "2026-02-18T22:41:24Z",
+      "updated_at": "2026-02-23T22:21:05Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.7.1",
+          "first_patched_version": "6.7.1",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-wgvp-vg3v-2xq3",
+      "html_url": "https://github.com/advisories/GHSA-wgvp-vg3v-2xq3",
+      "published_at": "2026-02-18T22:41:13Z",
+      "updated_at": "2026-02-23T22:20:55Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.7.1",
+          "first_patched_version": "6.7.1",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-996q-pr4m-cvgq",
+      "html_url": "https://github.com/advisories/GHSA-996q-pr4m-cvgq",
+      "published_at": "2026-02-18T22:40:49Z",
+      "updated_at": "2026-02-23T22:20:41Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.7.1",
+          "first_patched_version": "6.7.1",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-2q4j-m29v-hq73",
+      "html_url": "https://github.com/advisories/GHSA-2q4j-m29v-hq73",
+      "published_at": "2026-01-26T23:37:57Z",
+      "updated_at": "2026-01-29T03:39:53Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.6.2",
+          "first_patched_version": "6.6.2",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-4f6g-68pf-7vhv",
+      "html_url": "https://github.com/advisories/GHSA-4f6g-68pf-7vhv",
+      "published_at": "2026-01-09T19:48:57Z",
+      "updated_at": "2026-01-11T14:53:41Z",
+      "severity": "low",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.6.0",
+          "first_patched_version": "6.6.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-4xc4-762w-m6cg",
+      "html_url": "https://github.com/advisories/GHSA-4xc4-762w-m6cg",
+      "published_at": "2026-01-09T19:48:22Z",
+      "updated_at": "2026-01-11T14:53:36Z",
+      "severity": "low",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.6.0",
+          "first_patched_version": "6.6.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-m449-cwjh-6pw7",
+      "html_url": "https://github.com/advisories/GHSA-m449-cwjh-6pw7",
+      "published_at": "2025-11-24T22:42:07Z",
+      "updated_at": "2026-01-21T16:37:14Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.4.0",
+          "first_patched_version": "6.4.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-jfx9-29x2-rv3j",
+      "html_url": "https://github.com/advisories/GHSA-jfx9-29x2-rv3j",
+      "published_at": "2025-10-22T19:40:50Z",
+      "updated_at": "2025-10-23T17:40:45Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.1.3",
+          "first_patched_version": "6.1.3",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-vr63-x8vc-m265",
+      "html_url": "https://github.com/advisories/GHSA-vr63-x8vc-m265",
+      "published_at": "2025-10-22T19:40:47Z",
+      "updated_at": "2025-10-23T17:40:38Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.1.3",
+          "first_patched_version": "6.1.3",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-7hfw-26vp-jp8m",
+      "html_url": "https://github.com/advisories/GHSA-7hfw-26vp-jp8m",
+      "published_at": "2025-08-13T19:51:24Z",
+      "updated_at": "2025-08-14T13:31:08Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": "< 6.0.0",
+          "first_patched_version": "6.0.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-wjcc-cq79-p63f",
+      "html_url": "https://github.com/advisories/GHSA-wjcc-cq79-p63f",
+      "published_at": "2023-10-31T22:22:50Z",
+      "updated_at": "2024-01-08T16:12:18Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": ">= 3.7.0, < 3.17.0",
+          "first_patched_version": "3.17.0",
+          "vulnerable_functions": []
+        }
+      ]
+    },
+    {
+      "ghsa_id": "GHSA-4vvm-4w3v-6mr8",
+      "html_url": "https://github.com/advisories/GHSA-4vvm-4w3v-6mr8",
+      "published_at": "2023-06-30T20:33:57Z",
+      "updated_at": "2023-11-11T05:03:14Z",
+      "severity": "medium",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "pip",
+            "name": "pypdf"
+          },
+          "vulnerable_version_range": ">= 3.1.0, < 3.9.0",
+          "first_patched_version": "3.9.0",
+          "vulnerable_functions": []
+        }
+      ]
+    }
+  ],
+  "floor_affected_by_returned_ranges": []
+}

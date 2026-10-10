@@ -1,0 +1,106 @@
+== native results.summary.json
+starting_head: "907b306130706636648d1f27f47d87da2e8244a9"
+scope: "transient delegated scope with retained reader cgroup; no production changes"
+batch_wall_seconds: 115
+poll_seconds: 0.02
+cases: dict[1]
+  import_1024: dict[22]
+    scope: "ttree-task003-import-360aaac7f1d3.scope"
+    command: <omitted>
+    scope_command: <omitted>
+    as_mib_per_reader_process: 1024
+    reader_wall_seconds: 20
+    aggregate_cpu_seconds: 15
+    cpu_seconds_per_reader_process: 15
+    memory_mib_aggregate_reader: 768
+    status: "failed"
+    readback: dict[4]
+      reader_cgroup: "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-import-360aaac7f1d3.scope/reader"
+      scope_cgroup: "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-import-360aaac7f1d3.scope"
+      reader_limits: {"memory.max": "805306368", "memory.swap.max": "0", "pids.max": "64", "cpu.max": "10000 10000", "memory.current": "0", "memory.peak": "0", "memory.events": {"lo
+      scope_limits: {"memory.max": "805306368", "memory.swap.max": "0", "pids.max": "64", "cpu.max": "10000 10000", "memory.current": "12316672", "memory.peak": "12316672", "memory
+    reader_result: dict[2]
+      returncode: 139
+      seconds: 4.9449
+    before_termination: dict[11]
+      memory.max: "805306368"
+      memory.swap.max: "0"
+      pids.max: "64"
+      cpu.max: "10000 10000"
+      memory.current: "753745920"
+      memory.peak: "796319744"
+      memory.events: {"low": "0", "high": "0", "max": "0", "oom": "0", "oom_kill": "0", "oom_group_kill": "0", "sock_throttled": "0"}
+      cpu.stat: {"usage_usec": "3165673", "user_usec": "2119915", "system_usec": "1045758", "nice_usec": "0", "core_sched.force_idle_usec": "0", "nr_periods": "494", "nr_thrott
+      pids.current: "3"
+      pids.events: {"max": "0"}
+      cgroup.events: {"populated": "1", "frozen": "0"}
+    final_after_whole_tree_termination: dict[11]
+      memory.max: "805306368"
+      memory.swap.max: "0"
+      pids.max: "64"
+      cpu.max: "10000 10000"
+      memory.current: "741249024"
+      memory.peak: "796319744"
+      memory.events: {"low": "0", "high": "0", "max": "0", "oom": "0", "oom_kill": "0", "oom_group_kill": "0", "sock_throttled": "0"}
+      cpu.stat: {"usage_usec": "3169217", "user_usec": "2120301", "system_usec": "1048916", "nice_usec": "0", "core_sched.force_idle_usec": "0", "nr_periods": "495", "nr_thrott
+      pids.current: "1"
+      pids.events: {"max": "0"}
+      cgroup.events: {"populated": "0", "frozen": "0"}
+    final_members: list[0]
+    final_cpu_seconds: 3.169217
+    final_cpu_overshoot_seconds: 0
+    scope_collected: true
+    survivors: list[0]
+    reader_cgroup_removed: true
+    total_seconds: 5.1643
+    expected_text_observed: false
+    output_bytes: null
+checks: dict[7]
+  pinned_fixture: true
+  import_1024_identity: true
+  import_1024_kernel_readback: true
+  import_1024_retained_final_accounting: true
+  import_1024_cpu_final_overshoot: true
+  import_1024_cleanup: true
+  private_data_removed: true
+passed: false
+elapsed_seconds: 5.228
+unchanged_enforcement_sha256: dict[3]
+  import_diagnostic.py: "47ed6f1829cc1ffbb460c54dd40c9c58e1f6368b2d1e02795ae6af0c9bf0ff19"
+  diagnostic.py: "32e8c29718851aedd096ceb7556bbf04349333a63611595276ee922418206f36"
+  prototype.py: "661f07d71509285d36dbaa4d21f2e0c87b3e932a0957e7acebe26172add12825"
+native_import_success: false
+virtual_size_observation: dict[9]
+  poll_seconds: 0.02
+  retained_sample_cap: 1002
+  dropped_samples: 0
+  incomplete_process_samples: list[0]
+  native_sample_count: 212
+  native_max_VmPeak_KiB: 1048576
+  native_max_VmSize_KiB: 1048576
+  scope: "actual soffice.bin PID plus starttime; wrappers labelled separately; trusted sibling meter excluded"
+  interpretation: "Polling can miss short lifetimes. Low VmPeak does not exclude denied reservation or another cause. One observation only; no unique causal proof."
+== native results.raw.json.gz structure
+starting_head: str
+scope: str
+batch_wall_seconds: int
+poll_seconds: float
+cases: dict[1]
+checks: dict[7]
+passed: bool
+elapsed_seconds: float
+unchanged_enforcement_sha256: dict[3]
+native_import_success: bool
+virtual_size_observation: dict[10]
+stderr.txt: 2 lines; first-line class: 'terminate called after throwing an instance of std::bad_alloc'
+== base profile.json (N-3)
+batch_size: 40
+passed: true
+python: "/home/zak/projects/ttree/.tmp/matrix-312/bin/python"
+records: list[10]
+metrics_scope: "CPU delta for waited CLI family and descendants; RSS maximum of waited processes, not aggregate memory. First record has no prior child RSS contamination."
+projection_only_entries_per_120s: 530.4382438917261
+projection_limits: "Linear projection for identical tiny files on this host only. Not a fixed entry cap; no guarantee for other formats, load, directory shapes or deadlines."
+decision: "Preserve fresh per-file isolated workers and caps. No proven local optimization implemented. Persistent pools/batching require Orc adjudication; caller can sel
+provisional_wheel_sha256: "cf5d8f008957b946d6cc1257d725c203aed522485729671e7e90dbb3604ddb0c"
+final_tracked_artifact: "pending; runtime module equality will be verified"

@@ -1,0 +1,39 @@
+{
+  "H-B": "unverified",
+  "H-C": "unverified",
+  "Windows": "unverified",
+  "artifact_controls_passed": true,
+  "artifact_sha256sums_digest": "b8672d7d2caa0ea33971bf743543f12b28f63fa67cc0955d34f701323005a5c8",
+  "artifact_target": "CPython 3.12 / Linux x86_64",
+  "harness_corrections": [
+    "discarded shell runs with a nonexistent trailing command despite unit-test OK; final exit-zero runs retained",
+    "production-cap probe preserved venv interpreter symlink after failed invocation",
+    "agent examples use existing Python rusage because host has no /usr/bin/time; usage exit 2 has argparse output"
+  ],
+  "historical_ci_failure": {
+    "cause": "ubuntu-latest denies mandatory unprivileged namespaces; retained fail-closed status",
+    "commit": "ad30142bb4bffb242ef1125e8c67784d8261cd53",
+    "correction": "selected ubuntu-22.04; no sysctl or safety downgrade",
+    "runs": [
+      37685725463,
+      37685724962
+    ]
+  },
+  "host": "indes-front",
+  "kernel": "7.2.8-arch1-2",
+  "log_normalization": {
+    "tamper.log": "removed trailing blank line; original diagnostic log retained in .tmp/artifact-controls-2/tamper.log"
+  },
+  "macOS": "unverified",
+  "native_doc": "inactive; pinned direct import envelope exhausted at 41d3257",
+  "outer_bounds": {
+    "address_space_bytes": 2147483648,
+    "core_bytes": 0,
+    "cpu_seconds": 60,
+    "wall_seconds": 115
+  },
+  "production_caps_passed": true,
+  "production_revision": "4382916510f91b065e45d6fdfa7b1243b174d75f",
+  "recorded_at_utc": "2026-10-08T14:26:50.166946+00:00",
+  "runtime_matrix_passed": true
+}

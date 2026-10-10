@@ -1,0 +1,87 @@
+{
+  "cases": [
+    {
+      "case": "actual_input_64MiB_plus_one",
+      "exit": 3,
+      "input_bytes": 67108865,
+      "next_root_counted": true,
+      "seconds": 0.4083,
+      "status": "too_large"
+    },
+    {
+      "case": "text_characters_1000001",
+      "exit": 3,
+      "input_bytes": 1000001,
+      "next_root_counted": true,
+      "seconds": 0.441,
+      "status": "too_large"
+    },
+    {
+      "case": "actual_XML_aggregate_over_8MiB_each_part_below_4MiB",
+      "exit": 3,
+      "input_bytes": 9808,
+      "next_root_counted": true,
+      "seconds": 0.4752,
+      "status": "too_large"
+    },
+    {
+      "case": "actual_XML_elements_over_100000",
+      "exit": 3,
+      "input_bytes": 1125,
+      "next_root_counted": true,
+      "seconds": 0.6308,
+      "status": "too_large"
+    },
+    {
+      "case": "DOCX_characters_1000001",
+      "exit": 3,
+      "input_bytes": 1235,
+      "next_root_counted": true,
+      "seconds": 0.3224,
+      "status": "too_large"
+    },
+    {
+      "case": "actual_ZIP_members_4097",
+      "exit": 3,
+      "input_bytes": 407604,
+      "next_root_counted": true,
+      "seconds": 0.3379,
+      "status": "too_large"
+    },
+    {
+      "case": "lying_ZIP_uncompressed_size_rejected_by_CRC",
+      "exit": 3,
+      "input_bytes": 5352,
+      "next_root_counted": true,
+      "seconds": 0.4102,
+      "status": "failed"
+    },
+    {
+      "case": "actual_PDF_pages_2001",
+      "exit": 3,
+      "input_bytes": 250253,
+      "next_root_counted": true,
+      "seconds": 0.5109,
+      "status": "too_large"
+    },
+    {
+      "case": "actual_PDF_characters_over_1000000",
+      "exit": 3,
+      "input_bytes": 1200935,
+      "next_root_counted": true,
+      "seconds": 0.8465,
+      "status": "too_large"
+    },
+    {
+      "case": "lowered_positive_input_cap",
+      "exit": 3,
+      "input_bytes": 1000001,
+      "next_root_counted": true,
+      "seconds": 0.3097,
+      "status": "too_large"
+    }
+  ],
+  "elapsed_seconds": 5.1803,
+  "passed": true,
+  "python": "/home/zak/projects/ttree/.tmp/matrix-312/bin/python"
+}

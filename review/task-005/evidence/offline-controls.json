@@ -1,0 +1,15 @@
+{
+  "external_denied": true,
+  "external_error": "OSError",
+  "loopback_ok": true,
+  "positive_rc": 0,
+  "positive_smoke": {
+    "status": "counted",
+    "tokens": 5
+  },
+  "tampered_rc": 1,
+  "tampered_hash_error": true,
+  "missing_hash_rc": 1,
+  "missing_hash_error": true,
+  "passed": true
+}

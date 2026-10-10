@@ -1,53 +1,29 @@
-"""Display file bytes and GPT-oriented token estimates in a tree."""
+"""Offline bounded token estimates; byte sizes with -h, agent results with --json."""
 
 from __future__ import annotations
 
 import argparse
 import hashlib
+import json
 import os
 import sys
-import tempfile
+import time
+import unicodedata
 from collections import Counter
-from dataclasses import dataclass, field
 from pathlib import Path
-from urllib.error import URLError
-from urllib.request import urlopen
 
-TOKENIZER_URL = "https://openaipublic.blob.core.windows.net/encodings/o200k_base.tiktoken"
+from ttree.limits import CAPS, validated
+from ttree.scan import Entry, encoded, known_sum, record, scan_roots
+from ttree.tokenizer import LocalTokenizer
+
+TOKENIZER_URL = (
+    "https://openaipublic.blob.core.windows.net/encodings/o200k_base.tiktoken"
+)
 TOKENIZER_SHA256 = "446a9538cb6c348e3516120d7c08b09f57c36495e2acfffe59a5bf8b0cfb1a2d"
-MAX_TOKENIZER_BYTES = 16 * 1024 * 1024
-
-MEDIA_SUFFIXES = {
-    ".aac", ".avif", ".bmp", ".flac", ".gif", ".heic", ".ico",
-    ".jpeg", ".jpg", ".m4a", ".mkv", ".mov", ".mp3", ".mp4",
-    ".ogg", ".opus", ".pdf", ".png", ".svg", ".tif", ".tiff",
-    ".wav", ".webm", ".webp",
-}
-
-
-@dataclass
-class Entry:
-    path: Path
-    name: str
-    kind: str
-    size: int = 0
-    tokens: int = 0
-    counted: int = 0
-    files: int = 0
-    incomplete: bool = False
-    children: list[Entry] = field(default_factory=list)
 
 
 def tokenizer_path() -> Path:
-    if os.environ.get("XDG_DATA_HOME"):
-        data_home = Path(os.environ["XDG_DATA_HOME"])
-    elif os.name == "nt":
-        data_home = Path(os.environ.get("LOCALAPPDATA", Path.home() / "AppData/Local"))
-    elif sys.platform == "darwin":
-        data_home = Path.home() / "Library/Application Support"
-    else:
-        data_home = Path.home() / ".local/share"
-    return data_home / "ttree/o200k_base.tiktoken"
+    return Path(__file__).parent / "data/o200k_base.tiktoken"
 
 
 def file_hash(path: Path) -> str:
@@ -61,79 +37,15 @@ def file_hash(path: Path) -> str:
 def ensure_tokenizer_file(path: Path) -> None:
     if path.is_file() and file_hash(path) == TOKENIZER_SHA256:
         return
-    path.parent.mkdir(parents=True, exist_ok=True)
-    temporary: Path | None = None
-    try:
-        with tempfile.NamedTemporaryFile(dir=path.parent, prefix="o200k-", delete=False) as target:
-            temporary = Path(target.name)
-            with urlopen(TOKENIZER_URL, timeout=30) as source:
-                digest = hashlib.sha256()
-                total = 0
-                while chunk := source.read(1024 * 1024):
-                    total += len(chunk)
-                    if total > MAX_TOKENIZER_BYTES:
-                        raise RuntimeError("tokenizer vocabulary exceeds the expected size")
-                    target.write(chunk)
-                    digest.update(chunk)
-        if digest.hexdigest() != TOKENIZER_SHA256:
-            raise RuntimeError("downloaded tokenizer vocabulary failed SHA-256 verification")
-        os.replace(temporary, path)
-    except (OSError, URLError) as exc:
-        raise RuntimeError(f"cannot download tokenizer vocabulary: {exc}") from exc
-    finally:
-        if temporary is not None:
-            temporary.unlink(missing_ok=True)
+    raise RuntimeError(
+        "bundled tokenizer vocabulary is missing or failed SHA-256 verification; reinstall ttree"
+    )
 
 
 def load_tokenizer():
     path = tokenizer_path()
     ensure_tokenizer_file(path)
-    import gigatoken
-
-    return gigatoken.Tokenizer.from_tiktoken(path)
-
-
-def inspect(path: Path, tokenizer, include_hidden: bool) -> Entry:
-    name = path.name or str(path)
-    if path.is_symlink():
-        return Entry(path, name, "link")
-    if path.is_dir():
-        entry = Entry(path, name, "dir")
-        try:
-            paths = [child for child in path.iterdir() if include_hidden or not child.name.startswith(".")]
-        except OSError:
-            entry.incomplete = True
-            return entry
-        for child in paths:
-            item = inspect(child, tokenizer, include_hidden)
-            entry.children.append(item)
-            entry.size += item.size
-            entry.tokens += item.tokens
-            entry.counted += item.counted
-            entry.files += item.files
-            entry.incomplete |= item.incomplete
-        return entry
-    if not path.is_file():
-        return Entry(path, name, "other", incomplete=True)
-    if path.suffix.lower() in MEDIA_SUFFIXES:
-        try:
-            return Entry(path, name, "media", size=path.stat().st_size, files=1)
-        except OSError:
-            return Entry(path, name, "media", files=1, incomplete=True)
-    try:
-        raw = path.read_bytes()
-    except OSError:
-        return Entry(path, name, "file", files=1, incomplete=True)
-    entry = Entry(path, name, "file", size=len(raw), files=1)
-    if b"\0" in raw:
-        return entry
-    try:
-        raw.decode("utf-8")
-        entry.tokens = len(tokenizer.encode(raw))
-        entry.counted = 1
-    except (UnicodeDecodeError, ValueError):
-        pass
-    return entry
+    return LocalTokenizer(path)
 
 
 def grouped(value: int) -> str:
@@ -156,108 +68,196 @@ def size_label(size: int, exact: bool) -> str:
     return compact(size, ("B", "kB", "MB", "GB", "TB"), exact)
 
 
-def tokens_label(item: Entry, exact: bool) -> str | None:
-    if item.kind in ("link", "other", "media") or item.counted == 0 and item.files > 0:
-        return None
-    prefix = "≥" if item.incomplete else ""
-    return prefix + compact(item.tokens, ("tok", "ktok", "Mtok", "Gtok"), exact)
+def escape(value):
+    chunks = []
+    for char in value:
+        code = ord(char)
+        if char == "\\":
+            chunks.append("\\\\")
+        elif (
+            code < 32
+            or 0x7F <= code <= 0x9F
+            or unicodedata.category(char) in {"Cf", "Cs", "Zl", "Zp"}
+        ):
+            chunks.append("\\u%04x" % code if code <= 0xFFFF else "\\U%08x" % code)
+        else:
+            chunks.append(char)
+    return "".join(chunks)
 
 
-def extensions(item: Entry) -> Counter[str]:
-    if item.kind == "dir":
-        counts: Counter[str] = Counter()
-        for child in item.children:
-            counts.update(extensions(child))
-        return counts
-    if item.kind in ("file", "media"):
-        return Counter({item.path.suffix.lower() or "sem extensão": 1})
-    return Counter()
+def measure(entry, exact, human):
+    values = []
+    if human and entry.bytes is not None:
+        values.append(size_label(entry.bytes, exact))
+    if entry.tokens is not None:
+        values.append(
+            ("" if entry.complete else "≥")
+            + compact(entry.tokens, ("tok", "ktok", "Mtok", "Gtok"), exact)
+        )
+    if entry.status not in {"counted", "empty"}:
+        values.append(entry.status)
+    return " | ".join(values)
 
 
-def extension_label(item: Entry) -> str:
-    counts = extensions(item)
-    if not counts:
-        return ""
-    ordered = sorted(counts.items(), key=lambda pair: (-pair[1], pair[0]))
-    shown = [f"{count} × {suffix}" for suffix, count in ordered[:3]]
+def extension_label(root):
+    counts = Counter()
+    pending = [root]
+    while pending:
+        entry = pending.pop()
+        if entry.kind == "directory":
+            pending.extend(entry.children)
+        elif entry.kind == "file":
+            counts[Path(entry.name).suffix.lower() or "sem extensão"] += 1
+    ordered = sorted(counts.items(), key=lambda pair: (-pair[1], os.fsencode(pair[0])))
+    shown = [str(count) + " × " + escape(suffix) for suffix, count in ordered[:3]]
     if len(ordered) > 3:
-        shown.append(f"+{len(ordered) - 3} tipos")
-    return " {" + ", ".join(shown) + "}"
+        shown.append("+" + str(len(ordered) - 3) + " tipos")
+    return " {" + ", ".join(shown) + "}" if shown else ""
 
 
-def render(entry: Entry, *, exact: bool, depth: int | None, sort: bool) -> list[str]:
-    def line(item: Entry, prefix: str = "", collapsed: bool = False) -> str:
-        name = item.name + ("/" if item.kind == "dir" and not item.name.endswith("/") else "")
-        if item.kind == "link":
-            try:
-                name += f" -> {os.readlink(item.path)}"
-            except OSError:
-                pass
-        if collapsed and item.kind == "dir":
-            name += extension_label(item)
-        count = tokens_label(item, exact)
-        measure = size_label(item.size, exact) + (f" | {count}" if count else "")
-        return f"{prefix}[{measure}] {name}"
-
-    lines = [line(entry)]
-
-    def walk(parent: Entry, stem: str, level: int) -> None:
+def render(root, *, exact=False, depth=None, sort=False, human=False):
+    pending = [(root, "", 0, "")]
+    while pending:
+        entry, stem, level, branch = pending.pop()
+        name = escape(entry.name) + (
+            "/" if entry.kind == "directory" and not entry.name.endswith("/") else ""
+        )
+        if entry.target is not None:
+            name += " -> " + escape(entry.target)
+        if entry.kind == "directory" and depth is not None and level == depth:
+            name += extension_label(entry)
+        label = measure(entry, exact, human)
+        yield stem + branch + (("[" + label + "] ") if label else "") + name
         if depth is not None and level >= depth:
-            return
-        children = sorted(parent.children, key=lambda item: (-item.tokens, item.name)) if sort else sorted(parent.children, key=lambda item: item.name)
-        for index, child in enumerate(children):
-            last = index == len(children) - 1
-            lines.append(line(child, stem + ("└── " if last else "├── "), collapsed=depth is not None and level + 1 >= depth))
-            if child.kind == "dir":
-                walk(child, stem + ("    " if last else "│   "), level + 1)
+            continue
+        ordered = sorted(
+            entry.children,
+            key=(lambda item: (-(item.tokens or 0), os.fsencode(item.name)))
+            if sort
+            else (lambda item: os.fsencode(item.name)),
+        )
+        child_stem = stem + ("    " if branch == "└── " else "│   ") if level else ""
+        for index in range(len(ordered) - 1, -1, -1):
+            pending.append(
+                (
+                    ordered[index],
+                    child_stem,
+                    level + 1,
+                    "└── " if index == len(ordered) - 1 else "├── ",
+                )
+            )
 
-    walk(entry, "", 0)
-    return lines
+
+def output_json(roots, limits):
+    values = []
+    for path, entries in roots:
+        root = entries[0]
+        values.append(
+            {
+                **encoded(path),
+                "tokens": root.tokens,
+                "bytes": root.bytes,
+                "complete": root.complete,
+                "status": root.status,
+                "entries": [record(item) for item in entries],
+            }
+        )
+    total = {
+        "tokens": known_sum([items[0] for _, items in roots], "tokens"),
+        "bytes": known_sum([items[0] for _, items in roots], "bytes"),
+        "complete": all(root[1][0].complete for root in roots),
+    }
+    print(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "effective_limits": limits,
+                "roots": values,
+                "total": total,
+            },
+            ensure_ascii=True,
+            separators=(",", ":"),
+        )
+    )
 
 
-def main(argv: list[str] | None = None) -> int:
+def main(argv=None):
     parser = argparse.ArgumentParser(prog="ttree", add_help=False, description=__doc__)
-    parser.add_argument("--help", action="help", help="show this help message and exit")
-    parser.add_argument("-h", "--human", action="store_true", help="compact sizes (the default; kept for tree compatibility)")
-    parser.add_argument("--exact", action="store_true", help="show exact bytes and tokens with dot thousands separators")
-    parser.add_argument("-L", "--level", type=int, help="maximum displayed depth")
-    parser.add_argument("-a", "--all", action="store_true", help="include hidden entries")
-    parser.add_argument("--sort", action="store_true", help="sort siblings by token total, largest first")
-    parser.add_argument("paths", nargs="*", default=["."], help="files or directories (default: current directory)")
+    parser.add_argument("--help", action="help")
+    parser.add_argument("-h", "--human", action="store_true")
+    parser.add_argument("--exact", action="store_true")
+    parser.add_argument("-L", "--level", type=int)
+    parser.add_argument("-a", "--all", action="store_true")
+    parser.add_argument("--sort", action="store_true")
+    parser.add_argument(
+        "--strict",
+        action="store_true",
+        help="exit 3 for incomplete results; missing roots still exit 1",
+    )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="one schema-version-1 document with all scanned entries",
+    )
+    for key, value in CAPS.items():
+        parser.add_argument(
+            "--limit-" + key.replace("_", "-"),
+            type=int,
+            default=value,
+            metavar="N",
+            help="positive ceiling; maximum " + str(value),
+        )
+    parser.add_argument("paths", nargs="*", default=["."])
     args = parser.parse_args(argv)
     if args.level is not None and args.level < 1:
         parser.error("-L must be at least 1")
     try:
-        tokenizer = load_tokenizer()
-    except (OSError, RuntimeError, ValueError) as exc:
-        print(f"ttree: {exc}", file=sys.stderr)
+        limits = validated({key: getattr(args, "limit_" + key) for key in CAPS})
+    except ValueError:
+        parser.error("limits must be positive integers within the documented ceilings")
+    if len(args.paths) > limits["entries"]:
+        parser.error("root count exceeds the entry budget")
+    deadline = time.monotonic() + limits["scan_seconds"]
+    try:
+        ensure_tokenizer_file(tokenizer_path())
+        roots = scan_roots(args.paths, limits, deadline, args.all)
+    except (OSError, RuntimeError, ValueError):
+        print("ttree: startup or scan failed", file=sys.stderr)
+        roots = [
+            (path, [Entry(".", path, "other", status="failed")]) for path in args.paths
+        ]
+        if args.json:
+            output_json(roots, limits)
         return 1
-    failed = False
-    roots: list[Entry] = []
-    for index, raw_path in enumerate(args.paths):
-        path = Path(raw_path)
-        if not path.exists() and not path.is_symlink():
-            print(f"ttree: path not found: {path}", file=sys.stderr)
-            failed = True
-            continue
-        if index:
-            print()
-        entry = inspect(path, tokenizer, args.all)
-        entry.name = str(path)
-        roots.append(entry)
-        for line in render(entry, exact=args.exact, depth=args.level, sort=args.sort):
-            print(line)
-    if len(roots) > 1:
-        combined = Entry(Path("."), "total", "dir")
-        combined.size = sum(root.size for root in roots)
-        combined.tokens = sum(root.tokens for root in roots)
-        combined.counted = sum(root.counted for root in roots)
-        combined.files = sum(root.files for root in roots)
-        combined.incomplete = any(root.incomplete for root in roots)
-        count = tokens_label(combined, args.exact)
-        measure = size_label(combined.size, args.exact) + (f" | {count}" if count else "")
-        print(f"\nTotal: [{measure}]")
-    return 1 if failed else 0
+    if args.json:
+        output_json(roots, limits)
+    else:
+        for index, (_, entries) in enumerate(roots):
+            if index:
+                print()
+            for line in render(
+                entries[0],
+                exact=args.exact,
+                depth=args.level,
+                sort=args.sort,
+                human=args.human,
+            ):
+                print(line)
+        if len(roots) > 1:
+            combined = Entry(
+                ".",
+                "Total",
+                "directory",
+                tokens=known_sum([items[0] for _, items in roots], "tokens"),
+                bytes=known_sum([items[0] for _, items in roots], "bytes"),
+                status="counted"
+                if all(items[0].complete for _, items in roots)
+                else "partial",
+            )
+            print("\nTotal: [" + measure(combined, args.exact, args.human) + "]")
+    if any(items[0].status == "missing" for _, items in roots):
+        return 1
+    return 3 if args.strict and any(not items[0].complete for _, items in roots) else 0
 
 
 if __name__ == "__main__":

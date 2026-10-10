@@ -1,0 +1,73 @@
+{
+  "batch_size": 40,
+  "passed": true,
+  "python": "/home/zak/projects/ttree/.tmp/matrix-312/bin/python",
+  "records": [
+    {
+      "name": "40-small-files",
+      "wall_seconds": 9.049121279007522,
+      "cpu_seconds": 9.009823,
+      "cumulative_waited_process_max_rss_kib": 93404
+    },
+    {
+      "name": "interpreter-start-0",
+      "wall_seconds": 0.022039362986106426,
+      "cpu_seconds": 0.021434000000000175,
+      "cumulative_waited_process_max_rss_kib": 93404
+    },
+    {
+      "name": "worker-imports-0",
+      "wall_seconds": 0.03853765700478107,
+      "cpu_seconds": 0.037903999999999716,
+      "cumulative_waited_process_max_rss_kib": 93404
+    },
+    {
+      "name": "tokenizer-load-0",
+      "wall_seconds": 0.23096099900431,
+      "cpu_seconds": 0.22657599999999922,
+      "cumulative_waited_process_max_rss_kib": 98508
+    },
+    {
+      "name": "interpreter-start-1",
+      "wall_seconds": 0.019934276002459228,
+      "cpu_seconds": 0.019545999999999397,
+      "cumulative_waited_process_max_rss_kib": 98508
+    },
+    {
+      "name": "worker-imports-1",
+      "wall_seconds": 0.035020554991206154,
+      "cpu_seconds": 0.03462000000000165,
+      "cumulative_waited_process_max_rss_kib": 98508
+    },
+    {
+      "name": "tokenizer-load-1",
+      "wall_seconds": 0.22751055797562003,
+      "cpu_seconds": 0.22360000000000024,
+      "cumulative_waited_process_max_rss_kib": 98508
+    },
+    {
+      "name": "interpreter-start-2",
+      "wall_seconds": 0.013923637015977874,
+      "cpu_seconds": 0.01350399999999996,
+      "cumulative_waited_process_max_rss_kib": 98508
+    },
+    {
+      "name": "worker-imports-2",
+      "wall_seconds": 0.030278592981630936,
+      "cpu_seconds": 0.02985499999999952,
+      "cumulative_waited_process_max_rss_kib": 98508
+    },
+    {
+      "name": "tokenizer-load-2",
+      "wall_seconds": 0.22911723097786307,
+      "cpu_seconds": 0.22789200000000087,
+      "cumulative_waited_process_max_rss_kib": 98728
+    }
+  ],
+  "metrics_scope": "CPU delta for waited CLI family and descendants; RSS maximum of waited processes, not aggregate memory. First record has no prior child RSS contamination.",
+  "projection_only_entries_per_120s": 530.4382438917261,
+  "projection_limits": "Linear projection for identical tiny files on this host only. Not a fixed entry cap; no guarantee for other formats, load, directory shapes or deadlines.",
+  "decision": "Preserve fresh per-file isolated workers and caps. No proven local optimization implemented. Persistent pools/batching require Orc adjudication; caller can select bounded subtrees as a measured workflow alternative, without changing the 120s ceiling.",
+  "provisional_wheel_sha256": "cf5d8f008957b946d6cc1257d725c203aed522485729671e7e90dbb3604ddb0c",
+  "final_tracked_artifact": "pending; runtime module equality will be verified"
+}

@@ -1,0 +1,326 @@
+{
+  "source_revision": "4c07f5a06a80a02002dbfecc73331be6886d0180",
+  "matrix": {
+    "310": {
+      "python": "3.10.22 (main, Oct  3 2026, 01:32:06) [Clang 22.1.3 ]",
+      "executable": "/home/zak/projects/ttree/.tmp/matrix-310/bin/python",
+      "package_origin": "/home/zak/projects/ttree/.tmp/matrix-310/lib/python3.10/site-packages/ttree/__init__.py",
+      "versions": {
+        "indes-ttree": "0.2.0",
+        "tiktoken": "0.12.0",
+        "pypdf": "6.19.0",
+        "requests": "2.34.2",
+        "regex": "2026.9.29",
+        "certifi": "2026.7.22",
+        "idna": "3.20",
+        "charset-normalizer": "3.5.2",
+        "urllib3": "2.8.0"
+      },
+      "direct_url": "{\"url\":\"file:///home/zak/projects/ttree/.tmp/amendment-3-tracked/packages/indes_ttree-0.2.0-py3-none-any.whl\",\"archive_info\":{}}",
+      "module_sha256": {
+        "__init__.py": "4156239bcc8194035f1d5f102e8c3f8a8c634566a9622a4a4cd4eba960805bf9",
+        "bounded.py": "507cd8e6019a44a2cdcc7ddb9cb4ae32306745b79700f88ebe6a52f4246e9e8b",
+        "cli.py": "89d37f95d90a4d9509552b2a7573130f23ae43a78f16bede60855646045746d2",
+        "documents.py": "f852bb8b14a594700b20a1e95505638d751a09655a351ce337928e753f8cdb75",
+        "limits.py": "ec6c87c5d2db98d535c13bd2791a08b8531ce0bf69b21416f63759ee8a1348c9",
+        "scan.py": "4a60b7ca1488339a915963e0f5cdbf0aa4de5e90d04464aafeff069b1965404e",
+        "tokenizer.py": "e7f81795c2432ce96583fd0a676a53f71e5d48ee10a52e706fd1fe19be9c07e8",
+        "worker.py": "3cc34bee14264ad35908f68b41476b18546f7b3a049e40a03abf595aacb50f4c"
+      }
+    },
+    "311": {
+      "python": "3.11.17 (main, Oct  3 2026, 01:05:36) [Clang 22.1.3 ]",
+      "executable": "/home/zak/projects/ttree/.tmp/matrix-311/bin/python",
+      "package_origin": "/home/zak/projects/ttree/.tmp/matrix-311/lib/python3.11/site-packages/ttree/__init__.py",
+      "versions": {
+        "indes-ttree": "0.2.0",
+        "tiktoken": "0.12.0",
+        "pypdf": "6.19.0",
+        "requests": "2.34.2",
+        "regex": "2026.9.29",
+        "certifi": "2026.7.22",
+        "idna": "3.20",
+        "charset-normalizer": "3.5.2",
+        "urllib3": "2.8.0"
+      },
+      "direct_url": "{\"url\":\"file:///home/zak/projects/ttree/.tmp/amendment-3-tracked/packages/indes_ttree-0.2.0-py3-none-any.whl\",\"archive_info\":{}}",
+      "module_sha256": {
+        "__init__.py": "4156239bcc8194035f1d5f102e8c3f8a8c634566a9622a4a4cd4eba960805bf9",
+        "bounded.py": "507cd8e6019a44a2cdcc7ddb9cb4ae32306745b79700f88ebe6a52f4246e9e8b",
+        "cli.py": "89d37f95d90a4d9509552b2a7573130f23ae43a78f16bede60855646045746d2",
+        "documents.py": "f852bb8b14a594700b20a1e95505638d751a09655a351ce337928e753f8cdb75",
+        "limits.py": "ec6c87c5d2db98d535c13bd2791a08b8531ce0bf69b21416f63759ee8a1348c9",
+        "scan.py": "4a60b7ca1488339a915963e0f5cdbf0aa4de5e90d04464aafeff069b1965404e",
+        "tokenizer.py": "e7f81795c2432ce96583fd0a676a53f71e5d48ee10a52e706fd1fe19be9c07e8",
+        "worker.py": "3cc34bee14264ad35908f68b41476b18546f7b3a049e40a03abf595aacb50f4c"
+      }
+    },
+    "312": {
+      "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+      "executable": "/home/zak/projects/ttree/.tmp/matrix-312/bin/python",
+      "package_origin": "/home/zak/projects/ttree/.tmp/matrix-312/lib/python3.12/site-packages/ttree/__init__.py",
+      "versions": {
+        "indes-ttree": "0.2.0",
+        "tiktoken": "0.14.0",
+        "pypdf": "6.19.0",
+        "requests": "2.34.2",
+        "regex": "2026.9.29",
+        "certifi": "2026.7.22",
+        "idna": "3.20",
+        "charset-normalizer": "3.5.2",
+        "urllib3": "2.8.0"
+      },
+      "direct_url": "{\"url\":\"file:///home/zak/projects/ttree/.tmp/amendment-3-tracked/packages/indes_ttree-0.2.0-py3-none-any.whl\",\"archive_info\":{}}",
+      "module_sha256": {
+        "__init__.py": "4156239bcc8194035f1d5f102e8c3f8a8c634566a9622a4a4cd4eba960805bf9",
+        "bounded.py": "507cd8e6019a44a2cdcc7ddb9cb4ae32306745b79700f88ebe6a52f4246e9e8b",
+        "cli.py": "89d37f95d90a4d9509552b2a7573130f23ae43a78f16bede60855646045746d2",
+        "documents.py": "f852bb8b14a594700b20a1e95505638d751a09655a351ce337928e753f8cdb75",
+        "limits.py": "ec6c87c5d2db98d535c13bd2791a08b8531ce0bf69b21416f63759ee8a1348c9",
+        "scan.py": "4a60b7ca1488339a915963e0f5cdbf0aa4de5e90d04464aafeff069b1965404e",
+        "tokenizer.py": "e7f81795c2432ce96583fd0a676a53f71e5d48ee10a52e706fd1fe19be9c07e8",
+        "worker.py": "3cc34bee14264ad35908f68b41476b18546f7b3a049e40a03abf595aacb50f4c"
+      }
+    },
+    "314": {
+      "python": "3.14.7 (main, Aug 10 2026, 07:46:56) [GCC 16.1.1 20260728]",
+      "executable": "/home/zak/projects/ttree/.tmp/matrix-314/bin/python",
+      "package_origin": "/home/zak/projects/ttree/.tmp/matrix-314/lib/python3.14/site-packages/ttree/__init__.py",
+      "versions": {
+        "indes-ttree": "0.2.0",
+        "tiktoken": "0.12.0",
+        "pypdf": "6.19.0",
+        "requests": "2.34.2",
+        "regex": "2026.9.29",
+        "certifi": "2026.7.22",
+        "idna": "3.20",
+        "charset-normalizer": "3.5.2",
+        "urllib3": "2.8.0"
+      },
+      "direct_url": "{\"url\":\"file:///home/zak/projects/ttree/.tmp/amendment-3-tracked/packages/indes_ttree-0.2.0-py3-none-any.whl\",\"archive_info\":{}}",
+      "module_sha256": {
+        "__init__.py": "4156239bcc8194035f1d5f102e8c3f8a8c634566a9622a4a4cd4eba960805bf9",
+        "bounded.py": "507cd8e6019a44a2cdcc7ddb9cb4ae32306745b79700f88ebe6a52f4246e9e8b",
+        "cli.py": "89d37f95d90a4d9509552b2a7573130f23ae43a78f16bede60855646045746d2",
+        "documents.py": "f852bb8b14a594700b20a1e95505638d751a09655a351ce337928e753f8cdb75",
+        "limits.py": "ec6c87c5d2db98d535c13bd2791a08b8531ce0bf69b21416f63759ee8a1348c9",
+        "scan.py": "4a60b7ca1488339a915963e0f5cdbf0aa4de5e90d04464aafeff069b1965404e",
+        "tokenizer.py": "e7f81795c2432ce96583fd0a676a53f71e5d48ee10a52e706fd1fe19be9c07e8",
+        "worker.py": "3cc34bee14264ad35908f68b41476b18546f7b3a049e40a03abf595aacb50f4c"
+      }
+    }
+  },
+  "inventories": {
+    "wheel": [
+      {
+        "path": "ttree/__init__.py",
+        "bytes": 43,
+        "sha256": "4156239bcc8194035f1d5f102e8c3f8a8c634566a9622a4a4cd4eba960805bf9"
+      },
+      {
+        "path": "ttree/bounded.py",
+        "bytes": 5521,
+        "sha256": "507cd8e6019a44a2cdcc7ddb9cb4ae32306745b79700f88ebe6a52f4246e9e8b"
+      },
+      {
+        "path": "ttree/cli.py",
+        "bytes": 8814,
+        "sha256": "89d37f95d90a4d9509552b2a7573130f23ae43a78f16bede60855646045746d2"
+      },
+      {
+        "path": "ttree/documents.py",
+        "bytes": 8762,
+        "sha256": "f852bb8b14a594700b20a1e95505638d751a09655a351ce337928e753f8cdb75"
+      },
+      {
+        "path": "ttree/limits.py",
+        "bytes": 902,
+        "sha256": "ec6c87c5d2db98d535c13bd2791a08b8531ce0bf69b21416f63759ee8a1348c9"
+      },
+      {
+        "path": "ttree/scan.py",
+        "bytes": 12880,
+        "sha256": "4a60b7ca1488339a915963e0f5cdbf0aa4de5e90d04464aafeff069b1965404e"
+      },
+      {
+        "path": "ttree/tokenizer.py",
+        "bytes": 1227,
+        "sha256": "e7f81795c2432ce96583fd0a676a53f71e5d48ee10a52e706fd1fe19be9c07e8"
+      },
+      {
+        "path": "ttree/worker.py",
+        "bytes": 6545,
+        "sha256": "3cc34bee14264ad35908f68b41476b18546f7b3a049e40a03abf595aacb50f4c"
+      },
+      {
+        "path": "ttree/data/TIKTOKEN_LICENSE",
+        "bytes": 1078,
+        "sha256": "418cb499b436128d653d79941333a5437b7be2ea9213dcc2f04d15d5d2c51d86"
+      },
+      {
+        "path": "ttree/data/o200k_base.tiktoken",
+        "bytes": 3613922,
+        "sha256": "446a9538cb6c348e3516120d7c08b09f57c36495e2acfffe59a5bf8b0cfb1a2d"
+      },
+      {
+        "path": "indes_ttree-0.2.0.dist-info/METADATA",
+        "bytes": 11109,
+        "sha256": "53cb6eeea370756acf93ad894cac373e887cc93985508b9d02fef5c7ffd6049e"
+      },
+      {
+        "path": "indes_ttree-0.2.0.dist-info/WHEEL",
+        "bytes": 87,
+        "sha256": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+      },
+      {
+        "path": "indes_ttree-0.2.0.dist-info/entry_points.txt",
+        "bytes": 41,
+        "sha256": "96a430030a9aa3203f9e4d2389e94837f96072706e600259dad6eced35ba45f3"
+      },
+      {
+        "path": "indes_ttree-0.2.0.dist-info/licenses/LICENSE",
+        "bytes": 1066,
+        "sha256": "3f2c0c2980fd7507c7fdf8b8d4c86b32abe5f6dc2aba73212793fd7b0e003501"
+      },
+      {
+        "path": "indes_ttree-0.2.0.dist-info/RECORD",
+        "bytes": 1171,
+        "sha256": "91ea0436d7dc1e5f45a4989063f544f24950cd4f369d3d6153ba5263eec9748d"
+      }
+    ],
+    "sdist": [
+      {
+        "path": "indes_ttree-0.2.0/THIRD_PARTY.md",
+        "bytes": 646,
+        "sha256": "8efa0b563410ff981e722a4b7f212df59f66c2ecb8acb785bc21103d6c02d2f9"
+      },
+      {
+        "path": "indes_ttree-0.2.0/.github/workflows/validate.yml",
+        "bytes": 1727,
+        "sha256": "4113bed963c70fa902d0a24a50f222748d30be312d8d5ab6f4ae3ee1298644d1"
+      },
+      {
+        "path": "indes_ttree-0.2.0/locks/build-linux-cp312-x86_64.txt",
+        "bytes": 965,
+        "sha256": "7490459e65835479cb4f6a16170b8f9acf6db758ebd225262ac25ef8b8464c08"
+      },
+      {
+        "path": "indes_ttree-0.2.0/locks/runtime-linux-cp312-x86_64.txt",
+        "bytes": 953,
+        "sha256": "54b42ab94295f072a0d32ae9115d4e2d3667aba9c97f3e829b74028a0f564f14"
+      },
+      {
+        "path": "indes_ttree-0.2.0/scripts/build_offline.py",
+        "bytes": 5280,
+        "sha256": "4c3f728bc70070cc073d36d6b983da698367c50ba51d7673c0d2c7a6df1b2c74"
+      },
+      {
+        "path": "indes_ttree-0.2.0/scripts/build_tracked.py",
+        "bytes": 2712,
+        "sha256": "ce8ecdd6f818591651beb7f0baa103657e47cc7b9fdfee106bcbe7e5b6f8d8b8"
+      },
+      {
+        "path": "indes_ttree-0.2.0/scripts/validate_offline.py",
+        "bytes": 5869,
+        "sha256": "613fd5a285a4bc89e001f875b0f289d4440bb3290f801f8c33a08bbb52ebb20f"
+      },
+      {
+        "path": "indes_ttree-0.2.0/src/ttree/__init__.py",
+        "bytes": 43,
+        "sha256": "4156239bcc8194035f1d5f102e8c3f8a8c634566a9622a4a4cd4eba960805bf9"
+      },
+      {
+        "path": "indes_ttree-0.2.0/src/ttree/bounded.py",
+        "bytes": 5521,
+        "sha256": "507cd8e6019a44a2cdcc7ddb9cb4ae32306745b79700f88ebe6a52f4246e9e8b"
+      },
+      {
+        "path": "indes_ttree-0.2.0/src/ttree/cli.py",
+        "bytes": 8814,
+        "sha256": "89d37f95d90a4d9509552b2a7573130f23ae43a78f16bede60855646045746d2"
+      },
+      {
+        "path": "indes_ttree-0.2.0/src/ttree/documents.py",
+        "bytes": 8762,
+        "sha256": "f852bb8b14a594700b20a1e95505638d751a09655a351ce337928e753f8cdb75"
+      },
+      {
+        "path": "indes_ttree-0.2.0/src/ttree/limits.py",
+        "bytes": 902,
+        "sha256": "ec6c87c5d2db98d535c13bd2791a08b8531ce0bf69b21416f63759ee8a1348c9"
+      },
+      {
+        "path": "indes_ttree-0.2.0/src/ttree/scan.py",
+        "bytes": 12880,
+        "sha256": "4a60b7ca1488339a915963e0f5cdbf0aa4de5e90d04464aafeff069b1965404e"
+      },
+      {
+        "path": "indes_ttree-0.2.0/src/ttree/tokenizer.py",
+        "bytes": 1227,
+        "sha256": "e7f81795c2432ce96583fd0a676a53f71e5d48ee10a52e706fd1fe19be9c07e8"
+      },
+      {
+        "path": "indes_ttree-0.2.0/src/ttree/worker.py",
+        "bytes": 6545,
+        "sha256": "3cc34bee14264ad35908f68b41476b18546f7b3a049e40a03abf595aacb50f4c"
+      },
+      {
+        "path": "indes_ttree-0.2.0/src/ttree/data/TIKTOKEN_LICENSE",
+        "bytes": 1078,
+        "sha256": "418cb499b436128d653d79941333a5437b7be2ea9213dcc2f04d15d5d2c51d86"
+      },
+      {
+        "path": "indes_ttree-0.2.0/src/ttree/data/o200k_base.tiktoken",
+        "bytes": 3613922,
+        "sha256": "446a9538cb6c348e3516120d7c08b09f57c36495e2acfffe59a5bf8b0cfb1a2d"
+      },
+      {
+        "path": "indes_ttree-0.2.0/tests/test_cli.py",
+        "bytes": 12353,
+        "sha256": "e93094fc16129457a77486de0cc0f9233aba31fefab703f3c1bdb26135cc7d02"
+      },
+      {
+        "path": "indes_ttree-0.2.0/tests/test_documents.py",
+        "bytes": 12996,
+        "sha256": "990f727962ac246c7f0f4e8f94da5978ee4c7d2a0a7d527495f1d2204105cfb0"
+      },
+      {
+        "path": "indes_ttree-0.2.0/tests/test_security.py",
+        "bytes": 17168,
+        "sha256": "76c1c03bd06422ee88fda1d84f0094e286d657f85256eb9272422ff6b4aa7126"
+      },
+      {
+        "path": "indes_ttree-0.2.0/.gitignore",
+        "bytes": 98,
+        "sha256": "a7ee827bb3cf319f1c9782f11e5a220ee7f824dd5b266d44ea98e0725e8b5390"
+      },
+      {
+        "path": "indes_ttree-0.2.0/LICENSE",
+        "bytes": 1066,
+        "sha256": "3f2c0c2980fd7507c7fdf8b8d4c86b32abe5f6dc2aba73212793fd7b0e003501"
+      },
+      {
+        "path": "indes_ttree-0.2.0/README.md",
+        "bytes": 10620,
+        "sha256": "38590e4f94f07c6a5ebfb7356639e1187768afc1de92b3f8d2c90d096fb8c42e"
+      },
+      {
+        "path": "indes_ttree-0.2.0/hatch_build.py",
+        "bytes": 2011,
+        "sha256": "c85fd6065c5adfddec10ee1583fddd4db08d236f8ddebffd6f177c327938a036"
+      },
+      {
+        "path": "indes_ttree-0.2.0/pyproject.toml",
+        "bytes": 1804,
+        "sha256": "10f108444094b31efce6dff0c6d8299b754bd7704887e988f700820b5ca885c5"
+      },
+      {
+        "path": "indes_ttree-0.2.0/PKG-INFO",
+        "bytes": 11109,
+        "sha256": "53cb6eeea370756acf93ad894cac373e887cc93985508b9d02fef5c7ffd6049e"
+      }
+    ]
+  },
+  "profile_provisional_runtime_module_equality": true,
+  "passed": true
+}

@@ -1,0 +1,99 @@
+[
+  {
+    "command": "TMPDIR=\"$PWD/.tmp\" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 .tmp/matrix-310/bin/python -m unittest discover -s tests -v",
+    "dependency_selection": "lowest direct requirements",
+    "exit": 0,
+    "installed_module": "/home/zak/projects/ttree/.tmp/matrix-310/lib/python3.10/site-packages/ttree/__init__.py",
+    "machine": "x86_64",
+    "python": "3.10.22",
+    "source_revision": "4382916510f91b065e45d6fdfa7b1243b174d75f",
+    "suite_seconds": 20.926,
+    "system": "Linux",
+    "tests": 32,
+    "versions": {
+      "certifi": "2026.7.22",
+      "charset-normalizer": "3.5.2",
+      "idna": "3.20",
+      "indes-ttree": "0.2.0",
+      "pypdf": "6.19.0",
+      "regex": "2026.9.29",
+      "requests": "2.34.2",
+      "tiktoken": "0.12.0",
+      "typing_extensions": "4.16.0",
+      "urllib3": "2.8.0"
+    },
+    "wheel_sha256": "7bfa4127407bddfe01c3dbfb79f9f19f3631eb95a1b0939e626d4e273753a0cf"
+  },
+  {
+    "command": "TMPDIR=\"$PWD/.tmp\" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 .tmp/matrix-311/bin/python -m unittest discover -s tests -v",
+    "dependency_selection": "lowest direct requirements",
+    "exit": 0,
+    "installed_module": "/home/zak/projects/ttree/.tmp/matrix-311/lib/python3.11/site-packages/ttree/__init__.py",
+    "machine": "x86_64",
+    "python": "3.11.17",
+    "source_revision": "4382916510f91b065e45d6fdfa7b1243b174d75f",
+    "suite_seconds": 21.176,
+    "system": "Linux",
+    "tests": 32,
+    "versions": {
+      "certifi": "2026.7.22",
+      "charset-normalizer": "3.5.2",
+      "idna": "3.20",
+      "indes-ttree": "0.2.0",
+      "pypdf": "6.19.0",
+      "regex": "2026.9.29",
+      "requests": "2.34.2",
+      "tiktoken": "0.12.0",
+      "urllib3": "2.8.0"
+    },
+    "wheel_sha256": "7bfa4127407bddfe01c3dbfb79f9f19f3631eb95a1b0939e626d4e273753a0cf"
+  },
+  {
+    "command": "TMPDIR=\"$PWD/.tmp\" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 .tmp/matrix-312/bin/python -m unittest discover -s tests -v",
+    "dependency_selection": "hash-locked artifact",
+    "exit": 0,
+    "installed_module": "/home/zak/projects/ttree/.tmp/matrix-312/lib/python3.12/site-packages/ttree/__init__.py",
+    "machine": "x86_64",
+    "python": "3.12.14",
+    "source_revision": "4382916510f91b065e45d6fdfa7b1243b174d75f",
+    "suite_seconds": 19.868,
+    "system": "Linux",
+    "tests": 32,
+    "versions": {
+      "certifi": "2026.7.22",
+      "charset-normalizer": "3.5.2",
+      "idna": "3.20",
+      "indes-ttree": "0.2.0",
+      "pypdf": "6.19.0",
+      "regex": "2026.9.29",
+      "requests": "2.34.2",
+      "tiktoken": "0.14.0",
+      "urllib3": "2.8.0"
+    },
+    "wheel_sha256": "7bfa4127407bddfe01c3dbfb79f9f19f3631eb95a1b0939e626d4e273753a0cf"
+  },
+  {
+    "command": "TMPDIR=\"$PWD/.tmp\" timeout --kill-after=1 115 prlimit --as=2147483648 --cpu=60 --core=0 .tmp/matrix-314/bin/python -m unittest discover -s tests -v",
+    "dependency_selection": "lowest direct requirements",
+    "exit": 0,
+    "installed_module": "/home/zak/projects/ttree/.tmp/matrix-314/lib/python3.14/site-packages/ttree/__init__.py",
+    "machine": "x86_64",
+    "python": "3.14.7",
+    "source_revision": "4382916510f91b065e45d6fdfa7b1243b174d75f",
+    "suite_seconds": 21.532,
+    "system": "Linux",
+    "tests": 32,
+    "versions": {
+      "certifi": "2026.7.22",
+      "charset-normalizer": "3.5.2",
+      "idna": "3.20",
+      "indes-ttree": "0.2.0",
+      "pypdf": "6.19.0",
+      "regex": "2026.9.29",
+      "requests": "2.34.2",
+      "tiktoken": "0.12.0",
+      "urllib3": "2.8.0"
+    },
+    "wheel_sha256": "7bfa4127407bddfe01c3dbfb79f9f19f3631eb95a1b0939e626d4e273753a0cf"
+  }
+]

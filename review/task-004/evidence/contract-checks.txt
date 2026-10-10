@@ -1,0 +1,13 @@
+== json quarantine dir
+root partial 3 33 False
+  a.doc unsupported None 11 False
+  B.DOC unsupported None 11 False
+  c.md counted 3 11 True
+total {'tokens': 3, 'bytes': 33, 'complete': False}
+non-strict exit=0
+strict exit=3
+strict complete-file exit=0
+strict partial+missing exit=1
+non-strict missing exit=1
+== human multi-root total
+Total: [≥3 tok | partial]

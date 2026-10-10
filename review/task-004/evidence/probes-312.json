@@ -1,0 +1,49 @@
+[
+  {
+    "name": "large-document",
+    "over_12MiB_status": "failed",
+    "under_12MiB_status": "counted",
+    "expected_both": "counted",
+    "verdict": "DEFECT"
+  },
+  {
+    "name": "worker-overhead",
+    "files": 40,
+    "wall_seconds": 7.592,
+    "per_file_seconds": 0.1898,
+    "normal_root_status": "counted",
+    "normal_complete": true,
+    "deadline_1s_root_status": "partial",
+    "deadline_1s_counted": 5,
+    "deadline_1s_timed_out": 35,
+    "extrapolated_max_files_120s": 632
+  },
+  {
+    "name": "line-separator-escape",
+    "u2028_in_output": true,
+    "output_physical_lines": 3,
+    "output_splitlines_count": 3,
+    "verdict": "DEFECT"
+  },
+  {
+    "name": "unreadable-dir-aggregation",
+    "entry_status": "unreadable",
+    "entry_tokens": 0,
+    "entry_bytes": 0,
+    "entry_complete": false,
+    "note": "tokens/bytes are 0 (not null) while complete is false"
+  },
+  {
+    "name": "denied-userns",
+    "returncode": 0,
+    "plain_md_status": "limits_unavailable",
+    "note": "plain text reports limits_unavailable when userns is denied"
+  },
+  {
+    "name": "nonutf8-json-path",
+    "jq_returncode": 0,
+    "jq_rejected": false,
+    "path_bytes_base64_present": true,
+    "note": "jq accepted"
+  }
+]

@@ -1,0 +1,11 @@
+usage: ttree [--help] [-h] [--exact] [-L LEVEL] [-a] [--sort] [--strict]
+             [--json] [--limit-input-bytes N] [--limit-xml-part-bytes N]
+             [--limit-xml-total-bytes N] [--limit-pdf-pages N]
+             [--limit-characters N] [--limit-wall-seconds N]
+             [--limit-cpu-seconds N] [--limit-address-space-bytes N]
+             [--limit-response-bytes N] [--limit-scan-seconds N]
+             [--limit-entries N] [--limit-xml-depth N]
+             [--limit-xml-elements N] [--limit-zip-members N]
+             [--limit-path-bytes N]
+             [paths ...]
+ttree: error: limits must be positive integers within the documented ceilings

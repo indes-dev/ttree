@@ -1,0 +1,105 @@
+{
+  "headRefOid": "30ff2b1ce22978fcc747aa2299627c3461ed4d54",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-10T14:23:24Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/indes-dev/ttree/actions/runs/38059346041/job/114234240392",
+      "name": "lowest-direct (3.10)",
+      "startedAt": "2026-10-10T14:22:29Z",
+      "status": "COMPLETED",
+      "workflowName": "Bounded candidate validation"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-10T14:23:22Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/indes-dev/ttree/actions/runs/38059342669/job/114234229318",
+      "name": "lowest-direct (3.10)",
+      "startedAt": "2026-10-10T14:22:26Z",
+      "status": "COMPLETED",
+      "workflowName": "Bounded candidate validation"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-10T14:23:21Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/indes-dev/ttree/actions/runs/38059346041/job/114234240311",
+      "name": "lowest-direct (3.11)",
+      "startedAt": "2026-10-10T14:22:29Z",
+      "status": "COMPLETED",
+      "workflowName": "Bounded candidate validation"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-10T14:23:14Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/indes-dev/ttree/actions/runs/38059342669/job/114234229305",
+      "name": "lowest-direct (3.11)",
+      "startedAt": "2026-10-10T14:22:26Z",
+      "status": "COMPLETED",
+      "workflowName": "Bounded candidate validation"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-10T14:23:23Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/indes-dev/ttree/actions/runs/38059346041/job/114234240465",
+      "name": "lowest-direct (3.12)",
+      "startedAt": "2026-10-10T14:22:29Z",
+      "status": "COMPLETED",
+      "workflowName": "Bounded candidate validation"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-10T14:23:05Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/indes-dev/ttree/actions/runs/38059342669/job/114234229208",
+      "name": "lowest-direct (3.12)",
+      "startedAt": "2026-10-10T14:22:25Z",
+      "status": "COMPLETED",
+      "workflowName": "Bounded candidate validation"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-10T14:23:07Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/indes-dev/ttree/actions/runs/38059346041/job/114234240469",
+      "name": "lowest-direct (3.14)",
+      "startedAt": "2026-10-10T14:22:29Z",
+      "status": "COMPLETED",
+      "workflowName": "Bounded candidate validation"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-10T14:23:23Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/indes-dev/ttree/actions/runs/38059342669/job/114234229301",
+      "name": "lowest-direct (3.14)",
+      "startedAt": "2026-10-10T14:22:25Z",
+      "status": "COMPLETED",
+      "workflowName": "Bounded candidate validation"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-10T14:23:27Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/indes-dev/ttree/actions/runs/38059346041/job/114234240290",
+      "name": "locked-artifact",
+      "startedAt": "2026-10-10T14:22:29Z",
+      "status": "COMPLETED",
+      "workflowName": "Bounded candidate validation"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-10T14:23:15Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/indes-dev/ttree/actions/runs/38059342669/job/114234229145",
+      "name": "locked-artifact",
+      "startedAt": "2026-10-10T14:22:26Z",
+      "status": "COMPLETED",
+      "workflowName": "Bounded candidate validation"
+    }
+  ]
+}

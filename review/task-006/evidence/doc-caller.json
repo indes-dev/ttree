@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "tokens": 163,
+  "marker_created": false,
+  "command": "installed console; worker -I; caller contains benign olefile.py marker"
+}

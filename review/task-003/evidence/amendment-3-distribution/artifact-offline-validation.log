@@ -1,0 +1,17 @@
+Using CPython 3.12.14 interpreter at: .venv/bin/python
+Creating virtual environment at: .tmp/ttree-offline-1f6is7iw/venv
+Activate with: source .tmp/ttree-offline-1f6is7iw/venv/bin/activate
+Using Python 3.12.14 environment at: .tmp/ttree-offline-1f6is7iw/venv
+Resolved 9 packages in 2ms
+Prepared 9 packages in 17ms
+Installed 9 packages in 39ms
+ + certifi==2026.7.22
+ + charset-normalizer==3.5.2
+ + idna==3.20
+ + indes-ttree==0.2.0
+ + pypdf==6.19.0
+ + regex==2026.9.29
+ + requests==2.34.2
+ + tiktoken==0.14.0
+ + urllib3==2.8.0
+{"installed_module": "/home/zak/projects/ttree/.tmp/ttree-offline-1f6is7iw/venv/lib/python3.12/site-packages/ttree/__init__.py", "json_strict_exit": 3, "mixed_root_exit": 1, "network_denied": true, "passed": true, "positive_control_port": 48601, "target": {"architecture": "x86_64", "implementation": "cpython", "python": "3.12", "system": "Linux"}, "versions": {"certifi": "2026.7.22", "charset-normalizer": "3.5.2", "idna": "3.20", "indes-ttree": "0.2.0", "pypdf": "6.19.0", "regex": "2026.9.29", "requests": "2.34.2", "tiktoken": "0.14.0", "urllib3": "2.8.0"}}

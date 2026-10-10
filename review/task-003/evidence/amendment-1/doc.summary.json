@@ -1,0 +1,1149 @@
+{
+  "starting_head": "f87e6493cb9a3234b9b1cf6054621a7b949ca8a0",
+  "batch_wall_seconds": 115,
+  "batch_cpu_seconds_per_process": 60,
+  "poll_seconds": 0.02,
+  "cases": {
+    "export_1024": {
+      "scope": "ttree-task003-77816a0d61c7.scope",
+      "command": [
+        "/usr/bin/bwrap",
+        "--unshare-all",
+        "--die-with-parent",
+        "--new-session",
+        "--ro-bind",
+        "/usr",
+        "/usr",
+        "--symlink",
+        "usr/bin",
+        "/bin",
+        "--symlink",
+        "usr/lib",
+        "/lib",
+        "--symlink",
+        "usr/lib",
+        "/lib64",
+        "--proc",
+        "/proc",
+        "--dev",
+        "/dev",
+        "--dir",
+        "/etc",
+        "--ro-bind",
+        "/etc/fonts",
+        "/etc/fonts",
+        "--ro-bind",
+        "/etc/libreoffice/bootstraprc",
+        "/etc/libreoffice/bootstraprc",
+        "--ro-bind",
+        "/etc/libreoffice/sofficerc",
+        "/etc/libreoffice/sofficerc",
+        "--bind",
+        "/home/zak/projects/ttree/.tmp/diagnostic-doc/export_1024/data",
+        "/work",
+        "--symlink",
+        "/work/tmp",
+        "/tmp",
+        "--chdir",
+        "/work",
+        "--clearenv",
+        "--setenv",
+        "PATH",
+        "/usr/bin",
+        "--setenv",
+        "HOME",
+        "/work/home",
+        "--setenv",
+        "TMPDIR",
+        "/work/tmp",
+        "--setenv",
+        "LANG",
+        "C.UTF-8",
+        "--setenv",
+        "SAL_USE_VCLPLUGIN",
+        "svp",
+        "--setenv",
+        "MALLOC_ARENA_MAX",
+        "1",
+        "--",
+        "/usr/bin/libreoffice",
+        "-env:UserInstallation=file:///work/profile",
+        "--headless",
+        "--nologo",
+        "--nodefault",
+        "--norestore",
+        "--convert-to",
+        "doc:MS Word 97",
+        "--outdir",
+        "/work/output",
+        "/work/source.txt"
+      ],
+      "scope_command": [
+        "/usr/bin/systemd-run",
+        "--user",
+        "--scope",
+        "--quiet",
+        "--collect",
+        "--unit=ttree-task003-77816a0d61c7.scope",
+        "--property=MemoryMax=805306368",
+        "--property=MemorySwapMax=0",
+        "--property=TasksMax=64",
+        "--property=CPUQuota=100%",
+        "--property=CPUQuotaPeriodSec=10ms",
+        "--property=RuntimeMaxSec=22s",
+        "--property=TimeoutStopSec=100ms",
+        "--property=KillMode=control-group",
+        "/usr/bin/prlimit",
+        "--as=2147483648",
+        "--cpu=60",
+        "--core=0",
+        "/usr/bin/unshare",
+        "-Urnpf",
+        "--mount-proc",
+        "/home/zak/projects/ttree/.venv/bin/python",
+        "/home/zak/projects/ttree/review/task-003/diagnostic.py",
+        "launch",
+        "/home/zak/projects/ttree/.tmp/diagnostic-doc/export_1024"
+      ],
+      "as_mib_per_reader_process": 1024,
+      "wall_seconds": 20,
+      "cpu_seconds_per_reader_process": 15,
+      "aggregate_cpu_limit_seconds": 15,
+      "membership_samples": [
+        {
+          "seconds": 0.0003,
+          "members": [
+            {
+              "pid": 703942,
+              "starttime": "32863397",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+              "nspid": "NSpid:\t703942"
+            },
+            {
+              "pid": 703943,
+              "starttime": "32863399",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+              "nspid": "NSpid:\t703943\t1"
+            }
+          ]
+        },
+        {
+          "seconds": 0.0209,
+          "members": [
+            {
+              "pid": 703942,
+              "starttime": "32863397",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+              "nspid": "NSpid:\t703942"
+            },
+            {
+              "pid": 703943,
+              "starttime": "32863399",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+              "nspid": "NSpid:\t703943\t1"
+            },
+            {
+              "pid": 703945,
+              "starttime": "32863403",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+              "nspid": "NSpid:\t703945\t3"
+            },
+            {
+              "pid": 703946,
+              "starttime": "32863403",
+              "session": 703946,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+              "nspid": "NSpid:\t703946\t4\t1"
+            },
+            {
+              "pid": 703947,
+              "starttime": "32863403",
+              "session": 703946,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+              "nspid": "NSpid:\t703947\t5\t2"
+            }
+          ]
+        },
+        {
+          "seconds": 0.0416,
+          "members": [
+            {
+              "pid": 703942,
+              "starttime": "32863397",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+              "nspid": "NSpid:\t703942"
+            },
+            {
+              "pid": 703943,
+              "starttime": "32863399",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+              "nspid": "NSpid:\t703943\t1"
+            },
+            {
+              "pid": 703945,
+              "starttime": "32863403",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+              "nspid": "NSpid:\t703945\t3"
+            },
+            {
+              "pid": 703946,
+              "starttime": "32863403",
+              "session": 703946,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+              "nspid": "NSpid:\t703946\t4\t1"
+            },
+            {
+              "pid": 703947,
+              "starttime": "32863403",
+              "session": 703946,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+              "nspid": "NSpid:\t703947\t5\t2"
+            },
+            {
+              "pid": 703960,
+              "starttime": "32863405",
+              "session": 703946,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+              "nspid": "NSpid:\t703960\t18\t15"
+            },
+            {
+              "pid": 703978,
+              "starttime": "32863406",
+              "session": 703946,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+              "nspid": "NSpid:\t703978\t36\t33"
+            }
+          ]
+        },
+        {
+          "seconds": 0.0624,
+          "members": [
+            {
+              "pid": 703942,
+              "starttime": "32863397",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+              "nspid": "NSpid:\t703942"
+            },
+            {
+              "pid": 703943,
+              "starttime": "32863399",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+              "nspid": "NSpid:\t703943\t1"
+            },
+            {
+              "pid": 703945,
+              "starttime": "32863403",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+              "nspid": "NSpid:\t703945\t3"
+            },
+            {
+              "pid": 703946,
+              "starttime": "32863403",
+              "session": 703946,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+              "nspid": "NSpid:\t703946\t4\t1"
+            },
+            {
+              "pid": 703947,
+              "starttime": "32863403",
+              "session": 703946,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+              "nspid": "NSpid:\t703947\t5\t2"
+            },
+            {
+              "pid": 703994,
+              "starttime": "32863407",
+              "session": 703946,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+              "nspid": "NSpid:\t703994\t52\t49"
+            }
+          ]
+        }
+      ],
+      "status": "failed",
+      "initial": {
+        "memory.max": "805306368",
+        "memory.swap.max": "0",
+        "pids.max": "64",
+        "cpu.max": "10000 10000",
+        "memory.current": "11890688",
+        "memory.peak": "11890688",
+        "memory.events": {
+          "low": "0",
+          "high": "0",
+          "max": "0",
+          "oom": "0",
+          "oom_kill": "0",
+          "oom_group_kill": "0",
+          "sock_throttled": "0"
+        },
+        "cpu.stat": {
+          "usage_usec": "36274",
+          "user_usec": "29227",
+          "system_usec": "7047",
+          "nice_usec": "0",
+          "core_sched.force_idle_usec": "0",
+          "nr_periods": "5",
+          "nr_throttled": "0",
+          "throttled_usec": "0",
+          "nr_bursts": "0",
+          "burst_usec": "0"
+        },
+        "pids.current": "2",
+        "pids.events": {
+          "max": "0"
+        },
+        "cgroup.events": {
+          "populated": "1",
+          "frozen": "0"
+        }
+      },
+      "readback_before_reader": true,
+      "supervisor_cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/eryon-helper.service",
+      "reader_result": {
+        "returncode": 139,
+        "status": "failed",
+        "seconds": 0.8447
+      },
+      "final_before_kill": {
+        "memory.max": "805306368",
+        "memory.swap.max": "0",
+        "pids.max": "64",
+        "cpu.max": "10000 10000",
+        "memory.current": "18829312",
+        "memory.peak": "61394944",
+        "memory.events": {
+          "low": "0",
+          "high": "0",
+          "max": "0",
+          "oom": "0",
+          "oom_kill": "0",
+          "oom_group_kill": "0",
+          "sock_throttled": "0"
+        },
+        "cpu.stat": {
+          "usage_usec": "832150",
+          "user_usec": "731029",
+          "system_usec": "101121",
+          "nice_usec": "0",
+          "core_sched.force_idle_usec": "0",
+          "nr_periods": "88",
+          "nr_throttled": "15",
+          "throttled_usec": "5499",
+          "nr_bursts": "0",
+          "burst_usec": "0"
+        },
+        "pids.current": "3",
+        "pids.events": {
+          "max": "0"
+        },
+        "cgroup.events": {
+          "populated": "1",
+          "frozen": "0"
+        }
+      },
+      "final_membership": [
+        {
+          "pid": 703942,
+          "starttime": "32863397",
+          "session": 703907,
+          "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+          "nspid": "NSpid:\t703942"
+        },
+        {
+          "pid": 703943,
+          "starttime": "32863399",
+          "session": 703907,
+          "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-77816a0d61c7.scope",
+          "nspid": "NSpid:\t703943\t1"
+        }
+      ],
+      "kill_returncode": 0,
+      "unit_inactive": true,
+      "scope_collected": true,
+      "survivors": [],
+      "cgroup_empty_or_removed": true,
+      "sampled_peak_tree_rss_kib": 202032,
+      "sampled_peak_process_vms_kib": 1048576,
+      "total_seconds": 0.9246,
+      "ole_export_observed": false,
+      "metrics_samples_count": 42
+    },
+    "export_1536": {
+      "scope": "ttree-task003-cb55178f2364.scope",
+      "command": [
+        "/usr/bin/bwrap",
+        "--unshare-all",
+        "--die-with-parent",
+        "--new-session",
+        "--ro-bind",
+        "/usr",
+        "/usr",
+        "--symlink",
+        "usr/bin",
+        "/bin",
+        "--symlink",
+        "usr/lib",
+        "/lib",
+        "--symlink",
+        "usr/lib",
+        "/lib64",
+        "--proc",
+        "/proc",
+        "--dev",
+        "/dev",
+        "--dir",
+        "/etc",
+        "--ro-bind",
+        "/etc/fonts",
+        "/etc/fonts",
+        "--ro-bind",
+        "/etc/libreoffice/bootstraprc",
+        "/etc/libreoffice/bootstraprc",
+        "--ro-bind",
+        "/etc/libreoffice/sofficerc",
+        "/etc/libreoffice/sofficerc",
+        "--bind",
+        "/home/zak/projects/ttree/.tmp/diagnostic-doc/export_1536/data",
+        "/work",
+        "--symlink",
+        "/work/tmp",
+        "/tmp",
+        "--chdir",
+        "/work",
+        "--clearenv",
+        "--setenv",
+        "PATH",
+        "/usr/bin",
+        "--setenv",
+        "HOME",
+        "/work/home",
+        "--setenv",
+        "TMPDIR",
+        "/work/tmp",
+        "--setenv",
+        "LANG",
+        "C.UTF-8",
+        "--setenv",
+        "SAL_USE_VCLPLUGIN",
+        "svp",
+        "--setenv",
+        "MALLOC_ARENA_MAX",
+        "1",
+        "--",
+        "/usr/bin/libreoffice",
+        "-env:UserInstallation=file:///work/profile",
+        "--headless",
+        "--nologo",
+        "--nodefault",
+        "--norestore",
+        "--convert-to",
+        "doc:MS Word 97",
+        "--outdir",
+        "/work/output",
+        "/work/source.txt"
+      ],
+      "scope_command": [
+        "/usr/bin/systemd-run",
+        "--user",
+        "--scope",
+        "--quiet",
+        "--collect",
+        "--unit=ttree-task003-cb55178f2364.scope",
+        "--property=MemoryMax=805306368",
+        "--property=MemorySwapMax=0",
+        "--property=TasksMax=64",
+        "--property=CPUQuota=100%",
+        "--property=CPUQuotaPeriodSec=10ms",
+        "--property=RuntimeMaxSec=22s",
+        "--property=TimeoutStopSec=100ms",
+        "--property=KillMode=control-group",
+        "/usr/bin/prlimit",
+        "--as=2147483648",
+        "--cpu=60",
+        "--core=0",
+        "/usr/bin/unshare",
+        "-Urnpf",
+        "--mount-proc",
+        "/home/zak/projects/ttree/.venv/bin/python",
+        "/home/zak/projects/ttree/review/task-003/diagnostic.py",
+        "launch",
+        "/home/zak/projects/ttree/.tmp/diagnostic-doc/export_1536"
+      ],
+      "as_mib_per_reader_process": 1536,
+      "wall_seconds": 20,
+      "cpu_seconds_per_reader_process": 15,
+      "aggregate_cpu_limit_seconds": 15,
+      "membership_samples": [
+        {
+          "seconds": 0.0002,
+          "members": [
+            {
+              "pid": 704010,
+              "starttime": "32863490",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+              "nspid": "NSpid:\t704010"
+            },
+            {
+              "pid": 704011,
+              "starttime": "32863492",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+              "nspid": "NSpid:\t704011\t1"
+            }
+          ]
+        },
+        {
+          "seconds": 0.0209,
+          "members": [
+            {
+              "pid": 704010,
+              "starttime": "32863490",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+              "nspid": "NSpid:\t704010"
+            },
+            {
+              "pid": 704011,
+              "starttime": "32863492",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+              "nspid": "NSpid:\t704011\t1"
+            },
+            {
+              "pid": 704013,
+              "starttime": "32863497",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+              "nspid": "NSpid:\t704013\t3"
+            },
+            {
+              "pid": 704014,
+              "starttime": "32863497",
+              "session": 704014,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+              "nspid": "NSpid:\t704014\t4\t1"
+            },
+            {
+              "pid": 704017,
+              "starttime": "32863497",
+              "session": 704014,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+              "nspid": "NSpid:\t704017\t5\t2"
+            }
+          ]
+        },
+        {
+          "seconds": 0.0416,
+          "members": [
+            {
+              "pid": 704010,
+              "starttime": "32863490",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+              "nspid": "NSpid:\t704010"
+            },
+            {
+              "pid": 704011,
+              "starttime": "32863492",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+              "nspid": "NSpid:\t704011\t1"
+            },
+            {
+              "pid": 704013,
+              "starttime": "32863497",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+              "nspid": "NSpid:\t704013\t3"
+            },
+            {
+              "pid": 704014,
+              "starttime": "32863497",
+              "session": 704014,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+              "nspid": "NSpid:\t704014\t4\t1"
+            },
+            {
+              "pid": 704017,
+              "starttime": "32863497",
+              "session": 704014,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+              "nspid": "NSpid:\t704017\t5\t2"
+            },
+            {
+              "pid": 704030,
+              "starttime": "32863499",
+              "session": 704014,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+              "nspid": "NSpid:\t704030\t18\t15"
+            }
+          ]
+        },
+        {
+          "seconds": 0.0623,
+          "members": [
+            {
+              "pid": 704010,
+              "starttime": "32863490",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+              "nspid": "NSpid:\t704010"
+            },
+            {
+              "pid": 704011,
+              "starttime": "32863492",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+              "nspid": "NSpid:\t704011\t1"
+            },
+            {
+              "pid": 704013,
+              "starttime": "32863497",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+              "nspid": "NSpid:\t704013\t3"
+            },
+            {
+              "pid": 704014,
+              "starttime": "32863497",
+              "session": 704014,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+              "nspid": "NSpid:\t704014\t4\t1"
+            },
+            {
+              "pid": 704017,
+              "starttime": "32863497",
+              "session": 704014,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+              "nspid": "NSpid:\t704017\t5\t2"
+            },
+            {
+              "pid": 704064,
+              "starttime": "32863502",
+              "session": 704014,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+              "nspid": "NSpid:\t704064\t52\t49"
+            }
+          ]
+        }
+      ],
+      "status": "failed",
+      "initial": {
+        "memory.max": "805306368",
+        "memory.swap.max": "0",
+        "pids.max": "64",
+        "cpu.max": "10000 10000",
+        "memory.current": "11624448",
+        "memory.peak": "11624448",
+        "memory.events": {
+          "low": "0",
+          "high": "0",
+          "max": "0",
+          "oom": "0",
+          "oom_kill": "0",
+          "oom_group_kill": "0",
+          "sock_throttled": "0"
+        },
+        "cpu.stat": {
+          "usage_usec": "36388",
+          "user_usec": "29509",
+          "system_usec": "6878",
+          "nice_usec": "0",
+          "core_sched.force_idle_usec": "0",
+          "nr_periods": "6",
+          "nr_throttled": "1",
+          "throttled_usec": "941",
+          "nr_bursts": "0",
+          "burst_usec": "0"
+        },
+        "pids.current": "2",
+        "pids.events": {
+          "max": "0"
+        },
+        "cgroup.events": {
+          "populated": "1",
+          "frozen": "0"
+        }
+      },
+      "readback_before_reader": true,
+      "supervisor_cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/eryon-helper.service",
+      "reader_result": {
+        "returncode": 134,
+        "status": "failed",
+        "seconds": 1.2304
+      },
+      "final_before_kill": {
+        "memory.max": "805306368",
+        "memory.swap.max": "0",
+        "pids.max": "64",
+        "cpu.max": "10000 10000",
+        "memory.current": "111763456",
+        "memory.peak": "180699136",
+        "memory.events": {
+          "low": "0",
+          "high": "0",
+          "max": "0",
+          "oom": "0",
+          "oom_kill": "0",
+          "oom_group_kill": "0",
+          "sock_throttled": "0"
+        },
+        "cpu.stat": {
+          "usage_usec": "915567",
+          "user_usec": "733447",
+          "system_usec": "182120",
+          "nice_usec": "0",
+          "core_sched.force_idle_usec": "0",
+          "nr_periods": "111",
+          "nr_throttled": "9",
+          "throttled_usec": "19347",
+          "nr_bursts": "0",
+          "burst_usec": "0"
+        },
+        "pids.current": "3",
+        "pids.events": {
+          "max": "0"
+        },
+        "cgroup.events": {
+          "populated": "1",
+          "frozen": "0"
+        }
+      },
+      "final_membership": [
+        {
+          "pid": 704010,
+          "starttime": "32863490",
+          "session": 703907,
+          "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+          "nspid": "NSpid:\t704010"
+        },
+        {
+          "pid": 704011,
+          "starttime": "32863492",
+          "session": 703907,
+          "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-cb55178f2364.scope",
+          "nspid": "NSpid:\t704011\t1"
+        }
+      ],
+      "kill_returncode": 0,
+      "unit_inactive": true,
+      "scope_collected": true,
+      "survivors": [],
+      "cgroup_empty_or_removed": true,
+      "sampled_peak_tree_rss_kib": 310004,
+      "sampled_peak_process_vms_kib": 1572852,
+      "total_seconds": 1.3348,
+      "ole_export_observed": false,
+      "metrics_samples_count": 61
+    },
+    "export_2048": {
+      "scope": "ttree-task003-7cb9c0f659a4.scope",
+      "command": [
+        "/usr/bin/bwrap",
+        "--unshare-all",
+        "--die-with-parent",
+        "--new-session",
+        "--ro-bind",
+        "/usr",
+        "/usr",
+        "--symlink",
+        "usr/bin",
+        "/bin",
+        "--symlink",
+        "usr/lib",
+        "/lib",
+        "--symlink",
+        "usr/lib",
+        "/lib64",
+        "--proc",
+        "/proc",
+        "--dev",
+        "/dev",
+        "--dir",
+        "/etc",
+        "--ro-bind",
+        "/etc/fonts",
+        "/etc/fonts",
+        "--ro-bind",
+        "/etc/libreoffice/bootstraprc",
+        "/etc/libreoffice/bootstraprc",
+        "--ro-bind",
+        "/etc/libreoffice/sofficerc",
+        "/etc/libreoffice/sofficerc",
+        "--bind",
+        "/home/zak/projects/ttree/.tmp/diagnostic-doc/export_2048/data",
+        "/work",
+        "--symlink",
+        "/work/tmp",
+        "/tmp",
+        "--chdir",
+        "/work",
+        "--clearenv",
+        "--setenv",
+        "PATH",
+        "/usr/bin",
+        "--setenv",
+        "HOME",
+        "/work/home",
+        "--setenv",
+        "TMPDIR",
+        "/work/tmp",
+        "--setenv",
+        "LANG",
+        "C.UTF-8",
+        "--setenv",
+        "SAL_USE_VCLPLUGIN",
+        "svp",
+        "--setenv",
+        "MALLOC_ARENA_MAX",
+        "1",
+        "--",
+        "/usr/bin/libreoffice",
+        "-env:UserInstallation=file:///work/profile",
+        "--headless",
+        "--nologo",
+        "--nodefault",
+        "--norestore",
+        "--convert-to",
+        "doc:MS Word 97",
+        "--outdir",
+        "/work/output",
+        "/work/source.txt"
+      ],
+      "scope_command": [
+        "/usr/bin/systemd-run",
+        "--user",
+        "--scope",
+        "--quiet",
+        "--collect",
+        "--unit=ttree-task003-7cb9c0f659a4.scope",
+        "--property=MemoryMax=805306368",
+        "--property=MemorySwapMax=0",
+        "--property=TasksMax=64",
+        "--property=CPUQuota=100%",
+        "--property=CPUQuotaPeriodSec=10ms",
+        "--property=RuntimeMaxSec=22s",
+        "--property=TimeoutStopSec=100ms",
+        "--property=KillMode=control-group",
+        "/usr/bin/prlimit",
+        "--as=2147483648",
+        "--cpu=60",
+        "--core=0",
+        "/usr/bin/unshare",
+        "-Urnpf",
+        "--mount-proc",
+        "/home/zak/projects/ttree/.venv/bin/python",
+        "/home/zak/projects/ttree/review/task-003/diagnostic.py",
+        "launch",
+        "/home/zak/projects/ttree/.tmp/diagnostic-doc/export_2048"
+      ],
+      "as_mib_per_reader_process": 2048,
+      "wall_seconds": 20,
+      "cpu_seconds_per_reader_process": 15,
+      "aggregate_cpu_limit_seconds": 15,
+      "membership_samples": [
+        {
+          "seconds": 0.0006,
+          "members": [
+            {
+              "pid": 704080,
+              "starttime": "32863625",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+              "nspid": "NSpid:\t704080"
+            },
+            {
+              "pid": 704081,
+              "starttime": "32863627",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+              "nspid": "NSpid:\t704081\t1"
+            }
+          ]
+        },
+        {
+          "seconds": 0.0219,
+          "members": [
+            {
+              "pid": 704080,
+              "starttime": "32863625",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+              "nspid": "NSpid:\t704080"
+            },
+            {
+              "pid": 704081,
+              "starttime": "32863627",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+              "nspid": "NSpid:\t704081\t1"
+            },
+            {
+              "pid": 704083,
+              "starttime": "32863631",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+              "nspid": "NSpid:\t704083\t3"
+            },
+            {
+              "pid": 704084,
+              "starttime": "32863632",
+              "session": 704084,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+              "nspid": "NSpid:\t704084\t4\t1"
+            },
+            {
+              "pid": 704085,
+              "starttime": "32863632",
+              "session": 704084,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+              "nspid": "NSpid:\t704085\t5\t2"
+            }
+          ]
+        },
+        {
+          "seconds": 0.0434,
+          "members": [
+            {
+              "pid": 704080,
+              "starttime": "32863625",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+              "nspid": "NSpid:\t704080"
+            },
+            {
+              "pid": 704081,
+              "starttime": "32863627",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+              "nspid": "NSpid:\t704081\t1"
+            },
+            {
+              "pid": 704083,
+              "starttime": "32863631",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+              "nspid": "NSpid:\t704083\t3"
+            },
+            {
+              "pid": 704084,
+              "starttime": "32863632",
+              "session": 704084,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+              "nspid": "NSpid:\t704084\t4\t1"
+            },
+            {
+              "pid": 704085,
+              "starttime": "32863632",
+              "session": 704084,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+              "nspid": "NSpid:\t704085\t5\t2"
+            },
+            {
+              "pid": 704098,
+              "starttime": "32863633",
+              "session": 704084,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+              "nspid": "NSpid:\t704098\t18\t15"
+            },
+            {
+              "pid": 704124,
+              "starttime": "32863635",
+              "session": 704084,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+              "nspid": "NSpid:\t704124\t44\t41"
+            }
+          ]
+        },
+        {
+          "seconds": 0.0643,
+          "members": [
+            {
+              "pid": 704080,
+              "starttime": "32863625",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+              "nspid": "NSpid:\t704080"
+            },
+            {
+              "pid": 704081,
+              "starttime": "32863627",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+              "nspid": "NSpid:\t704081\t1"
+            },
+            {
+              "pid": 704083,
+              "starttime": "32863631",
+              "session": 703907,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+              "nspid": "NSpid:\t704083\t3"
+            },
+            {
+              "pid": 704084,
+              "starttime": "32863632",
+              "session": 704084,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+              "nspid": "NSpid:\t704084\t4\t1"
+            },
+            {
+              "pid": 704085,
+              "starttime": "32863632",
+              "session": 704084,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+              "nspid": "NSpid:\t704085\t5\t2"
+            },
+            {
+              "pid": 704132,
+              "starttime": "32863636",
+              "session": 704084,
+              "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+              "nspid": "NSpid:\t704132\t52\t49"
+            }
+          ]
+        }
+      ],
+      "status": "failed",
+      "initial": {
+        "memory.max": "805306368",
+        "memory.swap.max": "0",
+        "pids.max": "64",
+        "cpu.max": "10000 10000",
+        "memory.current": "11886592",
+        "memory.peak": "11886592",
+        "memory.events": {
+          "low": "0",
+          "high": "0",
+          "max": "0",
+          "oom": "0",
+          "oom_kill": "0",
+          "oom_group_kill": "0",
+          "sock_throttled": "0"
+        },
+        "cpu.stat": {
+          "usage_usec": "38522",
+          "user_usec": "31614",
+          "system_usec": "6907",
+          "nice_usec": "0",
+          "core_sched.force_idle_usec": "0",
+          "nr_periods": "5",
+          "nr_throttled": "0",
+          "throttled_usec": "0",
+          "nr_bursts": "0",
+          "burst_usec": "0"
+        },
+        "pids.current": "2",
+        "pids.events": {
+          "max": "0"
+        },
+        "cgroup.events": {
+          "populated": "1",
+          "frozen": "0"
+        }
+      },
+      "readback_before_reader": true,
+      "supervisor_cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/eryon-helper.service",
+      "reader_result": {
+        "returncode": 134,
+        "status": "failed",
+        "seconds": 0.9082
+      },
+      "final_before_kill": {
+        "memory.max": "805306368",
+        "memory.swap.max": "0",
+        "pids.max": "64",
+        "cpu.max": "10000 10000",
+        "memory.current": "17506304",
+        "memory.peak": "74399744",
+        "memory.events": {
+          "low": "0",
+          "high": "0",
+          "max": "0",
+          "oom": "0",
+          "oom_kill": "0",
+          "oom_group_kill": "0",
+          "sock_throttled": "0"
+        },
+        "cpu.stat": {
+          "usage_usec": "887733",
+          "user_usec": "760338",
+          "system_usec": "127395",
+          "nice_usec": "0",
+          "core_sched.force_idle_usec": "0",
+          "nr_periods": "95",
+          "nr_throttled": "7",
+          "throttled_usec": "6005",
+          "nr_bursts": "0",
+          "burst_usec": "0"
+        },
+        "pids.current": "3",
+        "pids.events": {
+          "max": "0"
+        },
+        "cgroup.events": {
+          "populated": "1",
+          "frozen": "0"
+        }
+      },
+      "final_membership": [
+        {
+          "pid": 704080,
+          "starttime": "32863625",
+          "session": 703907,
+          "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+          "nspid": "NSpid:\t704080"
+        },
+        {
+          "pid": 704081,
+          "starttime": "32863627",
+          "session": 703907,
+          "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/ttree-task003-7cb9c0f659a4.scope",
+          "nspid": "NSpid:\t704081\t1"
+        }
+      ],
+      "kill_returncode": 0,
+      "unit_inactive": true,
+      "scope_collected": true,
+      "survivors": [],
+      "cgroup_empty_or_removed": true,
+      "sampled_peak_tree_rss_kib": 302204,
+      "sampled_peak_process_vms_kib": 2097152,
+      "total_seconds": 1.0126,
+      "ole_export_observed": false,
+      "metrics_samples_count": 45
+    }
+  },
+  "checks": {
+    "export_1024_cleanup": true,
+    "export_1024_private_outputs_removed": true,
+    "export_1536_cleanup": true,
+    "export_1536_private_outputs_removed": true,
+    "export_2048_cleanup": true,
+    "export_2048_private_outputs_removed": true,
+    "native_export": false
+  },
+  "passed": false,
+  "versions": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "kernel": "7.2.8-arch1-2",
+    "systemd": "systemd 262 (262-1-arch)",
+    "bubblewrap": "bubblewrap 0.13.0",
+    "libreoffice": "LibreOffice 26.8.0.3 680(Build:3)"
+  },
+  "elapsed_seconds": 3.3999,
+  "failure": "RuntimeError: native_export failed; stop under frozen amendment",
+  "coverage_note": "CPU assertion checks trigger overshoot; final termination CPU overshoot is unverified. No native export/import succeeded."
+}

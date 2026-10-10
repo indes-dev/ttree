@@ -1,0 +1,144 @@
+{
+  "artifact_sha256sums_digest": "e872bab11fd69a6fae9c194b86ca4e7c2c2a8789c376392e506d4162e23a19a2",
+  "artifacts": {
+    "build_tools": {
+      "build": "1.6.1",
+      "hatchling": "1.32.4",
+      "packaging": "26.3",
+      "pathspec": "1.1.1",
+      "pluggy": "1.6.0",
+      "pyproject-hooks": "1.3.3",
+      "tomlkit": "0.15.1",
+      "trove-classifiers": "2026.9.21.13"
+    },
+    "files": {
+      "indes_ttree-0.2.0-py3-none-any.whl": "926c0af25050cbad17b2305c21f0e39f0deb4fcaef14fc5d460861bab53e6e1b",
+      "indes_ttree-0.2.0.tar.gz": "83a658cc0a8de6f7fade3dea54ecdd9cd24bea5e550fda5799ecc7164843ad86"
+    },
+    "source_date_epoch": 1791561984,
+    "source_revision": "4c07f5a06a80a02002dbfecc73331be6886d0180"
+  },
+  "checks": {
+    "actual_wheel_bytes_tampered": true,
+    "fixtures_reviews_and_test_assets_not_in_wheel": true,
+    "implicit_path_fresh": true,
+    "live_positive_and_denial": true,
+    "missing_hash_rejected": true,
+    "required_code_tests_build_inputs_licenses_in_sdist": true,
+    "root_src_tests_license_sentinels_excluded": true,
+    "sentinel_paths_fresh": true,
+    "tampered_wheel_hash_rejected": true,
+    "tracked_wheel_and_sdist_reproducible": true,
+    "unexpected_implicit_build_input_fails_closed": true,
+    "whole_artifact_reproducible": true
+  },
+  "distribution_inventory": {
+    "sdist": [
+      "indes_ttree-0.2.0/THIRD_PARTY.md",
+      "indes_ttree-0.2.0/.github/workflows/validate.yml",
+      "indes_ttree-0.2.0/locks/build-linux-cp312-x86_64.txt",
+      "indes_ttree-0.2.0/locks/runtime-linux-cp312-x86_64.txt",
+      "indes_ttree-0.2.0/scripts/build_offline.py",
+      "indes_ttree-0.2.0/scripts/build_tracked.py",
+      "indes_ttree-0.2.0/scripts/validate_offline.py",
+      "indes_ttree-0.2.0/src/ttree/__init__.py",
+      "indes_ttree-0.2.0/src/ttree/bounded.py",
+      "indes_ttree-0.2.0/src/ttree/cli.py",
+      "indes_ttree-0.2.0/src/ttree/documents.py",
+      "indes_ttree-0.2.0/src/ttree/limits.py",
+      "indes_ttree-0.2.0/src/ttree/scan.py",
+      "indes_ttree-0.2.0/src/ttree/tokenizer.py",
+      "indes_ttree-0.2.0/src/ttree/worker.py",
+      "indes_ttree-0.2.0/src/ttree/data/TIKTOKEN_LICENSE",
+      "indes_ttree-0.2.0/src/ttree/data/o200k_base.tiktoken",
+      "indes_ttree-0.2.0/tests/test_cli.py",
+      "indes_ttree-0.2.0/tests/test_documents.py",
+      "indes_ttree-0.2.0/tests/test_security.py",
+      "indes_ttree-0.2.0/.gitignore",
+      "indes_ttree-0.2.0/LICENSE",
+      "indes_ttree-0.2.0/README.md",
+      "indes_ttree-0.2.0/hatch_build.py",
+      "indes_ttree-0.2.0/pyproject.toml",
+      "indes_ttree-0.2.0/PKG-INFO"
+    ],
+    "wheel": [
+      "ttree/__init__.py",
+      "ttree/bounded.py",
+      "ttree/cli.py",
+      "ttree/documents.py",
+      "ttree/limits.py",
+      "ttree/scan.py",
+      "ttree/tokenizer.py",
+      "ttree/worker.py",
+      "ttree/data/TIKTOKEN_LICENSE",
+      "ttree/data/o200k_base.tiktoken",
+      "indes_ttree-0.2.0.dist-info/METADATA",
+      "indes_ttree-0.2.0.dist-info/WHEEL",
+      "indes_ttree-0.2.0.dist-info/entry_points.txt",
+      "indes_ttree-0.2.0.dist-info/licenses/LICENSE",
+      "indes_ttree-0.2.0.dist-info/RECORD"
+    ]
+  },
+  "elapsed_seconds": 9.1764,
+  "manifest": {
+    "build_host": {
+      "libc": [
+        "glibc",
+        "2.44"
+      ],
+      "python": "3.12.14"
+    },
+    "build_tools": {
+      "build": "1.6.1",
+      "hatchling": "1.32.4",
+      "packaging": "26.3",
+      "pathspec": "1.1.1",
+      "pluggy": "1.6.0",
+      "pyproject-hooks": "1.3.3",
+      "tomlkit": "0.15.1",
+      "trove-classifiers": "2026.9.21.13"
+    },
+    "dependency_lock_sha256": "54b42ab94295f072a0d32ae9115d4e2d3667aba9c97f3e829b74028a0f564f14",
+    "install_lock_sha256": "8721242f019cd0e58501371be547385cc6e83c54ad3e5a4efcb5846685f5d5e9",
+    "native_doc": "inactive pending bounded adapter; no native reader included",
+    "project": "indes-ttree",
+    "source_date_epoch": 1791561984,
+    "source_revision": "4c07f5a06a80a02002dbfecc73331be6886d0180",
+    "target": {
+      "architecture": "x86_64",
+      "implementation": "cpython",
+      "python": "3.12",
+      "system": "Linux"
+    },
+    "version": "0.2.0",
+    "versions": {
+      "certifi": "2026.7.22",
+      "charset-normalizer": "3.5.2",
+      "idna": "3.20",
+      "indes-ttree": "0.2.0",
+      "pypdf": "6.19.0",
+      "regex": "2026.9.29",
+      "requests": "2.34.2",
+      "tiktoken": "0.14.0",
+      "urllib3": "2.8.0"
+    },
+    "wheels": [
+      "certifi-2026.7.22-py3-none-any.whl",
+      "charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "idna-3.20-py3-none-any.whl",
+      "indes_ttree-0.2.0-py3-none-any.whl",
+      "pypdf-6.19.0-py3-none-any.whl",
+      "regex-2026.9.29-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "requests-2.34.2-py3-none-any.whl",
+      "tiktoken-0.14.0-cp312-cp312-manylinux_2_28_x86_64.whl",
+      "urllib3-2.8.0-py3-none-any.whl"
+    ]
+  },
+  "network": {
+    "nested_namespace_denied": true,
+    "parent_listener_connections": 1,
+    "parent_positive_control": true
+  },
+  "passed": true,
+  "starting_head": "4c07f5a06a80a02002dbfecc73331be6886d0180"
+}

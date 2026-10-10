@@ -1,0 +1,124 @@
+{
+  "checks": {
+    "dated_direct_reader_advisory_queries_empty": true,
+    "final_wheel_profile": true,
+    "four_installed_provenances_and_public_doc": true,
+    "offline_network_denial_and_hash_install": true,
+    "reproducible_build": true
+  },
+  "installed": {
+    "310": {
+      "hashes": {
+        "ttree/__init__.py": "4156239bcc8194035f1d5f102e8c3f8a8c634566a9622a4a4cd4eba960805bf9",
+        "ttree/bounded.py": "067f384e73752b860c89c174bf0d74d5844acb5de6f50bdff2aff49e2da5418f",
+        "ttree/cli.py": "89d37f95d90a4d9509552b2a7573130f23ae43a78f16bede60855646045746d2",
+        "ttree/data/TIKTOKEN_LICENSE": "418cb499b436128d653d79941333a5437b7be2ea9213dcc2f04d15d5d2c51d86",
+        "ttree/data/o200k_base.tiktoken": "446a9538cb6c348e3516120d7c08b09f57c36495e2acfffe59a5bf8b0cfb1a2d",
+        "ttree/documents.py": "d1d4ad1544eeebcdad8119ea55281d7c45ee67e0cd7e40649950a1ca57bc763a",
+        "ttree/limits.py": "ec6c87c5d2db98d535c13bd2791a08b8531ce0bf69b21416f63759ee8a1348c9",
+        "ttree/scan.py": "ad3090eaae1b81694fb7a8fe13702326e41947f2c9593826589ec8af8e20b00e",
+        "ttree/tokenizer.py": "e7f81795c2432ce96583fd0a676a53f71e5d48ee10a52e706fd1fe19be9c07e8",
+        "ttree/worker.py": "b5d54a759eb44ce850ed156bb92e3e7d4f2bfa6b4a99329052a4f63dee496656"
+      },
+      "olefile": "0.47",
+      "public_doc": {
+        "bytes": 32768,
+        "complete": true,
+        "status": "counted",
+        "tokens": 163
+      },
+      "python": "3.10.22"
+    },
+    "311": {
+      "hashes": {
+        "ttree/__init__.py": "4156239bcc8194035f1d5f102e8c3f8a8c634566a9622a4a4cd4eba960805bf9",
+        "ttree/bounded.py": "067f384e73752b860c89c174bf0d74d5844acb5de6f50bdff2aff49e2da5418f",
+        "ttree/cli.py": "89d37f95d90a4d9509552b2a7573130f23ae43a78f16bede60855646045746d2",
+        "ttree/data/TIKTOKEN_LICENSE": "418cb499b436128d653d79941333a5437b7be2ea9213dcc2f04d15d5d2c51d86",
+        "ttree/data/o200k_base.tiktoken": "446a9538cb6c348e3516120d7c08b09f57c36495e2acfffe59a5bf8b0cfb1a2d",
+        "ttree/documents.py": "d1d4ad1544eeebcdad8119ea55281d7c45ee67e0cd7e40649950a1ca57bc763a",
+        "ttree/limits.py": "ec6c87c5d2db98d535c13bd2791a08b8531ce0bf69b21416f63759ee8a1348c9",
+        "ttree/scan.py": "ad3090eaae1b81694fb7a8fe13702326e41947f2c9593826589ec8af8e20b00e",
+        "ttree/tokenizer.py": "e7f81795c2432ce96583fd0a676a53f71e5d48ee10a52e706fd1fe19be9c07e8",
+        "ttree/worker.py": "b5d54a759eb44ce850ed156bb92e3e7d4f2bfa6b4a99329052a4f63dee496656"
+      },
+      "olefile": "0.47",
+      "public_doc": {
+        "bytes": 32768,
+        "complete": true,
+        "status": "counted",
+        "tokens": 163
+      },
+      "python": "3.11.17"
+    },
+    "312": {
+      "hashes": {
+        "ttree/__init__.py": "4156239bcc8194035f1d5f102e8c3f8a8c634566a9622a4a4cd4eba960805bf9",
+        "ttree/bounded.py": "067f384e73752b860c89c174bf0d74d5844acb5de6f50bdff2aff49e2da5418f",
+        "ttree/cli.py": "89d37f95d90a4d9509552b2a7573130f23ae43a78f16bede60855646045746d2",
+        "ttree/data/TIKTOKEN_LICENSE": "418cb499b436128d653d79941333a5437b7be2ea9213dcc2f04d15d5d2c51d86",
+        "ttree/data/o200k_base.tiktoken": "446a9538cb6c348e3516120d7c08b09f57c36495e2acfffe59a5bf8b0cfb1a2d",
+        "ttree/documents.py": "d1d4ad1544eeebcdad8119ea55281d7c45ee67e0cd7e40649950a1ca57bc763a",
+        "ttree/limits.py": "ec6c87c5d2db98d535c13bd2791a08b8531ce0bf69b21416f63759ee8a1348c9",
+        "ttree/scan.py": "ad3090eaae1b81694fb7a8fe13702326e41947f2c9593826589ec8af8e20b00e",
+        "ttree/tokenizer.py": "e7f81795c2432ce96583fd0a676a53f71e5d48ee10a52e706fd1fe19be9c07e8",
+        "ttree/worker.py": "b5d54a759eb44ce850ed156bb92e3e7d4f2bfa6b4a99329052a4f63dee496656"
+      },
+      "olefile": "0.47",
+      "public_doc": {
+        "bytes": 32768,
+        "complete": true,
+        "status": "counted",
+        "tokens": 163
+      },
+      "python": "3.12.14"
+    },
+    "314": {
+      "hashes": {
+        "ttree/__init__.py": "4156239bcc8194035f1d5f102e8c3f8a8c634566a9622a4a4cd4eba960805bf9",
+        "ttree/bounded.py": "067f384e73752b860c89c174bf0d74d5844acb5de6f50bdff2aff49e2da5418f",
+        "ttree/cli.py": "89d37f95d90a4d9509552b2a7573130f23ae43a78f16bede60855646045746d2",
+        "ttree/data/TIKTOKEN_LICENSE": "418cb499b436128d653d79941333a5437b7be2ea9213dcc2f04d15d5d2c51d86",
+        "ttree/data/o200k_base.tiktoken": "446a9538cb6c348e3516120d7c08b09f57c36495e2acfffe59a5bf8b0cfb1a2d",
+        "ttree/documents.py": "d1d4ad1544eeebcdad8119ea55281d7c45ee67e0cd7e40649950a1ca57bc763a",
+        "ttree/limits.py": "ec6c87c5d2db98d535c13bd2791a08b8531ce0bf69b21416f63759ee8a1348c9",
+        "ttree/scan.py": "ad3090eaae1b81694fb7a8fe13702326e41947f2c9593826589ec8af8e20b00e",
+        "ttree/tokenizer.py": "e7f81795c2432ce96583fd0a676a53f71e5d48ee10a52e706fd1fe19be9c07e8",
+        "ttree/worker.py": "b5d54a759eb44ce850ed156bb92e3e7d4f2bfa6b4a99329052a4f63dee496656"
+      },
+      "olefile": "0.47",
+      "public_doc": {
+        "bytes": 32768,
+        "complete": true,
+        "status": "counted",
+        "tokens": 163
+      },
+      "python": "3.14.7"
+    }
+  },
+  "observed_utc": "2026-10-10T14:26:27.198603+00:00",
+  "offline": {
+    "nested_namespace_denied": true,
+    "parent_listener_connections": 1,
+    "parent_positive_control": true
+  },
+  "passed": true,
+  "production_revision": "30ff2b1ce22978fcc747aa2299627c3461ed4d54",
+  "profile": {
+    "cpu_seconds": 7.212092999999999,
+    "files": 40,
+    "scope": "Waited CLI family CPU; 40 distinct benign files; no aggregate RSS claim.",
+    "tokens": 240,
+    "wall_seconds": 7.23010109498864,
+    "wheel_sha256": "68349df0bcc539cbc51696aa9f9b0dded51e51fc73e2f693280e21256f3ca8cb"
+  },
+  "public_doc": {
+    "bytes": 32768,
+    "sha256": "5ca19b67876f284a0e04ed06df44a004f850629a871fe522d014e1fdff912799"
+  },
+  "reproduction": {
+    "build.json": "e8e68d02a05d0c2c88875493f0f7a2016dd94197d8bf0cf4e93ffc4198413c99",
+    "indes_ttree-0.2.0-py3-none-any.whl": "68349df0bcc539cbc51696aa9f9b0dded51e51fc73e2f693280e21256f3ca8cb",
+    "indes_ttree-0.2.0.tar.gz": "28649a9c6b391ba0de407887412afce13a568b68e45dc2a8c9356e14d3614a67"
+  }
+}
